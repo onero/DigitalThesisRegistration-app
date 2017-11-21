@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Contract} from '../shared/contract.model';
+import {ContractService} from '../shared/contract.service';
 
 @Component({
   selector: 'app-contracts',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractsComponent implements OnInit {
 
-  constructor() { }
+  contracts: Contract[];
+
+  constructor(private contractService: ContractService) { }
 
   ngOnInit() {
+    this.contracts = this.contractService.getMockContract();
   }
 
 }
