@@ -9,6 +9,7 @@ import {appRoutes} from './app.routing';
 import {RouterModule} from '@angular/router';
 import {StudentModule} from './student/student.module';
 import {studentRoutes} from "./student/student.routing";
+import {ContractModule} from "./contract/contract.module";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {studentRoutes} from "./student/student.routing";
     BrowserModule,
     RouterModule,
     appRoutes,
-    StudentModule
+    ContractModule
   ],
   providers: [],
   bootstrap: [AppComponent]
