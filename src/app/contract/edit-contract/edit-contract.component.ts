@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SharedData} from '../shared/sharedData';
 
 @Component({
   selector: 'app-edit-contract',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditContractComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedData: SharedData) { }
 
   ngOnInit() {
+    console.log(this.sharedData.contract);
   }
 
 }

@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StudentService} from './shared/student.service';
 import {HttpClientModule} from '@angular/common/http';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
+import {SharedData} from './shared/sharedData';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
     HttpClientModule
   ],
   declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent],
-  providers: [ContractService, StudentService, NgbModal, NgbModalStack]
+  providers: [ContractService, StudentService, SharedData, NgbModal, NgbModalStack]
 })
 export class ContractModule { }
