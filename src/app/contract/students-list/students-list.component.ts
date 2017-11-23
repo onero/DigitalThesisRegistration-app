@@ -20,8 +20,8 @@ export class StudentsListComponent implements OnInit {
   constructor(private modalService: NgbModal, private studentService: StudentService,
               private fb: FormBuilder) {
     this.studentGroup = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(1)]],
-      lastName: ['', [Validators.required, Validators.minLength(1)]]
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 

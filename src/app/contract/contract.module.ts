@@ -10,6 +10,7 @@ import {NgbModalStack} from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StudentService} from './shared/student.service';
 import {HttpClientModule} from '@angular/common/http';
+import { EditContractComponent } from './edit-contract/edit-contract.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent],
+  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent],
   providers: [ContractService, StudentService, NgbModal, NgbModalStack]
 })
 export class ContractModule { }

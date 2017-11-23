@@ -9,6 +9,7 @@ import {ContractService} from '../shared/contract.service';
 })
 export class ContractsComponent implements OnInit {
 
+  selectedContract: Contract;
   contracts: Contract[];
 
   constructor(private contractService: ContractService) { }
@@ -16,4 +17,10 @@ export class ContractsComponent implements OnInit {
   ngOnInit() {
     this.contracts = this.contractService.getMockContract();
   }
+
+  selectContract(contract: Contract) {
+    this.selectedContract = contract;
+    console.log(this.selectedContract);
+  }
+
 }

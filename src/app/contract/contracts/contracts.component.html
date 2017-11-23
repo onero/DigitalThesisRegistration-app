@@ -5,7 +5,9 @@
         <button type="button" class="list-group-item list-group-item-action active">
           Contracts
         </button>
-        <button *ngFor="let contract of contracts" type="button" class="list-group-item list-group-item-action">
+        <button routerLink="/contracts/editContract" *ngFor="let contract of contracts"
+                (click)="selectContract(contract)"
+                type="button" class="list-group-item list-group-item-action">
           {{contract.title}}
         </button>
       </div>
