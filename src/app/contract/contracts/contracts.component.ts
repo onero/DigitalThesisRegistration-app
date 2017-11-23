@@ -16,5 +16,4 @@ export class ContractsComponent implements OnInit {
   ngOnInit() {
     this.contracts = this.contractService.getMockContract();
   }
-
 }

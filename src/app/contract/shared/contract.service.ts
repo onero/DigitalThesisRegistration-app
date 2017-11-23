@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs/Observable';
 import {Contract} from './contract.model';
+import {Student} from './student.model';
 
 export class ContractService {
 
@@ -12,5 +13,13 @@ export class ContractService {
       {title: 'Mr. Nice4'},
     ];
     return mock;
+  }
+
+  getMockStudents() {
+    const mockStudents: Student[] = [
+      {firstName: 'Rasmus', lastName: 'Lindved'},
+      {firstName: 'Mathias', lastName: 'Skovgaard'}
+    ];
+    return mockStudents;
   }
 }
