@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedData} from '../shared/sharedData';
 import {ActivatedRoute} from '@angular/router';
 import {ContractService} from '../shared/contract.service';
-import {Contract} from "../shared/contract.model";
+import {Contract} from '../shared/contract.model';
 
 @Component({
   selector: 'app-edit-contract',

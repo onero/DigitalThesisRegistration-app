@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Contract} from '../shared/contract.model';
 import {ContractService} from '../shared/contract.service';
-import {SharedData} from '../shared/sharedData';
 import {Router} from "@angular/router";
 
 @Component({
