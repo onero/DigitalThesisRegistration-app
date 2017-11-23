@@ -14,7 +14,8 @@ export const contractRoutes = RouterModule.forRoot(
       component: NewContractComponent
     },
     {
-      path: 'contracts/editContract',
+      // '/:contractId' is holding our hashed value. We decide the name here.
+      path: 'contracts/editContract/:contractId',
       component: EditContractComponent
     }
   ]);

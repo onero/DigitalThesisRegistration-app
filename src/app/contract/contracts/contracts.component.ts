@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Contract} from '../shared/contract.model';
 import {ContractService} from '../shared/contract.service';
 import {SharedData} from '../shared/sharedData';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-contracts',
@@ -12,14 +13,17 @@ export class ContractsComponent implements OnInit {
 
   contracts: Contract[];
 
-  constructor(private contractService: ContractService, private sharedData: SharedData) { }
-
   ngOnInit() {
     this.contracts = this.contractService.getMockContract();
   }
 
+  constructor(private contractService: ContractService, private router: Router) { }
+
   selectContract(contract: Contract) {
-    this.sharedData.contract = contract;
+    // Converting the contract object into a hashed string value by using the base 64 encoding btoa. btoa is for encrypting.
+    const hashedValueOfTheContractObject = btoa(JSON.stringify(contract));
+    // This is where we change the url. We append the hashedValue to the end of the url.
+    this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
   }
 
 }
