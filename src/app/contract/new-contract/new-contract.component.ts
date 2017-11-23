@@ -14,7 +14,7 @@ export class NewContractComponent implements OnInit {
   constructor(private contractService: ContractService) { }
 
   ngOnInit() {
-    this.students = this.contractService.getMockStudents();
+    this.students = [];
   }
 
 }

@@ -14,12 +14,4 @@ export class ContractService {
     ];
     return mock;
   }
-
-  getMockStudents() {
-    const mockStudents: Student[] = [
-      {id: 1, firstName: 'Rasmus', lastName: 'Lindved'},
-      {id: 2, firstName: 'Mathias', lastName: 'Skovgaard'}
-    ];
-    return mockStudents;
-  }
 }

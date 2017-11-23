@@ -35,7 +35,10 @@ export class StudentsListComponent implements OnInit {
   createStudent() {
     const values = this.studentGroup.value;
     this.studentService.create({firstName: values.firstName, lastName: values.lastName})
-      .subscribe( student => console.log(student.id + ' ' + student.firstName + ' ' + student.lastName));
+      .subscribe( student => {
+        this.students.push(student);
+        console.log(student.id + ' ' + student.firstName + ' ' + student.lastName);
+      });
     this.studentGroup.reset();
   }
 
