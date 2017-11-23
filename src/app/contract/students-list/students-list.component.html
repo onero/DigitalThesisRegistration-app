@@ -27,18 +27,22 @@
         Last name:
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <input type="text" placeholder="First name" >
+    <form (ngSubmit)="createStudent()" [formGroup]="studentGroup" novalidate>
+      <div class="row form-group">
+        <div class="col-md-6">
+          <input class="form-control" formControlName="firstName" type="text" placeholder="First name"
+          [ngClass]="{'is-invalid':isInvalid('firstName'), 'is-valid':isValid('firstName')}">
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="lastName" type="text" placeholder="Last name"
+          [ngClass]="{'is-invalid':isInvalid('lastName'), 'is-valid':isValid('lastName')}">
+        </div>
       </div>
-      <div class="col-md-6">
-        <input type="text" placeholder="Last name" >
-      </div>
-    </div>
-    </div>
+    </form>
+  </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success pull-left" (click)="c('Close click')">Add</button>
+    <button type="button" class="btn btn-outline-success pull-left" [disabled]="studentGroup.invalid" (click)="createStudent(); c('Close click')">Add</button>
     <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancel</button>
   </div>
 </ng-template>

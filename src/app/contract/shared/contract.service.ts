@@ -17,8 +17,8 @@ export class ContractService {
 
   getMockStudents() {
     const mockStudents: Student[] = [
-      {firstName: 'Rasmus', lastName: 'Lindved'},
-      {firstName: 'Mathias', lastName: 'Skovgaard'}
+      {id: 1, firstName: 'Rasmus', lastName: 'Lindved'},
+      {id: 2, firstName: 'Mathias', lastName: 'Skovgaard'}
     ];
     return mockStudents;
   }

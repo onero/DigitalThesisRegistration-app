@@ -7,15 +7,18 @@ import { NewContractComponent } from './new-contract/new-contract.component';
 import { StudentsListComponent } from './students-list/students-list.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModalStack} from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {StudentService} from './shared/student.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     contractRoutes,
-    FormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [ContractsComponent, NewContractComponent, StudentsListComponent],
-  providers: [ContractService, NgbModal, NgbModalStack]
+  providers: [ContractService, StudentService, NgbModal, NgbModalStack]
 })
 export class ContractModule { }
