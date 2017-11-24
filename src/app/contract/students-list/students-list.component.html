@@ -1,0 +1,50 @@
+<div class="card" style="height: 200px">
+  <div class="card-body">
+    <h4 class="card-title">Students</h4>
+    <ul class="list-group" style="padding-left: 20px" *ngFor="let student of students">
+      <li class="list-group-flush">{{student.firstName}} {{student.lastName}}</li>
+    </ul>
+
+  </div>
+  <button class="btn btn-outline-success" style="margin-left: 10px; width: 100px; margin-bottom: 10px" (click)="open(content)">
+    <i class="fa fa-plus" aria-hidden="true"></i> Student
+  </button>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">New student</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        First name:
+      </div>
+      <div class="col-md-6">
+        Last name:
+      </div>
+    </div>
+    <form (ngSubmit)="createStudent()" [formGroup]="studentGroup" novalidate>
+      <div class="row form-group">
+        <div class="col-md-6">
+          <input class="form-control" formControlName="firstName" type="text" placeholder="First name"
+          [ngClass]="{'is-invalid':isInvalid('firstName'), 'is-valid':isValid('firstName')}">
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" formControlName="lastName" type="text" placeholder="Last name"
+          [ngClass]="{'is-invalid':isInvalid('lastName'), 'is-valid':isValid('lastName')}">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success pull-left" [disabled]="studentGroup.invalid" (click)="createStudent(); c('Close click')">Add</button>
+    <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>
+
+

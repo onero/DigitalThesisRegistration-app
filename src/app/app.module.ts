@@ -8,8 +8,10 @@ import { HomeComponent } from './home/home.component';
 import {appRoutes} from './app.routing';
 import {RouterModule} from '@angular/router';
 import {StudentModule} from './student/student.module';
-import {studentRoutes} from "./student/student.routing";
-import {ContractModule} from "./contract/contract.module";
+import {studentRoutes} from './student/student.routing';
+import {ContractModule} from './contract/contract.module';
+import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {ContractModule} from "./contract/contract.module";
     BrowserModule,
     RouterModule,
     appRoutes,
-    ContractModule
+    ContractModule,
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
