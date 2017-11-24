@@ -14,4 +14,8 @@ export class StudentService {
   create(student: Student): Observable<Student> {
     return this.http.post<Student>(url, student);
   }
+
+  get(id: number): Observable<Student> {
+    return this.http.get<Student>(url + '/' + id);
+  }
 }
