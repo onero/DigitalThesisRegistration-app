@@ -14,7 +14,7 @@ export class NewContractComponent implements OnInit {
 
   groupId: number;
   students: Student[];
-  contactEmail: string;
+  contactEmail = '';
 
   constructor(private contractService: ContractService, private groupService: GroupService, private route: ActivatedRoute, private router: Router) {
     route.params.subscribe(params => this.groupId = params['groupId']);

@@ -13,10 +13,10 @@ export class StudentsListComponent implements OnInit {
   closeResult: string;
 
   @Input()
-  groupId: number;
+  students: Student[];
 
   @Input()
-  students: Student[];
+  email: string;
 
   studentGroup: FormGroup;
 
@@ -29,6 +29,10 @@ export class StudentsListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ableToAddStudent(): boolean {
+    return this.email.length >= 2;
   }
 
   open(content) {
