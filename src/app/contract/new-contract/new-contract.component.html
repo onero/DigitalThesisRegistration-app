@@ -8,14 +8,14 @@
       To be implemented
     </div>
     <div class="col-md-5">
-      <app-group-contact [isEditable]="true"></app-group-contact>
+      <app-group-contact [isEditable]="true" (notify)="onNotify($event)"></app-group-contact>
     </div>
   </div>
   <div class="row">
     <div class="col-md-7">
     </div>
     <div class="col-md-5">
-      <app-students-list [students]="students"></app-students-list>
+      <app-students-list [groupId]="groupId" [students]="students"></app-students-list>
     </div>
   </div>
   <div class="row">

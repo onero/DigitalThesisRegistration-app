@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-group-contact',
@@ -12,11 +13,17 @@ export class GroupContactComponent implements OnInit {
   @Input()
   email = '';
 
-  constructor() {
+  @Output()
+  notify: EventEmitter<string> = new EventEmitter();
 
+  constructor() {
   }
 
   ngOnInit() {
   }
 
+  onClick(email: string) {
+    this.email = email;
+    this.notify.emit(this.email);
+  }
 }

@@ -4,7 +4,7 @@
       Group Contact Email
     </h5>
     <div *ngIf="isEditable">
-      <input type="text" placeholder="Example@email.com" class="col-md-12">
+      <input type="text" placeholder="Example@email.com" class="col-md-12" (keyup)="onClick(contactEmailInput.value)" #contactEmailInput>
     </div>
     <div *ngIf="!isEditable">
       {{email}}

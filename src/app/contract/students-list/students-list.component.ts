@@ -13,6 +13,9 @@ export class StudentsListComponent implements OnInit {
   closeResult: string;
 
   @Input()
+  groupId: number;
+
+  @Input()
   students: Student[];
 
   studentGroup: FormGroup;

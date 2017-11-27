@@ -58,4 +58,6 @@ export class EditContractComponent implements OnInit {
       this.groupService.get(this.contract.groupId).subscribe(g => this.group = g);
     }
   }
+
+
 }
