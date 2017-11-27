@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContractService} from '../shared/contract.service';
 import {Student} from '../shared/student.model';
-import {Contract} from "../shared/contract.model";
+import {Contract} from '../shared/contract.model';
 
 @Component({
   selector: 'app-new-contract',

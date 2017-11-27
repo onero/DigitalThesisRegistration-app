@@ -14,4 +14,8 @@ export class GroupService {
     return this.http.get<Group>(url + '/' + id);
   }
 
+  create(): Observable<Group> {
+  return this.http.post<Group>(url, {contactEmail: 'TheContactEmail'});
+  }
+
 }
