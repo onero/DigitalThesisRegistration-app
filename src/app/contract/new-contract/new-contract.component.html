@@ -15,7 +15,8 @@
     <div class="col-md-7">
     </div>
     <div class="col-md-5">
-      <app-students-list [email]="contactEmail" [students]="students"></app-students-list>
+      <app-students-list [email]="contactEmail" [groupId]="groupId" [students]="students"
+                         (notify)="updateGroupId($event)"></app-students-list>
     </div>
   </div>
   <div class="row">

@@ -10,7 +10,8 @@ export const contractRoutes = RouterModule.forRoot(
       component: ContractsComponent
     },
     {
-      path: 'contracts/newContract/:groupId',
+      // path: 'contracts/newContract/:groupId',
+      path: 'contracts/newContract',
       component: NewContractComponent
     },
     {
