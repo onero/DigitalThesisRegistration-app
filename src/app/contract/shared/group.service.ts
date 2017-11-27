@@ -18,4 +18,8 @@ export class GroupService {
   return this.http.post<Group>(url, {contactEmail: 'TheContactEmail'});
   }
 
+  update(group: Group): Observable<Group> {
+    return this.http.put<Group>(url + '/' + group.id, group);
+  }
+
 }
