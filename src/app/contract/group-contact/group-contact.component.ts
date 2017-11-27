@@ -10,7 +10,7 @@ export class GroupContactComponent implements OnInit {
   @Input()
   isEditable: boolean;
   @Input()
-  email: string;
+  email = '';
 
   constructor() {
 

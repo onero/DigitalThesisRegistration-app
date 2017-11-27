@@ -9,7 +9,7 @@
     <div *ngIf="!isEditable">
       {{email}}
     </div>
-    <div *ngIf="email.length == 0">
+    <div *ngIf="email.length == 0 && !isEditable">
       No email added yet.
     </div>
   </div>
