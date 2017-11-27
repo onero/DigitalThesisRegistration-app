@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-group-contact',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupContactComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  isEditable: boolean;
+  @Input()
+  email: string;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

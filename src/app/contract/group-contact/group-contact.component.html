@@ -1,8 +1,16 @@
 <div class="card">
-<div class="card-body">
-  <h5>
-    Group Contact Email
-  </h5>
-  <input type="text" placeholder="Example@email.com" class="col-md-12">
-</div>
+  <div class="card-body">
+    <h5>
+      Group Contact Email
+    </h5>
+    <div *ngIf="isEditable">
+      <input type="text" placeholder="Example@email.com" class="col-md-12">
+    </div>
+    <div *ngIf="!isEditable">
+      {{email}}
+    </div>
+    <div *ngIf="email.length == 0">
+      No email added yet.
+    </div>
+  </div>
 </div>
