@@ -31,6 +31,7 @@ export class EditContractComponent implements OnInit {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
+    this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Grabbing the url.
     route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
@@ -68,7 +69,7 @@ export class EditContractComponent implements OnInit {
 
   private populateCompany() {
     if (this.contract.companyId != null) {
-      this.company = this.companyService.get(this.contract.companyId);
+      this.companyService.get(this.contract.companyId).subscribe(c => this.company = c);
     }
   }
 }
