@@ -7,6 +7,8 @@ import {forEach} from '@angular/router/src/utils/collection';
 import {StudentService} from '../shared/student.service';
 import {Group} from '../shared/group.model';
 import {GroupService} from '../shared/group.service';
+import {CompanyService} from "../shared/company.service";
+import {Company} from "../shared/company.model";
 
 @Component({
   selector: 'app-edit-contract',
@@ -20,11 +22,12 @@ export class EditContractComponent implements OnInit {
   contract: Contract;
   students: Student[] = [];
   group: Group;
+  company: Company;
 
   groupContactEmail = 'this is temperary';
 
   constructor(private contractSerivce: ContractService, private route: ActivatedRoute, private studentService: StudentService,
-              private groupService: GroupService) {
+              private groupService: GroupService, private companyService: CompanyService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -40,6 +43,7 @@ export class EditContractComponent implements OnInit {
       this.contract = contractSerivce.getById(contract.groupId, contract.projectId, contract.companyId);
       this.populateStudents();
       this.populateGroup();
+      this.populateCompany();
     });
   }
 
@@ -62,4 +66,9 @@ export class EditContractComponent implements OnInit {
   }
 
 
+  private populateCompany() {
+    if (this.contract.companyId != null) {
+      this.company = this.companyService.get(this.contract.companyId);
+    }
+  }
 }

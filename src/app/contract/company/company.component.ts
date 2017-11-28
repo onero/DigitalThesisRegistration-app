@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Company} from "../shared/company.model";
 
 @Component({
   selector: 'app-company',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
+  @Input()
+  company: Company;
+  @Input()
+  isEditable: boolean;
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

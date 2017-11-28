@@ -14,6 +14,7 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { GroupContactComponent } from './group-contact/group-contact.component';
 import {GroupService} from "./shared/group.service";
 import { CompanyComponent } from './company/company.component';
+import {CompanyService} from "./shared/company.service";
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { CompanyComponent } from './company/company.component';
     HttpClientModule
   ],
   declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent],
-  providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService]
+  providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService, CompanyService]
 })
 export class ContractModule { }

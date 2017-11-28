@@ -1,4 +1,5 @@
 import {Company} from './company.model';
+import {Observable} from "rxjs/Observable";
 
 export class CompanyService {
   mockCompany: Company[] = [
@@ -9,8 +10,8 @@ export class CompanyService {
     {id: 5, name: 'Mr. Nice4', contactName: 'Contactname4', contactEmail: 'email4', contactPhone: '123'},
   ];
 
-  getMock() {
-    return this.mockCompany;
+  get(id: number) {
+    return this.mockCompany.find(c => c.id === id);
   }
 
 

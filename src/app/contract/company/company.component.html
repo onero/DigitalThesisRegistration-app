@@ -3,12 +3,13 @@
     <h5>
       Company
     </h5>
+    <div *ngIf="isEditable">
     <div class="row bottom-padding">
       <div class="col-md-3">
       Name:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Company name...">
+        <input type="text" placeholder="Company name..." value="{{company.name}}">
       </div>
     </div>
     <div class="row bottom-padding">
@@ -16,7 +17,7 @@
         Contact:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Name of contact...">
+        <input type="text" placeholder="Name of contact..." value="{{company.contactName}}">
       </div>
     </div>
     <div class="row bottom-padding">
@@ -24,7 +25,7 @@
         Email:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="YourEmail@test.com">
+        <input type="text" placeholder="YourEmail@test.com" value="{{company.contactEmail}}">
       </div>
     </div>
     <div class="row bottom-padding">
@@ -32,8 +33,43 @@
         Phone:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Phone number...">
+        <input type="text" placeholder="Phone number..." value="{{company.contactPhone}}">
       </div>
     </div>
   </div>
+    <div *ngIf="!isEditable">
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Name:
+        </div>
+        <div class="col-md-9">
+          {{company.name}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Contact:
+        </div>
+        <div class="col-md-9">
+          {{company.contactName}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Email:
+        </div>
+        <div class="col-md-9">
+          {{company.contactEmail}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Phone:
+        </div>
+        <div class="col-md-9">
+          {{company.contactPhone}}
+        </div>
+      </div>
+    </div>
+</div>
 </div>
