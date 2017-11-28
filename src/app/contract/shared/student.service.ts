@@ -18,4 +18,12 @@ export class StudentService {
   get(id: number): Observable<Student> {
     return this.http.get<Student>(url + '/' + id);
   }
+
+  getAll(): Observable<Student[]> {
+    return this.http.get<Student[]>(url);
+  }
+
+  update(student: Student): Observable<Student> {
+    return this.http.put<Student>(url + '/' + student.id, student);
+  }
 }

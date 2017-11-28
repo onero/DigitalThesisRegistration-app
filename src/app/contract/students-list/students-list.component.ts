@@ -13,6 +13,8 @@ import {GroupService} from '../shared/group.service';
 export class StudentsListComponent implements OnInit {
   closeResult: string;
 
+  studentsToSelectFrom: Student[];
+
   @Input()
   students: Student[];
   @Input()
@@ -42,30 +44,33 @@ export class StudentsListComponent implements OnInit {
   }
 
   open(content) {
+    // TODO: Changes this to call the restAPI for a method that only contains students not in a group.
+    this.studentService.getAll().subscribe(s => this.studentsToSelectFrom = s);
     this.modalService.open(content);
   }
 
-  handleCreateStudentButton() {
+  handleUpdateStudentButton(student: Student) {
     const values = this.studentGroup.value;
     // Checking if the new contract don't have a group. If true, creates a new group for the contract.
     if (this.groupId == null || this.groupId === 0) {
       this.groupService.create(this.email).subscribe(group => {
         this.groupId = group.id;
-        this.createStudent(values);
+        this.updateStudent(student);
         this.notify.emit(this.groupId);
       });
     }else {
-      this.createStudent(values);
+      this.updateStudent(student);
     }
     this.studentGroup.reset();
   }
 
   // This is the call to the RestAPI where the student is created in the database.
-  private createStudent(values: any) {
-    this.studentService.create({firstName: values.firstName, lastName: values.lastName, groupId: this.groupId})
-      .subscribe(student => {
-        this.students.push(student);
-        console.log(student.id + ' ' + student.firstName + ' ' + student.lastName + ' ' + student.groupId);
+  private updateStudent(student: Student) {
+    student.groupId = this.groupId;
+    this.studentService.update(student)
+      .subscribe(s => {
+        this.students.push(s);
+        console.log(s.id + ' ' + s.firstName + ' ' + s.lastName + ' ' + s.groupId);
       });
   }
 

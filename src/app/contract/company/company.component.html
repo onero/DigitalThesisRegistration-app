@@ -77,7 +77,10 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    Select a Company
+    <h4 class="modal-title">Select a Company</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
     <ul class="list-group" *ngFor="let company of companies">
