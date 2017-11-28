@@ -19,31 +19,11 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="row">
-      <div class="col-md-6">
-        First name:
-      </div>
-      <div class="col-md-6">
-        Last name:
-      </div>
-    </div>
-    <form (ngSubmit)="handleCreateStudentButton()" [formGroup]="studentGroup" novalidate>
-      <div class="row form-group">
-        <div class="col-md-6">
-          <input class="form-control" formControlName="firstName" type="text" placeholder="First name"
-          [ngClass]="{'is-invalid':isInvalid('firstName'), 'is-valid':isValid('firstName')}">
-        </div>
-        <div class="col-md-6">
-          <input class="form-control" formControlName="lastName" type="text" placeholder="Last name"
-          [ngClass]="{'is-invalid':isInvalid('lastName'), 'is-valid':isValid('lastName')}">
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success pull-left" [disabled]="studentGroup.invalid" (click)="handleCreateStudentButton(); c('Close click')">Add</button>
-    <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancel</button>
+    <ul class="list-group" *ngFor="let student of studentsToSelectFrom">
+      <li class="list-group-item list-group-item-action" (click)="handleUpdateStudentButton(student); c()">
+        {{student.firstName}} {{student.lastName}}
+      </li>
+    </ul>
   </div>
 </ng-template>
 
