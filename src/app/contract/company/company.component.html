@@ -71,5 +71,22 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-outline-dark" (click)="open(content)">Select Company</button>
 </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Select a Company</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group" *ngFor="let company of companies">
+      <li class="list-group-item list-group-item-action" (click)="selectCompany(company); c('Close click')">
+        {{company.name}}
+      </li>
+    </ul>
+  </div>
+</ng-template>
