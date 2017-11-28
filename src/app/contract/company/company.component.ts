@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Company} from '../shared/company.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CompanyService} from "../shared/company.service";
+import {CompanyService} from '../shared/company.service';
 
 @Component({
   selector: 'app-company',
@@ -12,8 +12,6 @@ export class CompanyComponent implements OnInit {
 
   @Input()
   company: Company;
-  @Input()
-  isEditable: boolean;
 
   companies: Company[];
 
@@ -27,6 +25,7 @@ export class CompanyComponent implements OnInit {
   open(content) {
     this.modalService.open(content);
   }
+
 
   selectCompany(company: Company) {
     this.company = company;
