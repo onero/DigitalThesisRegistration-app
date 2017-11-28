@@ -13,8 +13,9 @@ export class CompanyComponent implements OnInit {
 
   @Input()
   company: Company;
+  @Input()
+  isEditable: boolean;
   companyGroup: FormGroup;
-
   companies: Company[];
 
   constructor(private modalService: NgbModal, private companyService: CompanyService, private fb: FormBuilder) {
