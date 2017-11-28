@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { GroupContactComponent } from './group-contact/group-contact.component';
 import {GroupService} from "./shared/group.service";
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import {GroupService} from "./shared/group.service";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent],
+  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent],
   providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService]
 })
 export class ContractModule { }
