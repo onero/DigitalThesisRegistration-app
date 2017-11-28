@@ -21,6 +21,8 @@ export class EditContractComponent implements OnInit {
   students: Student[] = [];
   group: Group;
 
+  groupContactEmail = 'this is temperary';
+
   constructor(private contractSerivce: ContractService, private route: ActivatedRoute, private studentService: StudentService,
               private groupService: GroupService) {
     this.isEditable = false;

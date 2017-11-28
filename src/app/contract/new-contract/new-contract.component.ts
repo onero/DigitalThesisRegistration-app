@@ -14,11 +14,12 @@ export class NewContractComponent implements OnInit {
 
   groupId: number;
   students: Student[];
-  contactEmail: string;
+  contactEmail = '';
 
-  constructor(private contractService: ContractService, private groupService: GroupService, private route: ActivatedRoute, private router: Router) {
-    route.params.subscribe(params => this.groupId = params['groupId']);
-    console.log(this.groupId);
+  constructor(private contractService: ContractService, private groupService: GroupService,
+              private route: ActivatedRoute, private router: Router) {
+    // route.params.subscribe(params => this.groupId = params['groupId']);
+    // console.log(this.groupId);
   }
 
   ngOnInit() {
@@ -30,10 +31,12 @@ export class NewContractComponent implements OnInit {
       contract.studentIds.push(student.id);
     }
 
-    console.log(this.groupId);
+    console.log('GroupId for contract: ' + this.groupId);
     // Updating the group with the contactEmail.
-    const group = {id: this.groupId, contactEmail: this.contactEmail, students: []};
-    this.groupService.update(group).subscribe();
+    // const group = {id: this.groupId, contactEmail: this.contactEmail, students: []};
+    // this.groupService.update(group).subscribe();
+
+
     // Adding the contract to the mock. TODO: Make it real data.
     this.contractService.addContract(contract);
 
@@ -44,4 +47,7 @@ export class NewContractComponent implements OnInit {
     this.contactEmail = email;
   }
 
+  updateGroupId(groupId: number) {
+    this.groupId = groupId;
+  }
 }

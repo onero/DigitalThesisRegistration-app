@@ -6,7 +6,7 @@
     </ul>
 
   </div>
-  <button class="btn btn-outline-success" style="margin-left: 10px; width: 100px; margin-bottom: 10px" (click)="open(content)">
+  <button class="btn btn-outline-success" [disabled]="!ableToAddStudent()" style="margin-left: 10px; width: 100px; margin-bottom: 10px" (click)="open(content)">
     <i class="fa fa-plus" aria-hidden="true"></i> Student
   </button>
 </div>
@@ -27,7 +27,7 @@
         Last name:
       </div>
     </div>
-    <form (ngSubmit)="createStudent()" [formGroup]="studentGroup" novalidate>
+    <form (ngSubmit)="handleCreateStudentButton()" [formGroup]="studentGroup" novalidate>
       <div class="row form-group">
         <div class="col-md-6">
           <input class="form-control" formControlName="firstName" type="text" placeholder="First name"
@@ -42,7 +42,7 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success pull-left" [disabled]="studentGroup.invalid" (click)="createStudent(); c('Close click')">Add</button>
+    <button type="button" class="btn btn-outline-success pull-left" [disabled]="studentGroup.invalid" (click)="handleCreateStudentButton(); c('Close click')">Add</button>
     <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancel</button>
   </div>
 </ng-template>
