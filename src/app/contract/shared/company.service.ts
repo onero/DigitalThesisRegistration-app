@@ -9,7 +9,7 @@ export class CompanyService {
 
   url = environment.RestAPI + '/companies';
 
-  constructor(private http: HttpClient){ }
+  constructor(private http: HttpClient) {  }
 
 
   // TODO: Remove

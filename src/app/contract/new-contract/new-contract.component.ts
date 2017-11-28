@@ -4,6 +4,7 @@ import {Student} from '../shared/student.model';
 import {Contract} from '../shared/contract.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupService} from '../shared/group.service';
+import {Company} from "../shared/company.model";
 
 @Component({
   selector: 'app-new-contract',
@@ -15,11 +16,11 @@ export class NewContractComponent implements OnInit {
   groupId: number;
   students: Student[];
   contactEmail = '';
+  company: Company;
 
   constructor(private contractService: ContractService, private groupService: GroupService,
               private route: ActivatedRoute, private router: Router) {
-    // route.params.subscribe(params => this.groupId = params['groupId']);
-    // console.log(this.groupId);
+    this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
   }
 
   ngOnInit() {

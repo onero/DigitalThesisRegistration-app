@@ -5,7 +5,7 @@ import {contractRoutes} from './contract.routing';
 import {ContractService} from './shared/contract.service';
 import { NewContractComponent } from './new-contract/new-contract.component';
 import { StudentsListComponent } from './students-list/students-list.component';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModalStack} from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StudentService} from './shared/student.service';
@@ -21,7 +21,9 @@ import {CompanyService} from "./shared/company.service";
     CommonModule,
     contractRoutes,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgbModule.forRoot()
   ],
   declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent],
   providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService, CompanyService]

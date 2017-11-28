@@ -20,6 +20,12 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-7"></div>
+    <div class="col-md-5">
+      <app-company [isEditable]="true" [company]="company"></app-company>
+    </div>
+  </div>
+  <div class="row">
     <button class="btn btn-outline-success" (click)="createContract()">
       Create
     </button>
