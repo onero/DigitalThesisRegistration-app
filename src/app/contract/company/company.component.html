@@ -3,13 +3,12 @@
     <h5>
       Company
     </h5>
-    <div *ngIf="isEditable">
     <div class="row bottom-padding">
       <div class="col-md-3">
-      Name:
+        Name:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Company name..." [(ngModel)]="company.name">
+        {{company.name}}
       </div>
     </div>
     <div class="row bottom-padding">
@@ -17,7 +16,7 @@
         Contact:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Name of contact..." [(ngModel)]="company.contactName">
+        {{company.contactName}}
       </div>
     </div>
     <div class="row bottom-padding">
@@ -25,7 +24,7 @@
         Email:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="YourEmail@test.com" [(ngModel)]="company.contactEmail">
+        {{company.contactEmail}}
       </div>
     </div>
     <div class="row bottom-padding">
@@ -33,46 +32,14 @@
         Phone:
       </div>
       <div class="col-md-9">
-        <input type="text" placeholder="Phone number..." [(ngModel)]="company.contactPhone">
+        {{company.contactPhone}}
       </div>
     </div>
+    <button *ngIf="isEditable" class="btn btn-outline-primary pull-left" (click)="open(content)">
+      Select Company</button>
+    <button *ngIf="isEditable" class="btn btn-outline-primary pull-right" (click)="open(newCompany)">
+      Create</button>
   </div>
-    <div *ngIf="!isEditable">
-      <div class="row bottom-padding">
-        <div class="col-md-3">
-          Name:
-        </div>
-        <div class="col-md-9">
-          {{company.name}}
-        </div>
-      </div>
-      <div class="row bottom-padding">
-        <div class="col-md-3">
-          Contact:
-        </div>
-        <div class="col-md-9">
-          {{company.contactName}}
-        </div>
-      </div>
-      <div class="row bottom-padding">
-        <div class="col-md-3">
-          Email:
-        </div>
-        <div class="col-md-9">
-          {{company.contactEmail}}
-        </div>
-      </div>
-      <div class="row bottom-padding">
-        <div class="col-md-3">
-          Phone:
-        </div>
-        <div class="col-md-9">
-          {{company.contactPhone}}
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-outline-dark" (click)="open(content)">Select Company</button>
-</div>
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
@@ -89,4 +56,57 @@
       </li>
     </ul>
   </div>
+</ng-template>
+
+<ng-template #newCompany let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Create Company</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="createCompany(); c();" [formGroup]="companyGroup" novalidate>
+    <div class="col-md-12 form-group">
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Name:
+        </div>
+        <div class="col-md-9">
+          <input type="text" placeholder="Company name..." formControlName="name" [ngClass]="{'is-invalid': isInvalid('name'), 'is-valid': isValid('name')}">
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Contact:
+        </div>
+        <div class="col-md-9">
+          <input type="text" placeholder="Name of contact..." formControlName="contactName" [ngClass]="{'is-invalid': isInvalid('contactName'), 'is-valid': isValid('contactName')}">
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Email:
+        </div>
+        <div class="col-md-9">
+          <input type="text" placeholder="YourEmail@test.com" formControlName="contactEmail" [ngClass]="{'is-invalid': isInvalid('contactEmail'), 'is-valid': isValid('contactEmail')}">
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Phone:
+        </div>
+        <div class="col-md-9">
+          <input type="text" placeholder="Phone number..." formControlName="contactPhone" [ngClass]="{'is-invalid': isInvalid('contactPhone'), 'is-valid': isValid('contactPhone')}">
+        </div>
+      </div>
+      <div class="row pull-right">
+        <button type="submit" class="btn btn-outline-success pull-right" [disabled]="companyGroup.invalid">
+          Save
+        </button>
+        <button class="btn btn-outline-warning pull-right" (click)="c('Close click')">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
 </ng-template>
