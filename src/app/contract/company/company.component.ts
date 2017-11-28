@@ -18,7 +18,6 @@ export class CompanyComponent implements OnInit {
   companies: Company[];
 
   constructor(private modalService: NgbModal, private companyService: CompanyService, private fb: FormBuilder) {
-    companyService.getAll().subscribe(c => this.companies = c);
     this.setValidators();
   }
 
@@ -46,6 +45,7 @@ export class CompanyComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content);
+    this.companyService.getAll().subscribe(c => this.companies = c);
   }
 
 
@@ -54,6 +54,16 @@ export class CompanyComponent implements OnInit {
   }
 
   createCompany() {
-
+    const values = this.companyGroup.value;
+    const company = {
+      name: values.name,
+      contactName: values.contactName,
+      contactEmail: values.contactEmail,
+      contactPhone: values.contactPhone
+    };
+    this.companyService.create(company).subscribe(c => {
+      this.company = c;
+      this.companyGroup.reset();
+    });
   }
 }

@@ -65,7 +65,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form (ngSubmit)="createCompany()" [formGroup]="companyGroup" novalidate>
+  <form (ngSubmit)="createCompany(); c();" [formGroup]="companyGroup" novalidate>
     <div class="col-md-12 form-group">
       <div class="row bottom-padding">
         <div class="col-md-3">
