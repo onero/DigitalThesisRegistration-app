@@ -45,30 +45,31 @@ export class StudentsListComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  createStudent() {
+  handleCreateStudentButton() {
     const values = this.studentGroup.value;
+    // Checking if the new contract don't have a group. If true, creates a new group for the contract.
     if (this.groupId == null || this.groupId === 0) {
       this.groupService.create(this.email).subscribe(group => {
         this.groupId = group.id;
-        // TODO RKL: Refactor out to one method.
-        this.studentService.create({firstName: values.firstName, lastName: values.lastName, groupId: this.groupId})
-          .subscribe( student => {
-            this.students.push(student);
-            console.log(student.id + ' ' + student.firstName + ' ' + student.lastName + ' ' + student.groupId);
-            // Updating the groupId for the newContract.ts.
-            this.notify.emit(this.groupId);
-          });
+        this.createStudent(values);
+        this.notify.emit(this.groupId);
       });
     }else {
-      // TODO RKL: Refactor out to one method.
-      this.studentService.create({firstName: values.firstName, lastName: values.lastName, groupId: this.groupId})
-        .subscribe(student => {
-          this.students.push(student);
-          console.log(student.id + ' ' + student.firstName + ' ' + student.lastName + ' ' + student.groupId);
-        });
+      this.createStudent(values);
     }
     this.studentGroup.reset();
   }
+
+  // This is the call to the RestAPI where the student is created in the database.
+  private createStudent(values: any) {
+    this.studentService.create({firstName: values.firstName, lastName: values.lastName, groupId: this.groupId})
+      .subscribe(student => {
+        this.students.push(student);
+        console.log(student.id + ' ' + student.firstName + ' ' + student.lastName + ' ' + student.groupId);
+      });
+  }
+
+
 
   isInvalid(controlName: string) {
     const control = this.studentGroup.controls[controlName];

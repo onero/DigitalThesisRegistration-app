@@ -27,7 +27,6 @@ export class ContractsComponent implements OnInit {
   }
 
   newContractBtn() {
-    // this.groupService.create().subscribe(g => this.router.navigate(['contracts/newContract', g.id]));
     this.router.navigateByUrl('contracts/newContract');
   }
 
