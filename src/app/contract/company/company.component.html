@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-body">
+    <h5>
+      Company
+    </h5>
+    <div *ngIf="isEditable">
+    <div class="row bottom-padding">
+      <div class="col-md-3">
+      Name:
+      </div>
+      <div class="col-md-9">
+        <input type="text" placeholder="Company name..." [(ngModel)]="company.name">
+      </div>
+    </div>
+    <div class="row bottom-padding">
+      <div class="col-md-3">
+        Contact:
+      </div>
+      <div class="col-md-9">
+        <input type="text" placeholder="Name of contact..." [(ngModel)]="company.contactName">
+      </div>
+    </div>
+    <div class="row bottom-padding">
+      <div class="col-md-3">
+        Email:
+      </div>
+      <div class="col-md-9">
+        <input type="text" placeholder="YourEmail@test.com" [(ngModel)]="company.contactEmail">
+      </div>
+    </div>
+    <div class="row bottom-padding">
+      <div class="col-md-3">
+        Phone:
+      </div>
+      <div class="col-md-9">
+        <input type="text" placeholder="Phone number..." [(ngModel)]="company.contactPhone">
+      </div>
+    </div>
+  </div>
+    <div *ngIf="!isEditable">
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Name:
+        </div>
+        <div class="col-md-9">
+          {{company.name}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Contact:
+        </div>
+        <div class="col-md-9">
+          {{company.contactName}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Email:
+        </div>
+        <div class="col-md-9">
+          {{company.contactEmail}}
+        </div>
+      </div>
+      <div class="row bottom-padding">
+        <div class="col-md-3">
+          Phone:
+        </div>
+        <div class="col-md-9">
+          {{company.contactPhone}}
+        </div>
+      </div>
+    </div>
+</div>
+</div>

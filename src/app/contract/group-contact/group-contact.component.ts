@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {getTemplateUrl} from 'codelyzer/util/ngQuery';
 
 @Component({
   selector: 'app-group-contact',
