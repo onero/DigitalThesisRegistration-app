@@ -11,6 +11,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StudentService} from './shared/student.service';
 import {HttpClientModule} from '@angular/common/http';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
+import { GroupContactComponent } from './group-contact/group-contact.component';
+import {GroupService} from "./shared/group.service";
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent],
-  providers: [ContractService, StudentService, NgbModal, NgbModalStack]
+  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent],
+  providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService]
 })
 export class ContractModule { }
