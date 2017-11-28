@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      Project To be implemented
+      <app-project-period></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [email]="contactEmail" [groupId]="groupId" [students]="students"
@@ -21,8 +21,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-7"></div>
-    Project To be implemented
+    <div class="col-md-7">
+      <app-project-description></app-project-description>
+      <app-project-suporvisor></app-project-suporvisor>
+    </div>
     <div class="col-md-5">
       <app-company [isEditable]="true" [(company)]="company"></app-company>
     </div>
