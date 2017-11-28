@@ -12,9 +12,10 @@ import {StudentService} from './shared/student.service';
 import {HttpClientModule} from '@angular/common/http';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { GroupContactComponent } from './group-contact/group-contact.component';
-import {GroupService} from "./shared/group.service";
+import {GroupService} from './shared/group.service';
 import { CompanyComponent } from './company/company.component';
-import {CompanyService} from "./shared/company.service";
+import {CompanyService} from './shared/company.service';
+import { ProjectNameComponent } from './project/project-name/project-name.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import {CompanyService} from "./shared/company.service";
     FormsModule,
     NgbModule.forRoot()
   ],
-  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent],
+  declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent, ProjectNameComponent],
   providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService, CompanyService]
 })
 export class ContractModule { }
