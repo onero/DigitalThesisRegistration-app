@@ -24,4 +24,8 @@ export class CompanyService {
   get(id: number): Observable<Company> {
     return this.http.get<Company>(this.url + '/' + id);
   }
+
+  create(company: Company): Observable<Company> {
+    return this.http.post<Company>(this.url, company);
+  }
 }

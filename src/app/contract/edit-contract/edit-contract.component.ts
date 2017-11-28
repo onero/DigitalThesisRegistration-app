@@ -36,7 +36,8 @@ export class EditContractComponent implements OnInit {
     route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
       const contractId = params['contractId'];
-      // Converting the hashValue to a Contract object. atob is base 64 encoding, that we are using for the hashValue. atop is for decrypting.
+      // Converting the hashValue to a Contract object.
+      // atob is base 64 encoding, that we are using for the hashValue. atop is for decrypting.
       const contract: Contract = JSON.parse(atob(contractId));
       // Logging the hashValue.
       console.log(params);
@@ -70,6 +71,8 @@ export class EditContractComponent implements OnInit {
   private populateCompany() {
     if (this.contract.companyId != null) {
       this.companyService.get(this.contract.companyId).subscribe(c => this.company = c);
+    }else {
+      console.log('No company id');
     }
   }
 }
