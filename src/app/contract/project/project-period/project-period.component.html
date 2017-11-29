@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body" *ngIf="isEditable">
     <h5>
       Start date:
     </h5>
@@ -38,6 +38,20 @@
           </div>
         </form>
       </div>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="!isEditable">
+    <h5>
+      Start date:
+    </h5>
+    <div>
+      {{project.start}}
+    </div>
+    <h5>
+      End date:
+    </h5>
+    <div>
+      {{project.end}}
     </div>
   </div>
 </div>

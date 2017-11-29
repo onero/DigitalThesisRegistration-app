@@ -41,6 +41,8 @@ export class EditContractComponent implements OnInit {
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Instantiating the project so we don't get undefined properties. Might be this is doable for company too?
     this.project = {};
+    this.assignedSuporvisor = {firstName: '', lastName: ''};
+    this.wantedSuporvisor = {firstName: '', lastName: ''};
     // Grabbing the url.
     route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
