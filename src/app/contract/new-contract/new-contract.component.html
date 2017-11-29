@@ -27,7 +27,7 @@
       <app-project-suporvisor></app-project-suporvisor>
     </div>
     <div class="col-md-5">
-      <app-company [isEditable]="true" [(company)]="company"></app-company>
+      <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
     </div>
   </div>
   <div class="row">

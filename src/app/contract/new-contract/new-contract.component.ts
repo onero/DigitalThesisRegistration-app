@@ -4,10 +4,9 @@ import {Student} from '../shared/student.model';
 import {Contract} from '../shared/contract.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupService} from '../shared/group.service';
-import {Company} from "../shared/company.model";
+import {Company} from '../shared/company.model';
 import {CompanyService} from "../shared/company.service";
 import {Project} from '../shared/project.model';
-import {ProjectNameComponent} from '../project/project-name/project-name.component';
 
 @Component({
   selector: 'app-new-contract',
@@ -17,11 +16,12 @@ import {ProjectNameComponent} from '../project/project-name/project-name.compone
 export class NewContractComponent implements OnInit {
 
   groupId: number;
+  companyId: number;
   students: Student[];
   contactEmail = '';
-  company: Company;
   @Input()
   project: Project;
+  company: Company; // TODO RKL: Remove if possible.
 
   constructor(private contractService: ContractService,
               private groupService: GroupService,
@@ -42,19 +42,16 @@ export class NewContractComponent implements OnInit {
   }
 
   createContract() {
-    const contract: Contract = {title: 'The title', studentIds: [], groupId: this.groupId};
+    const contract: Contract = {title: 'The title', studentIds: [], groupId: this.groupId, companyId: this.companyId};
     for (const student of this.students) {
       contract.studentIds.push(student.id);
     }
 
-    this.companyService.create(this.company).subscribe(c => {
-      this.company = c;
-      contract.companyId = this.company.id;
-      // Adding the contract to the mock. TODO: Make it real data.
-      this.contractService.addContract(contract);
-
-      this.router.navigateByUrl('contracts');
-    });
+    // Adding the contract to the mock. TODO: Make it real data.
+    this.contractService.addContract(contract);
+    // This is for checking that the contract have all the ids when creating it. TODO: Remove when contract is done done.
+    console.log('Company id: ' + contract.companyId + ' ProjectId: ' + contract.projectId + ' GroupId: ' + contract.groupId);
+    this.router.navigateByUrl('contracts');
   }
 
   onNotify(email: string) {
@@ -63,5 +60,9 @@ export class NewContractComponent implements OnInit {
 
   updateGroupId(groupId: number) {
     this.groupId = groupId;
+  }
+
+  updateCompanyId(companyId: number) {
+    this.companyId = companyId;
   }
 }
