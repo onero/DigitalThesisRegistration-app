@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Suporvisor} from '../../shared/suporvisor.model';
 import {SuporvisorService} from '../../shared/suporvisor.service';
@@ -10,6 +10,12 @@ import {SuporvisorService} from '../../shared/suporvisor.service';
 })
 export class ProjectSuporvisorComponent implements OnInit {
 
+  @Input()
+  wantedSuporvisor: Suporvisor;
+
+  @Input()
+  assignedSuporvisor: Suporvisor;
+
   suporvisors: Suporvisor[];
   constructor(private modalService: NgbModal, private suporvisorService: SuporvisorService) { }
 
@@ -20,5 +26,12 @@ export class ProjectSuporvisorComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content);
+  }
+
+  selectWantedSuporvisor(suporvisor: Suporvisor) {
+    this.wantedSuporvisor = suporvisor;
+  }
+  selectAssignedSuporvisor(suporvisor: Suporvisor) {
+    this.assignedSuporvisor = suporvisor;
   }
 }
