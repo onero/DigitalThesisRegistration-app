@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Suporvisor} from './suporvisor.model';
 
-const url = environment.RestAPI + '/students';
+const url = environment.RestAPI + '/suporvisors';
 
 @Injectable()
 export class SuporvisorService {
