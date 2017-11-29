@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Company} from '../shared/company.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CompanyService} from '../shared/company.service';
@@ -17,6 +17,9 @@ export class CompanyComponent implements OnInit {
   isEditable: boolean;
   companyGroup: FormGroup;
   companies: Company[];
+
+  @Output()
+  notify: EventEmitter<number> = new EventEmitter();
 
   constructor(private modalService: NgbModal, private companyService: CompanyService, private fb: FormBuilder) {
     this.setValidators();
@@ -52,6 +55,7 @@ export class CompanyComponent implements OnInit {
 
   selectCompany(company: Company) {
     this.company = company;
+    this.notify.emit(this.company.id);
   }
 
   createCompany() {
@@ -64,6 +68,8 @@ export class CompanyComponent implements OnInit {
     };
     this.companyService.create(company).subscribe(c => {
       this.company = c;
+      this.notify.emit(this.company.id);
+      console.log('CompanyId from companyComponent: ' + this.company.id);
       this.companyGroup.reset();
     });
   }
