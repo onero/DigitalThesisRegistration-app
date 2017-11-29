@@ -12,11 +12,11 @@ export class ContractService {
   constructor(private http: HttpClient) {}
 
   mockContracts: Contract[] = [
-    {title: 'Mr. Nice', groupId: 1, projectId: 1, companyId: 1},
-    {title: 'Mr. Nice1', groupId: 2, projectId: 2, companyId: 2},
-    {title: 'Mr. Nice2', groupId: 3, projectId: 3, companyId: 3},
-    {title: 'Mr. Nice3', groupId: 4, projectId: 4, companyId: 4},
-    {title: 'Mr. Nice4', groupId: 5, projectId: 5, companyId: 5},
+    { groupId: 1, projectId: 1, companyId: 1},
+    {groupId: 2, projectId: 2, companyId: 2},
+    {groupId: 3, projectId: 3, companyId: 3},
+    {groupId: 4, projectId: 4, companyId: 4},
+    {groupId: 5, projectId: 5, companyId: 5},
   ];
 
   getMockContract() {

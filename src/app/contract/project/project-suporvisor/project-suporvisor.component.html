@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <h5>
+      Suporvisor
+    </h5>
+    <div>Wanted Suporvisor: </div>
+    <div *ngIf="wantedSuporvisor">
+      {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}
+    </div>
+    <button class="btn btn-outline-dark" (click)="open(wantedSuporvisorContent)">Select Suporvisor</button>
+    <div>Assigned Suporvisor: </div>
+    <div *ngIf="assignedSuporvisor">
+      {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}
+    </div>
+    <button class="btn btn-outline-dark" (click)="open(assignedSuporvisorContent)">Select Suporvisor</button>
+  </div>
+</div>
+
+<ng-template #wantedSuporvisorContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Select a Suporvisor</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group" *ngFor="let suporvisor of suporvisors">
+      <li class="list-group-item list-group-item-action" (click)="selectWantedSuporvisor(suporvisor); c('Close click')">
+        {{suporvisor.firstName}} {{suporvisor.lastName}}
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #assignedSuporvisorContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Select a Suporvisor</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group" *ngFor="let suporvisor of suporvisors">
+      <li class="list-group-item list-group-item-action" (click)="selectAssignedSuporvisor(suporvisor); c('Close click')">
+        {{suporvisor.firstName}} {{suporvisor.lastName}}
+      </li>
+    </ul>
+  </div>
+</ng-template>
