@@ -13,4 +13,8 @@ export class SuporvisorService {
   getAll(): Observable<Suporvisor[]> {
     return this.http.get<Suporvisor[]>(url);
   }
+
+  get(id: number): Observable<Suporvisor> {
+    return this.http.get<Suporvisor>(url + '/' + id);
+  }
 }
