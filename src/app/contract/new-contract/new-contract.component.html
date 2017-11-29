@@ -26,8 +26,6 @@
       <app-project-suporvisor
         (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
       (onAssignedSuporvisorChange)="onAssignedSuporvisorChange($event)"></app-project-suporvisor>
-      Wanted suporvisor id: {{project.wantedSuporvisorId}}
-      Assigned suporvisor id: {{project.assignedSuporvisorId}}
     </div>
     <div class="col-md-5">
       <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
