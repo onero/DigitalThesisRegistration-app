@@ -13,7 +13,9 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-project-period></app-project-period>
+      <app-project-period
+        (startChange)="onStartPeriodChange($event)"
+      (endChange)="onEndPeriodChange($event)"></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [email]="contactEmail" [groupId]="groupId" [students]="students"

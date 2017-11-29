@@ -8,8 +8,11 @@
         <div class="form-group">
           <div class="input-group">
             <input class="form-control" placeholder="yyyy-mm-dd"
-                   name="startDP" [(ngModel)]="startModel" ngbDatepicker #start="ngbDatepicker">
-            <button class="input-group-addon" (click)="start.toggle()" type="button">
+                   name="startDP"
+                   [(ngModel)]="startModel"
+                   (ngModelChange)="onStartSelected()"
+                   ngbDatepicker #start="ngbDatepicker">
+            <button class="input-group-addon" (click)="start.toggle()"type="button">
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </button>
           </div>
@@ -22,12 +25,15 @@
         <form class="form-inline">
           <div class="form-group">
             <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="endDP" [(ngModel)]="endModel" ngbDatepicker #end="ngbDatepicker">
+              <input class="form-control"
+                     placeholder="yyyy-mm-dd"
+                     name="endDP"
+                     [(ngModel)]="endModel"
+                     (ngModelChange)="onEndSelected()"
+                     ngbDatepicker #end="ngbDatepicker">
               <button class="input-group-addon" (click)="end.toggle()" type="button">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
               </button>
-              {{ endModel }}
             </div>
           </div>
         </form>

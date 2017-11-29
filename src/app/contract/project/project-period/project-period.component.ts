@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-project-period',
@@ -8,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectPeriodComponent implements OnInit {
 
   startModel;
+  @Output()
+  startChange: EventEmitter<NgbDateStruct> = new EventEmitter();
   endModel;
+  @Output()
+  endChange: EventEmitter<NgbDateStruct> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onStartSelected() {
+    this.startChange.emit(this.startModel);
+  }
+  onEndSelected() {
+    this.endChange.emit(this.endModel);
+  }
 }

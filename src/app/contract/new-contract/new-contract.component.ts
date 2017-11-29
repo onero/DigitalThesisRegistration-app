@@ -7,6 +7,7 @@ import {GroupService} from '../shared/group.service';
 import {Company} from '../shared/company.model';
 import {CompanyService} from "../shared/company.service";
 import {Project} from '../shared/project.model';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-new-contract',
@@ -50,6 +51,13 @@ export class NewContractComponent implements OnInit {
   }
   onAssignedSuporvisorChange(id: number) {
     this.project.assignedSuporvisorId = id;
+  }
+
+  onStartPeriodChange(start: NgbDateStruct) {
+    this.project.start = new Date(start.year, start.month, start.day);
+  }
+  onEndPeriodChange(start: NgbDateStruct) {
+    this.project.end = new Date(start.year, start.month, start.day);
   }
 
   createContract() {
