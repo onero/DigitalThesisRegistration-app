@@ -45,6 +45,13 @@ export class NewContractComponent implements OnInit {
     this.project.description = description;
   }
 
+  onWantedSuporvisorChange(id: number) {
+    this.project.wantedSuporvisorId = id;
+  }
+  onAssignedSuporvisorChange(id: number) {
+    this.project.assignedSuporvisorId = id;
+  }
+
   createContract() {
     const contract: Contract = {title: 'The title', studentIds: [], groupId: this.groupId, companyId: this.companyId};
     for (const student of this.students) {
