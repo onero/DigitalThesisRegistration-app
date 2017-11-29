@@ -25,12 +25,12 @@
   <div class="row">
     <div class="col-md-7">
       <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"></app-project-description>
-      <app-project-suporvisor
-        (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
-      (onAssignedSuporvisorChange)="onAssignedSuporvisorChange($event)"></app-project-suporvisor>
     </div>
     <div class="col-md-5">
       <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
+      <app-project-suporvisor
+        (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
+        (onAssignedSuporvisorChange)="onAssignedSuporvisorChange($event)" [isEditable]="true"></app-project-suporvisor>
     </div>
   </div>
   <div class="row">
