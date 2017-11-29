@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-project-period',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectPeriodComponent implements OnInit {
 
+  @Input()
+  isEditable: boolean;
   startModel;
   endModel;
   constructor() { }
