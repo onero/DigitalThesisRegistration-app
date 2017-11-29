@@ -4,7 +4,7 @@
       Project Description:
     </h5>
     <div class="card-body">
-      <textarea cols="30" rows="10" placeholder="Enter description" [(ngModel)] = "description"></textarea>
+      <textarea cols="30" rows="10" placeholder="Enter description" [(ngModel)] ="description" (keyup)="updateProjectDescription()"></textarea>
     </div>
   </div>
 </div>

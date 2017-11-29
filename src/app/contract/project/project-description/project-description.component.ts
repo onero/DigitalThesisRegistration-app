@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-project-description',
@@ -9,9 +9,14 @@ export class ProjectDescriptionComponent implements OnInit {
 
   @Input()
   description: string;
+  @Output()
+  onDescriptionChanged: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
+  updateProjectDescription() {
+    this.onDescriptionChanged.emit(this.description);
+  }
 }

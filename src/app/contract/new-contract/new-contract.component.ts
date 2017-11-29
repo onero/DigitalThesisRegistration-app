@@ -41,6 +41,10 @@ export class NewContractComponent implements OnInit {
     this.project.title = title;
   }
 
+  onProjectDescriptionChange(description: string) {
+    this.project.description = description;
+  }
+
   createContract() {
     const contract: Contract = {title: 'The title', studentIds: [], groupId: this.groupId, companyId: this.companyId};
     for (const student of this.students) {
@@ -65,4 +69,6 @@ export class NewContractComponent implements OnInit {
   updateCompanyId(companyId: number) {
     this.companyId = companyId;
   }
+
+
 }

@@ -22,7 +22,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-project-description></app-project-description>
+      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"></app-project-description>
       <app-project-suporvisor></app-project-suporvisor>
     </div>
     <div class="col-md-5">
