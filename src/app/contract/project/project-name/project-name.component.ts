@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-project-name',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectNameComponent implements OnInit {
 
+  @Input()
+  projectTitle: string;
+  @Output() projectTitleChange: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  updateProjectTitle() {
+    this.projectTitleChange.emit(this.projectTitle);
+  }
 }

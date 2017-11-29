@@ -4,7 +4,7 @@
       Project Name:
     </h5>
     <div>
-      <input type="text" placeholder="Project name">
+      <input type="text" placeholder="Project name" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
     </div>
   </div>
 </div>
