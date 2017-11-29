@@ -9,6 +9,8 @@ export class ProjectDescriptionComponent implements OnInit {
 
   @Input()
   description: string;
+  @Input()
+  isEditable: boolean;
   @Output()
   onDescriptionChanged: EventEmitter<string> = new EventEmitter();
   constructor() { }

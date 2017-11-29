@@ -20,6 +20,7 @@ import { ProjectPeriodComponent } from './project/project-period/project-period.
 import { ProjectDescriptionComponent } from './project/project-description/project-description.component';
 import { ProjectSuporvisorComponent } from './project/project-suporvisor/project-suporvisor.component';
 import {SuporvisorService} from './shared/suporvisor.service';
+import {ProjectService} from "./shared/project.service";
 
 @NgModule({
   imports: [
@@ -31,6 +32,6 @@ import {SuporvisorService} from './shared/suporvisor.service';
     NgbModule.forRoot()
   ],
   declarations: [ContractsComponent, NewContractComponent, StudentsListComponent, EditContractComponent, GroupContactComponent, CompanyComponent, ProjectNameComponent, ProjectPeriodComponent, ProjectDescriptionComponent, ProjectSuporvisorComponent],
-  providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService, CompanyService, SuporvisorService]
+  providers: [ContractService, StudentService, NgbModal, NgbModalStack, GroupService, CompanyService, SuporvisorService, ProjectService]
 })
 export class ContractModule { }

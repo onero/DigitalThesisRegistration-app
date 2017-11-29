@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-project-name (projectTitleChange)="onProjectTitleChange($event)"></app-project-name>
+      <app-project-name (projectTitleChange)="onProjectTitleChange($event)" [isEditable]=true></app-project-name>
     </div>
     <div class="col-md-5">
       <app-group-contact [isEditable]="true" (notify)="onNotify($event)"></app-group-contact>

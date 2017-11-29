@@ -16,6 +16,9 @@ export class ProjectSuporvisorComponent implements OnInit {
   onWantedSuporvisorChange: EventEmitter<number> = new EventEmitter();
 
   @Input()
+  isEditable: boolean;
+
+  @Input()
   assignedSuporvisor: Suporvisor;
   @Output()
   onAssignedSuporvisorChange: EventEmitter<number> = new EventEmitter();

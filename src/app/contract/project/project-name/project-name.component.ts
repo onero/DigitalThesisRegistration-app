@@ -9,6 +9,9 @@ export class ProjectNameComponent implements OnInit {
 
   @Input()
   projectTitle: string;
+  @Input()
+  isEditable: boolean;
+
   @Output() projectTitleChange: EventEmitter<string> = new EventEmitter();
 
   constructor() { }

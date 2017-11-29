@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,8 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProjectPeriodComponent implements OnInit {
 
+  @Input()
+  isEditable: boolean;
   startModel;
   @Output()
   startChange: EventEmitter<NgbDateStruct> = new EventEmitter();
