@@ -11,6 +11,8 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
+import {Suporvisor} from "../shared/suporvisor.model";
+import {SuporvisorService} from "../shared/suporvisor.service";
 
 @Component({
   selector: 'app-edit-contract',
@@ -25,11 +27,14 @@ export class EditContractComponent implements OnInit {
   group: Group;
   company: Company;
   project: Project;
+  assignedSuporvisor: Suporvisor;
+  wantedSuporvisor: Suporvisor;
 
   groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
 
   constructor(private contractSerivce: ContractService, private route: ActivatedRoute, private studentService: StudentService,
-              private groupService: GroupService, private companyService: CompanyService, private projectService: ProjectService) {
+              private groupService: GroupService, private companyService: CompanyService, private projectService: ProjectService,
+              private suporvisorService: SuporvisorService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -86,6 +91,12 @@ export class EditContractComponent implements OnInit {
     if (this.contract.projectId != null) {
       this.projectService.get(this.contract.projectId).subscribe(p => {
         this.project = p;
+        this.suporvisorService.get(this.project.assignedSuporvisorId).subscribe(s => {
+          this.assignedSuporvisor = s;
+        });
+        this.suporvisorService.get(this.project.wantedSuporvisorId).subscribe(s => {
+          this.wantedSuporvisor = s;
+        });
         console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
       });
 
