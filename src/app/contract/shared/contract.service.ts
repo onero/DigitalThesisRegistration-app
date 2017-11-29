@@ -3,20 +3,13 @@ import {Contract} from './contract.model';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
-
+const url = environment.RestAPI + '/contracts';
 @Injectable()
 export class ContractService {
-
-  url = environment.RestAPI + '/contracts';
 
   constructor(private http: HttpClient) {}
 
   mockContracts: Contract[] = [
-    { groupId: 1, projectId: 1, companyId: 1},
-    {groupId: 2, projectId: 2, companyId: 2},
-    {groupId: 3, projectId: 3, companyId: 3},
-    {groupId: 4, projectId: 4, companyId: 4},
-    {groupId: 5, projectId: 5, companyId: 5},
   ];
 
   getMockContract() {
@@ -28,7 +21,7 @@ export class ContractService {
   }
 
   createContract(contract: Contract): Observable<Contract> {
-    return this.http.post<Contract>(this.url, contract);
+    return this.http.post<Contract>(url, contract);
   }
 
   getById(groupId: number, projectId: number, companyId: number): Contract {
