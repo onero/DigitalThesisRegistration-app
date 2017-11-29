@@ -14,7 +14,7 @@ export class ContractsComponent implements OnInit {
   contracts: Contract[];
 
   ngOnInit() {
-    this.contracts = this.contractService.getMockContract();
+    this.contractService.getAll().subscribe(c => this.contracts = c);
   }
 
   constructor(private contractService: ContractService, private router: Router, private groupService: GroupService) { }

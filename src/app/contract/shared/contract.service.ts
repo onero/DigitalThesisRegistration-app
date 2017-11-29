@@ -7,13 +7,18 @@ const url = environment.RestAPI + '/contracts';
 @Injectable()
 export class ContractService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   mockContracts: Contract[] = [
   ];
 
   getMockContract() {
     return this.mockContracts;
+  }
+
+  getAll(): Observable<Contract[]> {
+    return this.http.get<Contract[]>(url);
   }
 
   addContract(contract: Contract) {
