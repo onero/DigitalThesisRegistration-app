@@ -8,6 +8,7 @@ import {Company} from '../shared/company.model';
 import {CompanyService} from "../shared/company.service";
 import {Project} from '../shared/project.model';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {ProjectService} from '../shared/project.service';
 
 @Component({
   selector: 'app-new-contract',
@@ -22,13 +23,15 @@ export class NewContractComponent implements OnInit {
   contactEmail = '';
   @Input()
   project: Project;
+  isProjectInfoAdded = false;
   company: Company; // TODO RKL: Remove if possible.
 
   constructor(private contractService: ContractService,
               private groupService: GroupService,
               private companyService: CompanyService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private projectService: ProjectService) {
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
   }
 
@@ -40,34 +43,47 @@ export class NewContractComponent implements OnInit {
 
   onProjectTitleChange(title: string) {
     this.project.title = title;
+    this.isProjectInfoAdded = true;
   }
 
   onProjectDescriptionChange(description: string) {
     this.project.description = description;
+    this.isProjectInfoAdded = true;
   }
 
   onWantedSuporvisorChange(id: number) {
     this.project.wantedSuporvisorId = id;
+    this.isProjectInfoAdded = true;
   }
   onAssignedSuporvisorChange(id: number) {
     this.project.assignedSuporvisorId = id;
+    this.isProjectInfoAdded = true;
   }
 
   onStartPeriodChange(start: NgbDateStruct) {
     this.project.start = new Date(start.year, start.month, start.day);
+    this.isProjectInfoAdded = true;
   }
   onEndPeriodChange(start: NgbDateStruct) {
     this.project.end = new Date(start.year, start.month, start.day);
+    this.isProjectInfoAdded = true;
   }
 
   createContract() {
-    const contract: Contract = {title: 'The title', studentIds: [], groupId: this.groupId, companyId: this.companyId};
-    for (const student of this.students) {
-      contract.studentIds.push(student.id);
+    const contract: Contract = {
+      groupId: this.groupId,
+      companyId: this.companyId,
+      projectId: 0};
+
+    if (this.isProjectInfoAdded) {
+      this.projectService.create(this.project).subscribe(p => {
+        contract.projectId = p.id;
+        this.contractService.addContract(contract);
+      });
+    } else {
+      this.contractService.addContract(contract);
     }
 
-    // Adding the contract to the mock. TODO: Make it real data.
-    this.contractService.addContract(contract);
     // This is for checking that the contract have all the ids when creating it. TODO: Remove when contract is done done.
     console.log('Company id: ' + contract.companyId + ' ProjectId: ' + contract.projectId + ' GroupId: ' + contract.groupId);
     this.router.navigateByUrl('contracts');

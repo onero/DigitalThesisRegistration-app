@@ -22,7 +22,6 @@ export class EditContractComponent implements OnInit {
   isEditable: boolean;
 
   contract: Contract;
-  students: Student[] = [];
   group: Group;
   company: Company;
   project: Project;
@@ -48,20 +47,21 @@ export class EditContractComponent implements OnInit {
       console.log(params);
       // Calling the contract.service.getById() and logging the response. (The response is the contract from the database).
       this.contract = contractSerivce.getById(contract.groupId, contract.projectId, contract.companyId);
-      this.populateStudents();
+      // this.populateStudents();
       this.populateGroup();
       this.populateCompany();
       this.populateProject();
     });
   }
 
-  populateStudents() {
-    if (this.contract.studentIds != null) {
-      for (const studentId of this.contract.studentIds) {
-        this.studentService.get(studentId).subscribe(s => this.students.push(s));
-      }
-    }
-  }
+  // TODO ALH: Refactor
+  // populateStudents() {
+  //   if (this.contract.studentIds != null) {
+  //     for (const studentId of this.contract.studentIds) {
+  //       this.studentService.get(studentId).subscribe(s => this.students.push(s));
+  //     }
+  //   }
+  // }
 
   ngOnInit() {
 
