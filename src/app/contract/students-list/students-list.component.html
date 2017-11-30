@@ -1,10 +1,9 @@
-<div class="card" style="height: 200px">
+<div class="card body-size">
   <div class="card-body">
     <h4 class="card-title">Students</h4>
     <ul class="list-group" style="padding-left: 20px" *ngFor="let student of students">
       <li class="list-group-flush">{{student.firstName}} {{student.lastName}}</li>
     </ul>
-
   </div>
   <button class="btn btn-outline-primary" [disabled]="!ableToAddStudent()" style="margin-left: 10px; width: 100px; margin-bottom: 10px" (click)="open(content)">
     <i class="fa fa-plus" aria-hidden="true"></i> Student
