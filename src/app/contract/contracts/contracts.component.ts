@@ -3,6 +3,7 @@ import {Contract} from '../shared/contract.model';
 import {ContractService} from '../shared/contract.service';
 import {Router} from "@angular/router";
 import {GroupService} from "../shared/group.service";
+import {ProjectService} from '../shared/project.service';
 
 @Component({
   selector: 'app-contracts',
@@ -13,11 +14,21 @@ export class ContractsComponent implements OnInit {
 
   contracts: Contract[];
 
-  ngOnInit() {
-    this.contractService.getAll().subscribe(c => this.contracts = c);
-  }
 
-  constructor(private contractService: ContractService, private router: Router, private groupService: GroupService) { }
+  constructor(private contractService: ContractService,
+              private router: Router,
+              private groupService: GroupService,
+              private projectService: ProjectService) { }
+
+  ngOnInit() {
+    this.contractService.getAll().subscribe(contracts => {
+      contracts.forEach(c => {
+        console.log(c.projectId);
+        this.projectService.get(c.projectId).subscribe(p => c.project = p);
+        this.contracts = contracts;
+      });
+    });
+  }
 
   selectContract(contract: Contract) {
     // Converting the contract object into a hashed string value by using the base 64 encoding btoa. btoa is for encrypting.
