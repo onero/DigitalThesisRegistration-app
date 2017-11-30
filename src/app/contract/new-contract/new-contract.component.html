@@ -1,7 +1,11 @@
 <div class="container">
-  <div class="row">
-    <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
-    <h1>Headline goes here</h1>
+  <div class="row top-margin">
+    <div class="col-md-4">
+      <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">New Contract</h1>
+    </div>
   </div>
   <hr>
   <div class="row bottom-margin">
@@ -16,7 +20,7 @@
     <div class="col-md-7">
       <app-project-period
         (startChange)="onStartPeriodChange($event)"
-      (endChange)="onEndPeriodChange($event)" [project]="{}" [isEditable]=true></app-project-period>
+        (endChange)="onEndPeriodChange($event)" [project]="{}" [isEditable]=true></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [isEditable]="true" [email]="contactEmail" [groupId]="groupId" [students]="students"
@@ -30,7 +34,7 @@
     </div>
     <div class="col-md-5">
       <div class="bottom-margin">
-      <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
+        <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
       </div>
       <app-project-suporvisor
         (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
@@ -40,14 +44,9 @@
   </div>
   <hr>
   <div class="row">
-    <div *ngIf="
-    companyId > 0 &&
-    groupId > 0;
-    ">
-      <button class="btn btn-outline-success" (click)="createContract()">
-        Create
-      </button>
-    </div>
+    <button [disabled]="!ableToCreateContract()" class="btn btn-outline-success" (click)="createContract()">
+      Create
+    </button>
   </div>
   <hr>
 </div>

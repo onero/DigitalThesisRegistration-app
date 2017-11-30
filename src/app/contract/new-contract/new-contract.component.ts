@@ -104,5 +104,10 @@ export class NewContractComponent implements OnInit {
     this.companyId = companyId;
   }
 
-
+  ableToCreateContract(): boolean {
+    if (this.companyId > 0 && this.groupId > 0) {
+      return true;
+    }
+    return false;
+  }
 }
