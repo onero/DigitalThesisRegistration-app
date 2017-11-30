@@ -42,10 +42,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-size" [perfect-scrollbar]>
     <ul class="list-group" *ngFor="let supervisor of supervisors">
       <li class="list-group-item list-group-item-action" (click)="selectWantedSupervisor(supervisor); c('Close click')">
+        <perfect-scrollbar>
         {{supervisor.firstName}} {{supervisor.lastName}}
+        </perfect-scrollbar>
       </li>
     </ul>
   </div>
@@ -58,10 +60,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-size" [perfect-scrollbar]>
     <ul class="list-group" *ngFor="let supervisor of supervisors">
       <li class="list-group-item list-group-item-action" (click)="selectAssignedSupervisor(supervisor); c('Close click')">
+        <perfect-scrollbar>
         {{supervisor.firstName}} {{supervisor.lastName}}
+        </perfect-scrollbar>
       </li>
     </ul>
   </div>
