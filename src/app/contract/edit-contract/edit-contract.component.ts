@@ -11,8 +11,8 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
-import {Suporvisor} from "../shared/suporvisor.model";
-import {SuporvisorService} from "../shared/suporvisor.service";
+import {Supervisor} from "../shared/supervisor.model";
+import {SupervisorService} from "../shared/supervisor.service";
 import {ContractsComponent} from '../contracts/contracts.component';
 
 @Component({
@@ -28,8 +28,8 @@ export class EditContractComponent implements OnInit {
   group: Group;
   company: Company;
   project: Project;
-  assignedSuporvisor: Suporvisor;
-  wantedSuporvisor: Suporvisor;
+  assignedSuporvisor: Supervisor;
+  wantedSuporvisor: Supervisor;
 
   groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
 
@@ -39,7 +39,7 @@ export class EditContractComponent implements OnInit {
               private groupService: GroupService,
               private companyService: CompanyService,
               private projectService: ProjectService,
-              private suporvisorService: SuporvisorService) {
+              private suporvisorService: SupervisorService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};

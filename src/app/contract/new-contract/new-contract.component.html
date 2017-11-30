@@ -38,9 +38,9 @@
         <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
       </div>
       <app-project-suporvisor
-        (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
-        (onAssignedSuporvisorChange)="onAssignedSuporvisorChange($event)"
-        [isEditable]="true" [assignedSuporvisor]="{}" [wantedSuporvisor]="{}"></app-project-suporvisor>
+        (onWantedSupervisorChange)="onWantedSuporvisorChange($event)"
+        (onAssignedSupervisorChange)="onAssignedSuporvisorChange($event)"
+        [isEditable]="true" [assignedSupervisor]="{}" [wantedSupervisor]="{}"></app-project-suporvisor>
     </div>
   </div>
   <hr>
