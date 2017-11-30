@@ -3,7 +3,8 @@
     <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
     <h1>Headline goes here</h1>
   </div>
-  <div class="row">
+  <hr>
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-name (projectTitleChange)="onProjectTitleChange($event)" [isEditable]=true></app-project-name>
     </div>
@@ -11,11 +12,11 @@
       <app-group-contact [isEditable]="true" (notify)="onNotify($event)"></app-group-contact>
     </div>
   </div>
-  <div class="row">
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-period
         (startChange)="onStartPeriodChange($event)"
-      (endChange)="onEndPeriodChange($event)"></app-project-period>
+      (endChange)="onEndPeriodChange($event)" [project]="{}" [isEditable]=true></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [email]="contactEmail" [groupId]="groupId" [students]="students"
@@ -27,15 +28,19 @@
       <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"></app-project-description>
     </div>
     <div class="col-md-5">
+      <div class="bottom-margin">
       <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
+      </div>
       <app-project-suporvisor
         (onWantedSuporvisorChange)="onWantedSuporvisorChange($event)"
         (onAssignedSuporvisorChange)="onAssignedSuporvisorChange($event)" [isEditable]="true"></app-project-suporvisor>
     </div>
   </div>
+  <hr>
   <div class="row">
     <button class="btn btn-outline-success" (click)="createContract()">
       Create
     </button>
   </div>
+  <hr>
 </div>

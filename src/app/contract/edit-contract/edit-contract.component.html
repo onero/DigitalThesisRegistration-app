@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row">
-    <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
-    <h1>Edit contract</h1>
+    <div class="col-md-4">
+      <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">Edit contract</h1>
+    </div>
   </div>
-  <div class="row">
+  <hr>
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"></app-project-name>
     </div>
@@ -11,9 +16,9 @@
       <app-group-contact [email]="group.contactEmail" [isEditable]="isEditable"></app-group-contact>
     </div>
   </div>
-  <div class="row">
+  <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-period [isEditable]="isEditable" [project]="project"></app-project-period>
+      <app-project-period class="body-size" [isEditable]="isEditable" [project]="project"></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [email]="groupContactEmail"></app-students-list>
@@ -24,8 +29,11 @@
       <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
     </div>
     <div class="col-md-5">
-      <app-company [isEditable]="false" [company]="company"></app-company>
+      <div class="bottom-margin">
+        <app-company [isEditable]="false" [company]="company"></app-company>
+      </div>
       <app-project-suporvisor [isEditable]="isEditable" [wantedSuporvisor]="wantedSuporvisor" [assignedSuporvisor]="assignedSuporvisor"></app-project-suporvisor>
     </div>
   </div>
+  <hr>
 </div>
