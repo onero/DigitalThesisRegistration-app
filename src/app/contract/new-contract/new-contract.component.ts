@@ -73,20 +73,23 @@ export class NewContractComponent implements OnInit {
     const contract: Contract = {
       groupId: this.groupId,
       companyId: this.companyId,
-      projectId: 0};
+      projectId: 0,
+      isApproved: false};
 
     if (this.isProjectInfoAdded) {
       this.projectService.create(this.project).subscribe(p => {
         contract.projectId = p.id;
-        this.contractService.addContract(contract);
+        this.contractService.createContract(contract).subscribe(() =>
+          {
+            this.router.navigateByUrl('contracts');
+          });
       });
     } else {
-      this.contractService.addContract(contract);
+      this.contractService.createContract(contract).subscribe(() =>
+      {
+        this.router.navigateByUrl('contracts');
+      });
     }
-
-    // This is for checking that the contract have all the ids when creating it. TODO: Remove when contract is done done.
-    console.log('Company id: ' + contract.companyId + ' ProjectId: ' + contract.projectId + ' GroupId: ' + contract.groupId);
-    this.router.navigateByUrl('contracts');
   }
 
   onNotify(email: string) {
