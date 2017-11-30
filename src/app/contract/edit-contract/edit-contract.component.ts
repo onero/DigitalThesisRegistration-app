@@ -13,6 +13,7 @@ import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
 import {Suporvisor} from "../shared/suporvisor.model";
 import {SuporvisorService} from "../shared/suporvisor.service";
+import {ContractsComponent} from '../contracts/contracts.component';
 
 @Component({
   selector: 'app-edit-contract',
@@ -32,8 +33,12 @@ export class EditContractComponent implements OnInit {
 
   groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
 
-  constructor(private contractSerivce: ContractService, private route: ActivatedRoute, private studentService: StudentService,
-              private groupService: GroupService, private companyService: CompanyService, private projectService: ProjectService,
+  constructor(private contractSerivce: ContractService,
+              private route: ActivatedRoute,
+              private studentService: StudentService,
+              private groupService: GroupService,
+              private companyService: CompanyService,
+              private projectService: ProjectService,
               private suporvisorService: SuporvisorService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
@@ -53,25 +58,16 @@ export class EditContractComponent implements OnInit {
       // Logging the hashValue.
       console.log(params);
       // Calling the contract.service.getById() and logging the response. (The response is the contract from the database).
-      this.contract = contractSerivce.getById(contract.groupId, contract.projectId, contract.companyId);
-      // this.populateStudents();
+      // this.contract = contractSerivce.getById(contract.groupId, contract.projectId, contract.companyId);
+      this.contract = contract;
       this.populateGroup();
       this.populateCompany();
-      this.populateProject();
+      // this.populateProject();
+      this.project = contract.project;
     });
   }
 
-  // TODO ALH: Refactor
-  // populateStudents() {
-  //   if (this.contract.studentIds != null) {
-  //     for (const studentId of this.contract.studentIds) {
-  //       this.studentService.get(studentId).subscribe(s => this.students.push(s));
-  //     }
-  //   }
-  // }
-
   ngOnInit() {
-
   }
 
   private populateGroup() {
