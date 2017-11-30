@@ -1,30 +1,35 @@
 <div class="card">
   <div class="card-body">
     <h5>
-      Suporvisor
+      Supervisor
     </h5>
     <div *ngIf="isEditable">
-    <div>
-      Wanted Suporvisor:
+      <div class="row bottom-margin">
+        <div class="col-md-8">
+          <h6>Wanted Supervisor:</h6> {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-outline-dark" (click)="open(wantedSuporvisorContent)">
+            <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <h6>Assigned Supervisor:</h6>
+          {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-outline-dark" (click)="open(assignedSuporvisorContent)">
+            <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+        </div>
+      </div>
     </div>
-    <div *ngIf="wantedSuporvisor">
-      {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}
-    </div>
-    <button class="btn btn-outline-dark" (click)="open(wantedSuporvisorContent)">Select Suporvisor</button>
-    <div>
-      Assigned Suporvisor:
-    </div>
-    <div *ngIf="assignedSuporvisor">
-      {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}
-    </div>
-    <button class="btn btn-outline-dark" (click)="open(assignedSuporvisorContent)">Select Suporvisor</button>
-  </div>
     <div *ngIf="!isEditable">
       <div>
-        Wanted Suporvisor: {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}
+        <p><strong>Wanted Supervisor:</strong> {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}</p>
       </div>
       <div>
-        Assigned Suporvisor: {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}
+        <p><strong>Assigned Supervisor:</strong> {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}</p>
       </div>
     </div>
   </div>
@@ -32,7 +37,7 @@
 
 <ng-template #wantedSuporvisorContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Select a Suporvisor</h4>
+    <h4 class="modal-title">Select a Supervisor</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

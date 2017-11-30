@@ -64,6 +64,7 @@ export class EditContractComponent implements OnInit {
       this.populateCompany();
       // this.populateProject();
       this.project = contract.project;
+      this.populateSupervisors();
     });
   }
 
@@ -101,6 +102,17 @@ export class EditContractComponent implements OnInit {
     }else {
       // TODO: Remove when implementation is done.
       console.log('No project id');
+    }
+  }
+
+  populateSupervisors() {
+    if (this.contract.projectId != null) {
+      this.suporvisorService.get(this.project.assignedSuporvisorId).subscribe(s => {
+        this.assignedSuporvisor = s;
+      });
+      this.suporvisorService.get(this.project.wantedSuporvisorId).subscribe(s => {
+        this.wantedSuporvisor = s;
+      });
     }
   }
 }

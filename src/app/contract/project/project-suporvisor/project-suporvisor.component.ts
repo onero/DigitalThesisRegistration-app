@@ -24,7 +24,8 @@ export class ProjectSuporvisorComponent implements OnInit {
   onAssignedSuporvisorChange: EventEmitter<number> = new EventEmitter();
 
   suporvisors: Suporvisor[];
-  constructor(private modalService: NgbModal, private suporvisorService: SuporvisorService) { }
+  constructor(private modalService: NgbModal, private suporvisorService: SuporvisorService) {
+  }
 
   ngOnInit() {
     this.suporvisors = [];
