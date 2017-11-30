@@ -6,17 +6,17 @@
     <div *ngIf="isEditable">
       <div class="row bottom-margin">
         <div class="col-md-8">
-          <h6>Wanted Supervisor:</h6> {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}
+          <h6>Wanted Supervisor:</h6> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}
         </div>
         <div class="col-md-4">
-          <button class="btn btn-outline-primary" (click)="open(wantedSuporvisorContent)">
+          <button class="btn btn-outline-primary" (click)="open(wantedSupervisorContent)">
             <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8">
           <h6>Assigned Supervisor:</h6>
-          {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}
+          {{assignedSupervisor.firstName}} {{assignedSupervisor.lastName}}
         </div>
         <div class="col-md-4">
           <button class="btn btn-outline-primary" (click)="open(assignedSuporvisorContent)">
@@ -26,16 +26,16 @@
     </div>
     <div *ngIf="!isEditable">
       <div>
-        <p><strong>Wanted Supervisor:</strong> {{wantedSuporvisor.firstName}} {{wantedSuporvisor.lastName}}</p>
+        <p><strong>Wanted Supervisor:</strong> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}</p>
       </div>
       <div>
-        <p><strong>Assigned Supervisor:</strong> {{assignedSuporvisor.firstName}} {{assignedSuporvisor.lastName}}</p>
+        <p><strong>Assigned Supervisor:</strong> {{assignedSupervisor.firstName}} {{assignedSupervisor.lastName}}</p>
       </div>
     </div>
   </div>
 </div>
 
-<ng-template #wantedSuporvisorContent let-c="close" let-d="dismiss">
+<ng-template #wantedSupervisorContent let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Select a Supervisor</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -43,9 +43,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <ul class="list-group" *ngFor="let suporvisor of suporvisors">
-      <li class="list-group-item list-group-item-action" (click)="selectWantedSuporvisor(suporvisor); c('Close click')">
-        {{suporvisor.firstName}} {{suporvisor.lastName}}
+    <ul class="list-group" *ngFor="let supervisor of supervisors">
+      <li class="list-group-item list-group-item-action" (click)="selectWantedSupervisor(supervisor); c('Close click')">
+        {{supervisor.firstName}} {{supervisor.lastName}}
       </li>
     </ul>
   </div>
@@ -53,15 +53,15 @@
 
 <ng-template #assignedSuporvisorContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Select a Suporvisor</h4>
+    <h4 class="modal-title">Select a Supervisor</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <ul class="list-group" *ngFor="let suporvisor of suporvisors">
-      <li class="list-group-item list-group-item-action" (click)="selectAssignedSuporvisor(suporvisor); c('Close click')">
-        {{suporvisor.firstName}} {{suporvisor.lastName}}
+    <ul class="list-group" *ngFor="let supervisor of supervisors">
+      <li class="list-group-item list-group-item-action" (click)="selectAssignedSupervisor(supervisor); c('Close click')">
+        {{supervisor.firstName}} {{supervisor.lastName}}
       </li>
     </ul>
   </div>
