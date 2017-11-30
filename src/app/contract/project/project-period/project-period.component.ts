@@ -9,6 +9,7 @@ import {Project} from "../../shared/project.model";
 })
 export class ProjectPeriodComponent implements OnInit {
 
+  dateFormat = 'yyyy-MM-dd';
   @Input()
   isEditable: boolean;
   @Input()
