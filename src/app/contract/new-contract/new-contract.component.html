@@ -24,7 +24,8 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"></app-project-description>
+      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"
+      [isEditable]=true></app-project-description>
     </div>
     <div class="col-md-5">
       <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
