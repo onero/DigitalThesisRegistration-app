@@ -4,7 +4,7 @@
       Project Title:
     </h5>
     <div class="body-size" *ngIf="isEditable">
-      <input type="text" placeholder="Project title" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
+      <input class="text-body-size" type="text" placeholder="Project title" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
     </div>
     <div class="body-size " *ngIf="!isEditable">
       {{projectTitle}}
