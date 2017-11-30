@@ -46,14 +46,14 @@
       Start date:
     </h5>
     <div>
-      {{project.start}}
+      {{project.start | date: dateFormat}}
     </div>
     <br>
     <h5>
       End date:
     </h5>
     <div>
-      {{project.end}}
+      {{project.end | date: dateFormat}}
     </div>
   </div>
   <br>
