@@ -79,12 +79,17 @@ export class NewContractComponent implements OnInit {
     if (this.isProjectInfoAdded) {
       this.projectService.create(this.project).subscribe(p => {
         contract.projectId = p.id;
-        this.contractService.createContract(contract).subscribe();
+        this.contractService.createContract(contract).subscribe(() =>
+          {
+            this.router.navigateByUrl('contracts');
+          });
       });
     } else {
-      this.contractService.createContract(contract).subscribe();
+      this.contractService.createContract(contract).subscribe(() =>
+      {
+        this.router.navigateByUrl('contracts');
+      });
     }
-    this.router.navigateByUrl('contracts');
   }
 
   onNotify(email: string) {
