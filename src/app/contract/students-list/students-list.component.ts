@@ -21,6 +21,8 @@ export class StudentsListComponent implements OnInit {
   groupId: number;
   @Input()
   email: string;
+  @Input()
+  isEditable: boolean;
 
   @Output()
   notify: EventEmitter<number> = new EventEmitter();
