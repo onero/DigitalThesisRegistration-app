@@ -15,7 +15,7 @@
     <div class="col-md-7">
       <app-project-period
         (startChange)="onStartPeriodChange($event)"
-      (endChange)="onEndPeriodChange($event)" [isEditable]=true></app-project-period>
+        (endChange)="onEndPeriodChange($event)" [isEditable]=true></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [email]="contactEmail" [groupId]="groupId" [students]="students"
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-md-7">
       <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"
-      [isEditable]=true></app-project-description>
+                               [isEditable]=true></app-project-description>
     </div>
     <div class="col-md-5">
       <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
@@ -35,8 +35,13 @@
     </div>
   </div>
   <div class="row">
-    <button class="btn btn-outline-success" (click)="createContract()">
-      Create
-    </button>
+    <div *ngIf="
+    companyId > 0 &&
+    groupId > 0;
+    ">
+      <button class="btn btn-outline-success" (click)="createContract()">
+        Create
+      </button>
+    </div>
   </div>
 </div>
