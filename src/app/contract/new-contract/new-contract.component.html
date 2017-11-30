@@ -25,7 +25,8 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"></app-project-description>
+      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"
+                               [isEditable]=true></app-project-description>
     </div>
     <div class="col-md-5">
       <div class="bottom-margin">
@@ -39,9 +40,14 @@
   </div>
   <hr>
   <div class="row">
-    <button class="btn btn-outline-success" (click)="createContract()">
-      Create
-    </button>
+    <div *ngIf="
+    companyId > 0 &&
+    groupId > 0;
+    ">
+      <button class="btn btn-outline-success" (click)="createContract()">
+        Create
+      </button>
+    </div>
   </div>
   <hr>
 </div>
