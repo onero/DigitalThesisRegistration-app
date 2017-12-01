@@ -1,0 +1,53 @@
+<div class="container">
+  <hr>
+  <div class="row top-margin">
+    <div class="col-md-4">
+      <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">New Contract</h1>
+    </div>
+  </div>
+  <hr>
+  <div class="row bottom-margin">
+    <div class="col-md-7">
+      <app-project-name (projectTitleChange)="onProjectTitleChange($event)" [isEditable]=true></app-project-name>
+    </div>
+    <div class="col-md-5">
+      <app-group-contact [isEditable]="true" (notify)="onNotify($event)"></app-group-contact>
+    </div>
+  </div>
+  <div class="row bottom-margin">
+    <div class="col-md-7">
+      <app-project-period
+        (startChange)="onStartPeriodChange($event)"
+        (endChange)="onEndPeriodChange($event)" [project]="{}" [isEditable]=true></app-project-period>
+    </div>
+    <div class="col-md-5">
+      <app-students-list [isEditable]="true" [email]="contactEmail" [groupId]="groupId" [students]="students"
+                         (notify)="updateGroupId($event)"></app-students-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <app-project-description (onDescriptionChanged)="onProjectDescriptionChange($event)"
+                               [isEditable]=true></app-project-description>
+    </div>
+    <div class="col-md-5">
+      <div class="bottom-margin">
+        <app-company [isEditable]="true" [company]="company" (notify)="updateCompanyId($event)"></app-company>
+      </div>
+      <app-project-suporvisor
+        (onWantedSupervisorChange)="onWantedSuporvisorChange($event)"
+        (onAssignedSupervisorChange)="onAssignedSuporvisorChange($event)"
+        [isEditable]="true" [assignedSupervisor]="{}" [wantedSupervisor]="{}"></app-project-suporvisor>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <button [disabled]="!ableToCreateContract()" class="btn btn-outline-success" (click)="createContract()">
+      Create
+    </button>
+  </div>
+  <hr>
+</div>

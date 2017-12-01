@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-body">
+    <h5>
+      Project Title:
+    </h5>
+    <div class="body-size" *ngIf="isEditable">
+      <input class="text-body-size" type="text" placeholder="Project title" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
+    </div>
+    <div class="body-size " *ngIf="!isEditable">
+      {{projectTitle}}
+    </div>
+  </div>
+</div>

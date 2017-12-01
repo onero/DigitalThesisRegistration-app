@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body body-size" *ngIf="isEditable">
+    <h5>
+      Start date:
+    </h5>
+    <div>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="startDP"
+                   [(ngModel)]="startModel"
+                   (ngModelChange)="onStartSelected()"
+                   ngbDatepicker #start="ngbDatepicker">
+            <button class="input-group-addon" (click)="start.toggle()"type="button">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <h5>
+        End date:
+      </h5>
+      <div>
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control"
+                     placeholder="yyyy-mm-dd"
+                     name="endDP"
+                     [(ngModel)]="endModel"
+                     (ngModelChange)="onEndSelected()"
+                     ngbDatepicker #end="ngbDatepicker">
+              <button class="input-group-addon" (click)="end.toggle()" type="button">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card-body body-size" *ngIf="!isEditable">
+    <h5>
+      Start date:
+    </h5>
+    <div>
+      {{project.start | date: dateFormat}}
+    </div>
+    <br>
+    <h5>
+      End date:
+    </h5>
+    <div>
+      {{project.end | date: dateFormat}}
+    </div>
+  </div>
+  <br>
+</div>
+
