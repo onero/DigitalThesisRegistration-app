@@ -52,11 +52,11 @@ export class NewContractComponent implements OnInit {
   }
 
   onWantedSuporvisorChange(id: number) {
-    this.project.wantedSuporvisorId = id;
+    this.project.wantedSupervisorId = id;
     this.isProjectInfoAdded = true;
   }
   onAssignedSuporvisorChange(id: number) {
-    this.project.assignedSuporvisorId = id;
+    this.project.assignedSupervisorId = id;
     this.isProjectInfoAdded = true;
   }
 

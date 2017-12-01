@@ -28,26 +28,24 @@ export class EditContractComponent implements OnInit {
   group: Group;
   company: Company;
   project: Project;
-  assignedSuporvisor: Supervisor;
-  wantedSuporvisor: Supervisor;
+  assignedSupervisor: Supervisor;
+  wantedSupervisor: Supervisor;
 
   groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
 
-  constructor(private contractSerivce: ContractService,
-              private route: ActivatedRoute,
-              private studentService: StudentService,
+  constructor(private route: ActivatedRoute,
               private groupService: GroupService,
               private companyService: CompanyService,
               private projectService: ProjectService,
-              private suporvisorService: SupervisorService) {
+              private supervisorService: SupervisorService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Instantiating the project so we don't get undefined properties. Might be this is doable for company too?
     this.project = {};
-    this.assignedSuporvisor = {firstName: '', lastName: ''};
-    this.wantedSuporvisor = {firstName: '', lastName: ''};
+    this.assignedSupervisor = {firstName: '', lastName: ''};
+    this.wantedSupervisor = {firstName: '', lastName: ''};
     // Grabbing the url.
     route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
@@ -90,11 +88,11 @@ export class EditContractComponent implements OnInit {
     if (this.contract.projectId != null) {
       this.projectService.get(this.contract.projectId).subscribe(p => {
         this.project = p;
-        this.suporvisorService.get(this.project.assignedSuporvisorId).subscribe(s => {
-          this.assignedSuporvisor = s;
+        this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
+          this.assignedSupervisor = s;
         });
-        this.suporvisorService.get(this.project.wantedSuporvisorId).subscribe(s => {
-          this.wantedSuporvisor = s;
+        this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
+          this.wantedSupervisor = s;
         });
         console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
       });
@@ -107,11 +105,11 @@ export class EditContractComponent implements OnInit {
 
   populateSupervisors() {
     if (this.contract.projectId != null) {
-      this.suporvisorService.get(this.project.assignedSuporvisorId).subscribe(s => {
-        this.assignedSuporvisor = s;
+      this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
+        this.assignedSupervisor = s;
       });
-      this.suporvisorService.get(this.project.wantedSuporvisorId).subscribe(s => {
-        this.wantedSuporvisor = s;
+      this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
+        this.wantedSupervisor = s;
       });
     }
   }
