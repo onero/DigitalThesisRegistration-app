@@ -11,9 +11,8 @@ export class ContractService {
   constructor(private http: HttpClient) {
   }
 
-
   getAll(): Observable<Contract[]> {
-    let contracts = this.http.get<Contract[]>(url);
+    const contracts = this.http.get<Contract[]>(url);
     return contracts;
   }
 
