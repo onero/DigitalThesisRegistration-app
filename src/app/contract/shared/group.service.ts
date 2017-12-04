@@ -9,22 +9,28 @@ const url = environment.RestAPI + '/groups';
 
 @Injectable()
 export class GroupService {
+
+  static getHeader() {
+    const token = localStorage.getItem('Token');
+    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token});
+    return { headers: headers};
+  }
+
   constructor(private http: HttpClient) { }
 
   get(id: number): Observable<Group> {
-    const token = localStorage.getItem('Token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token});
-    const options = { headers: headers};
-
-    return this.http.get<Group>(url + '/' + id, options);
+    const header = GroupService.getHeader();
+    return this.http.get<Group>(url + '/' + id, header);
   }
 
   create(email: string): Observable<Group> {
-  return this.http.post<Group>(url, {contactEmail: email});
+    const header = GroupService.getHeader();
+    return this.http.post<Group>(url, {contactEmail: email}, header);
   }
 
   update(group: Group): Observable<Group> {
-    return this.http.put<Group>(url + '/' + group.id, group);
+    const header = GroupService.getHeader();
+    return this.http.put<Group>(url + '/' + group.id, group, header);
   }
 
 }
