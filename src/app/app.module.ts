@@ -12,6 +12,7 @@ import {studentRoutes} from './student/student.routing';
 import {ContractModule} from './contract/contract.module';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LoginModule} from "./login/login.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     appRoutes,
     ContractModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
