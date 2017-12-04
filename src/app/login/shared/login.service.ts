@@ -2,27 +2,16 @@ import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from './user.model';
+import {Observable} from 'rxjs/Observable';
 
-const url = environment.RestAPI + '/login';
+const url = environment.RestLogin + '/login';
 
 @Injectable()
 export class LoginService {
   constructor(private http: HttpClient) {
   }
 
-  mock: User[] = [{
-    userName: 'user',
-    password: '123'}];
-
-  mockLoginValidate(user: User): boolean {
-  const mock = this.mock.find(u => u.userName === user.userName && u.password === user.password);
-    if (mock != null) {
-      localStorage.setItem('LoggedIn', 'true');
-      console.log(mock + 'You are logged in');
-      return true;
-    } else {
-      console.log('Du failede din newb');
-      return false;
-    }
+  validateUser(user: User): Observable<string> {
+    return this.http.post<string>(url, user);
   }
 }

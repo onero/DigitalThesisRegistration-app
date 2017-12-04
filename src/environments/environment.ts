@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  RestAPI: 'http://localhost:5000/api'
+  RestAPI: 'http://localhost:5000/api',
+  RestLogin: 'http://localhost:5000'
 };
