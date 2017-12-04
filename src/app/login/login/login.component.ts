@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../shared/user.model';
+import {LoginService} from '../shared/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
+  login(userName: string, password: string) {
+    const user: User = {userName: userName, password: password};
+    this.loginService.mockLoginValidate(user);
+  }
 }
