@@ -17,10 +17,15 @@ export class HomeComponent implements OnInit {
 
   checkIfLoggedIn() {
     const status = localStorage.getItem('LoggedIn');
-    if (!status || status == null) {
+    if (status !== 'true' || status == null) {
       console.log('Redirecting from home');
       this.router.navigateByUrl('login');
     }
+  }
+
+  logOut() {
+    localStorage.setItem('LoggedIn', 'false');
+    this.router.navigateByUrl('login');
   }
 
 }

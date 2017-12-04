@@ -14,12 +14,15 @@ export class LoginService {
     userName: 'user',
     password: '123'}];
 
-  mockLoginValidate(user: User) {
+  mockLoginValidate(user: User): boolean {
   const mock = this.mock.find(u => u.userName === user.userName && u.password === user.password);
-  if (mock != null) {
-    console.log(mock + 'You are logged in');
-  } else {
-    console.log('Du failede din newb');
-  }
+    if (mock != null) {
+      localStorage.setItem('LoggedIn', 'true');
+      console.log(mock + 'You are logged in');
+      return true;
+    } else {
+      console.log('Du failede din newb');
+      return false;
+    }
   }
 }
