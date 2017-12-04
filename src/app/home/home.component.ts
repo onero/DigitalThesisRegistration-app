@@ -9,18 +9,9 @@ import {Router} from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(private router: Router) {
-    this.checkIfLoggedIn();
   }
 
   ngOnInit() {
-  }
-
-  checkIfLoggedIn() {
-    const status = localStorage.getItem('LoggedIn');
-    if (status !== 'true' || status == null) {
-      console.log('Redirecting from home');
-      this.router.navigateByUrl('login');
-    }
   }
 
   logOut() {

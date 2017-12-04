@@ -13,6 +13,7 @@ import {ContractModule} from './contract/contract.module';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginModule} from "./login/login.module";
+import {AuthGuard} from "./shared/guard.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {LoginModule} from "./login/login.module";
     NgbModule.forRoot(),
     LoginModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
