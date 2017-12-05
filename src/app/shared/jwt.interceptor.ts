@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // TODO: Add information about unAuothrized to user and redirect user.
+          // TODO: Add information about unAuthorized to user and redirect user.
           console.log('We intercepted a 401 boys!!!');
         }
       }
