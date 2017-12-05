@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('Role', u.role);
 
       switch (user.role) {
-        case 'Admin':
+        case 'Administrator':
           console.log('Admin login');
           this.router.navigateByUrl('contracts');
           break;

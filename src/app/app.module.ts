@@ -13,11 +13,13 @@ import {ContractModule} from './contract/contract.module';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginModule} from "./login/login.module";
-import {AuthGuard} from "./shared/guard.service";
+import {AuthGuard} from "./shared/guards/guard.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./shared/token.interceptor";
 import {AuthService} from "./shared/auth.service";
 import {JwtInterceptor} from "./shared/jwt.interceptor";
+import {AdminGuard} from "./shared/guards/admin.guard";
+import {GroupGuard} from "./shared/guards/group.guard";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import {JwtInterceptor} from "./shared/jwt.interceptor";
     NgbModule.forRoot(),
     LoginModule
   ],
-  providers: [AuthGuard, AuthService,
+  providers: [AuthGuard, AdminGuard, GroupGuard, AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
