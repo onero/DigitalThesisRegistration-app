@@ -11,8 +11,8 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
-import {Supervisor} from "../shared/supervisor.model";
-import {SupervisorService} from "../shared/supervisor.service";
+import {Supervisor} from '../shared/supervisor.model';
+import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
 
 @Component({
@@ -60,9 +60,10 @@ export class EditContractComponent implements OnInit {
       this.contract = contract;
       this.populateGroup();
       this.populateCompany();
-      // this.populateProject();
-      this.project = contract.project;
-      this.populateSupervisors();
+      this.populateProject();
+      // this.project = contract.project;
+      console.log('ProjectId: ' + this.project.id);
+      // this.populateSupervisors();
     });
   }
 
@@ -112,5 +113,13 @@ export class EditContractComponent implements OnInit {
         this.wantedSupervisor = s;
       });
     }
+  }
+
+  isGroupLoggedIn(): boolean {
+    const role = localStorage.getItem('Role');
+    if (role === 'Group') {
+      return true;
+    }
+    return false;
   }
 }

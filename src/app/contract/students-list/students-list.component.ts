@@ -54,15 +54,15 @@ export class StudentsListComponent implements OnInit {
   handleUpdateStudentButton(student: Student) {
     const values = this.studentGroup.value;
     // Checking if the new contract don't have a group. If true, creates a new group for the contract.
-    if (this.groupId == null || this.groupId === 0) {
-      this.groupService.create(this.email).subscribe(group => {
-        this.groupId = group.id;
-        this.updateStudent(student);
-        this.notify.emit(this.groupId);
-      });
-    }else {
+    // if (this.groupId == null || this.groupId === 0) {
+    //   this.groupService.create(this.email).subscribe(group => {
+    //     this.groupId = group.id;
+    //     this.updateStudent(student);
+    //     this.notify.emit(this.groupId);
+    //   });
+    // }else {
       this.updateStudent(student);
-    }
+    // }
     this.studentGroup.reset();
   }
 
