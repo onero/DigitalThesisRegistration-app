@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       }
       localStorage.setItem('Token', u.token);
       localStorage.setItem('LoggedIn', 'true');
+      localStorage.setItem('Role', u.role);
 
       switch (user.role) {
         case 'Admin':

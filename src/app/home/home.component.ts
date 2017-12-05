@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
 
   logOut() {
     localStorage.setItem('LoggedIn', 'false');
+    localStorage.setItem('Role', '');
+    localStorage.setItem('Token', '');
     this.router.navigateByUrl('login');
   }
 
