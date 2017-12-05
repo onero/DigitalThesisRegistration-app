@@ -11,8 +11,8 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
-import {Supervisor} from "../shared/supervisor.model";
-import {SupervisorService} from "../shared/supervisor.service";
+import {Supervisor} from '../shared/supervisor.model';
+import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
 
 @Component({
@@ -43,7 +43,7 @@ export class EditContractComponent implements OnInit {
     this.group = {contactEmail: '', students: []};
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Instantiating the project so we don't get undefined properties. Might be this is doable for company too?
-    this.project = {};
+    this.project = {assignedSupervisorId: 0, wantedSupervisorId: 0};
     this.assignedSupervisor = {firstName: '', lastName: ''};
     this.wantedSupervisor = {firstName: '', lastName: ''};
     // Grabbing the url.
@@ -112,5 +112,13 @@ export class EditContractComponent implements OnInit {
         this.wantedSupervisor = s;
       });
     }
+  }
+
+  isGroupLoggedIn(): boolean {
+    const role = localStorage.getItem('Role');
+    if (role === 'Group') {
+      return true;
+    }
+    return false;
   }
 }
