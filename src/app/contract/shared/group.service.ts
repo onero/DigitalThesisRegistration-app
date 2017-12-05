@@ -19,18 +19,15 @@ export class GroupService {
   constructor(private http: HttpClient) { }
 
   get(id: number): Observable<Group> {
-    const header = GroupService.getHeader();
-    return this.http.get<Group>(url + '/' + id, header);
+    return this.http.get<Group>(url + '/' + id);
   }
 
   create(email: string): Observable<Group> {
-    const header = GroupService.getHeader();
-    return this.http.post<Group>(url, {contactEmail: email}, header);
+    return this.http.post<Group>(url, {contactEmail: email});
   }
 
   update(group: Group): Observable<Group> {
-    const header = GroupService.getHeader();
-    return this.http.put<Group>(url + '/' + group.id, group, header);
+    return this.http.put<Group>(url + '/' + group.id, group);
   }
 
 }

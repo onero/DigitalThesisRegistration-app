@@ -14,6 +14,9 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginModule} from "./login/login.module";
 import {AuthGuard} from "./shared/guard.service";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {TokenInterceptor} from "./shared/token.interceptor";
+import {AuthService} from "./shared/auth.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +34,12 @@ import {AuthGuard} from "./shared/guard.service";
     NgbModule.forRoot(),
     LoginModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
