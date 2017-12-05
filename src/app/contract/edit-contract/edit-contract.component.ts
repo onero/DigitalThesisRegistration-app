@@ -43,7 +43,7 @@ export class EditContractComponent implements OnInit {
     this.group = {contactEmail: '', students: []};
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Instantiating the project so we don't get undefined properties. Might be this is doable for company too?
-    this.project = {assignedSupervisorId: 0};
+    this.project = {};
     this.assignedSupervisor = {firstName: '', lastName: ''};
     this.wantedSupervisor = {firstName: '', lastName: ''};
     // Grabbing the url.
@@ -63,7 +63,7 @@ export class EditContractComponent implements OnInit {
       this.populateProject();
       // this.project = contract.project;
       console.log('ProjectId: ' + this.project.id);
-      this.populateSupervisors();
+      // this.populateSupervisors();
     });
   }
 
@@ -89,12 +89,12 @@ export class EditContractComponent implements OnInit {
     if (this.contract.projectId != null) {
       this.projectService.get(this.contract.projectId).subscribe(p => {
         this.project = p;
-        // this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
-        //   this.assignedSupervisor = s;
-        // });
-        // this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
-        //   this.wantedSupervisor = s;
-        // });
+        this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
+          this.assignedSupervisor = s;
+        });
+        this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
+          this.wantedSupervisor = s;
+        });
         console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
       });
 
