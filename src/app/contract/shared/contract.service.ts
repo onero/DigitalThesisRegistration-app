@@ -23,4 +23,7 @@ export class ContractService {
   getById(groupId: number, projectId: number, companyId: number): Contract {
     return null;
   }
+  getContractByGroupId(groupId: number): Observable<Contract> {
+    return this.http.get<Contract>(url, groupId);
+  }
 }
