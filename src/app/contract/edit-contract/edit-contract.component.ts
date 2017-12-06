@@ -184,4 +184,8 @@ export class EditContractComponent implements OnInit {
       return this.contract.adminApproved;
     }
   }
+
+  setIsEditable() {
+    this.isEditable = !this.isEditable;
+  }
 }
