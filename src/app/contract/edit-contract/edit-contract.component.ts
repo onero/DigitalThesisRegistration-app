@@ -38,7 +38,8 @@ export class EditContractComponent implements OnInit {
               private groupService: GroupService,
               private companyService: CompanyService,
               private projectService: ProjectService,
-              private supervisorService: SupervisorService) {
+              private supervisorService: SupervisorService,
+              private contractService: ContractService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -124,5 +125,29 @@ export class EditContractComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  UpdateApproveStatus() {
+    const role = localStorage.getItem('Role');
+    if (role === 'Supervisor') {
+      this.contract.supervisorApproved = !this.contract.supervisorApproved;
+      console.log('Contract supervisorApproved before ' + this.contract.supervisorApproved);
+      this.contractService.update(this.contract).subscribe(c => {
+        console.log('Contract supervisorApproved after: ' + c.supervisorApproved);
+        this.contract.supervisorApproved = c.supervisorApproved;
+      });
+    } else {
+      this.contract.adminApproved = !this.contract.adminApproved;
+      // TODO ALH: Implement
+    }
+  }
+
+  ExecutiveApproved() {
+    const role = localStorage.getItem('Role');
+    if (role === 'Supervisor') {
+      return this.contract.supervisorApproved;
+    } else {
+      return this.contract.adminApproved;
+    }
   }
 }
