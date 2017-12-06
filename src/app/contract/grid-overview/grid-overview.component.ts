@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TableView} from 'NG2TableView';
 import {PageTableColumns} from './column-factory';
+import {DataService} from '../shared/data.service';
+import {ContractService} from '../shared/contract.service';
+import {ProjectService} from '../shared/project.service';
 import {Contract} from '../shared/contract.model';
-import {CompanyService} from '../shared/company.service';
-import {Company} from '../shared/company.model';
 
 @Component({
   selector: 'app-grid-overview',
@@ -13,30 +14,29 @@ import {Company} from '../shared/company.model';
 })
 export class GridOverviewComponent extends TableView implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
+  contracts: Contract[];
+  gridData = [];
+
+
+  constructor(private route: ActivatedRoute,
+              private contractService: ContractService,
+              private projectService: ProjectService) {
     super(route.snapshot.data['users']);
   }
 
   ngOnInit() {
-    this.getBuilder()
-      .addCols(PageTableColumns)
-      .setPaging(true)
-      .setItemsPerPage(5)
-      .setSelectable(true);
-    // .setFiltering(2)
-    // .setSorting(true);
-
-    this.buildTable();
+    this.contractService.getContractByGroupId(5).subscribe(c => {
+      this.projectService.get(c.projectId).subscribe(p => {
+        this.gridData.push({projectTitle: p.title});
+        this.getBuilder()
+          .addCols(PageTableColumns)
+          .setPaging(true)
+          .setItemsPerPage(5)
+          .setSelectable(true)
+          .data = this.gridData;
+        this.buildTable();
+      });
+    });
   }
-
-
-  // // TODO: Remove
-  // mockCompany: Admin[] = [
-  //   {id: 1, name: 'Mr. Nice0', contactName: 'Contactname0', contactEmail: 'email0', title: '123'},
-  //   {id: 2, name: 'Mr. Nice1', contactName: 'Contactname1', contactEmail: 'email1', title: '123'},
-  //   {id: 3, name: 'Mr. Nice2', contactName: 'Contactname2', contactEmail: 'email2', title: '123'},
-  //   {id: 4, name: 'Mr. Nice3', contactName: 'Contactname3', contactEmail: 'email3', title: '123'},
-  //   {id: 5, name: 'Mr. Nice4', contactName: 'Contactname4', contactEmail: 'email4', title: '123'},
-  // ];
 
 }
