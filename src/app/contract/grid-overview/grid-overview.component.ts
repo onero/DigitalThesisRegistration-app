@@ -19,23 +19,33 @@ export class GridOverviewComponent extends TableView implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-              private contractService: ContractService,
-              private projectService: ProjectService) {
+              private contractService: ContractService) {
     super(route.snapshot.data['users']);
   }
 
   ngOnInit() {
-    this.contractService.getContractByGroupId(5).subscribe(c => {
-      this.projectService.get(c.projectId).subscribe(p => {
-        this.gridData.push({projectTitle: p.title});
-        this.getBuilder()
-          .addCols(PageTableColumns)
-          .setPaging(true)
-          .setItemsPerPage(5)
-          .setSelectable(true)
-          .data = this.gridData;
-        this.buildTable();
+    this.contractService.getGridData().subscribe(gd => {
+      gd.forEach(g => {
+        let wantedSupervisor = g.wantedSupervisor != null ?
+          g.wantedSupervisor.firstName + ' ' + g.wantedSupervisor.lastName :
+          '';
+        let assignedSupervisor = g.assignedSupervisor != null ?
+          g.assignedSupervisor.firstName + ' ' + g.assignedSupervisor.lastName :
+          'Needs assigned supervisor!';
+        this.gridData.push({
+          projectTitle: g.project.title,
+          wantedSupervisor: wantedSupervisor,
+          assignedSupervisor: assignedSupervisor,
+          company: g.company.name
+        });
       });
+      this.getBuilder()
+        .addCols(PageTableColumns)
+        .setPaging(true)
+        .setItemsPerPage(5)
+        .setSelectable(true)
+        .data = this.gridData;
+      this.buildTable();
     });
   }
 

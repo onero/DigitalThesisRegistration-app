@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {ProjectService} from './project.service';
+import {GridData} from './gridData.model';
 const url = environment.RestAPI + '/contracts';
 @Injectable()
 export class ContractService {
@@ -25,5 +26,9 @@ export class ContractService {
   }
   getContractByGroupId(groupId: number): Observable<Contract> {
     return this.http.get<Contract>(url + '/' + groupId);
+  }
+
+  getGridData(): Observable<GridData[]> {
+    return this.http.get<GridData[]>(url + '/' + 'grid');
   }
 }
