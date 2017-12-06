@@ -50,4 +50,9 @@ export class ProjectSupervisorComponent implements OnInit {
     // Emit that we'venow selected a supervisor
     this.onAssignedSupervisorChange.emit(supervisor.id);
   }
+
+  unassignSupervisor() {
+    this.assignedSupervisor = {firstName: '', lastName: ''};
+    this.onAssignedSupervisorChange.emit(null);
+  }
 }
