@@ -30,8 +30,9 @@ export class EditContractComponent implements OnInit {
   project: Project;
   assignedSupervisor: Supervisor;
   wantedSupervisor: Supervisor;
+  executiveUser = false;
 
-  groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
+  groupContactEmail = 'this is temporary'; // TODO RKL: Remove.
 
   constructor(private route: ActivatedRoute,
               private groupService: GroupService,
@@ -68,6 +69,8 @@ export class EditContractComponent implements OnInit {
   }
 
   ngOnInit() {
+    const role = localStorage.getItem('Role');
+    this.executiveUser = role === 'Administrator' || role === 'Supervisor';
   }
 
   private populateGroup() {
