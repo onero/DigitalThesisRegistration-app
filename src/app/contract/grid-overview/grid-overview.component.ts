@@ -34,12 +34,21 @@ export class GridOverviewComponent extends TableView implements OnInit {
         let assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
           'Needs assigned supervisor!';
+        let supervisorApproved = gridData.contract.supervisorApproved;
+        let adminApproved = gridData.contract.adminApproved;
+        let status = 'Not approved';
+        if  (supervisorApproved && adminApproved) {
+          status = 'Fully approved';
+        } else if (supervisorApproved) {
+          status = 'Approved by supervisor';
+        }
         // Add new entry for gridview
         this.gridData.push({
           projectTitle: gridData.project.title,
           wantedSupervisor: wantedSupervisor,
           assignedSupervisor: assignedSupervisor,
-          company: gridData.company.name
+          company: gridData.company.name,
+          status: status
         });
       });
       // Build gridview
