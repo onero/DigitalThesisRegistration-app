@@ -1,0 +1,37 @@
+<div class="page">
+  <div layout-padding>
+
+    <div layout-gt-sm="row" class="">
+
+      <!--<input type="text"-->
+             <!--placeholder="Filter by ID"-->
+             <!--class="col-md-2 text-center pull-right"-->
+             <!--[column]="'index'"-->
+             <!--ng2TableViewFilter="tableBuilder.filtering"-->
+             <!--(tableChanged)="onChangeTable($event)"/>-->
+
+      <input placeholder="Search by Name"
+             class="col-md-2 text-center"
+             style="margin-left: 5em"
+             [column]="'Name'"
+             ng2TableViewFilter="tableBuilder.filtering"
+             (tableChanged)="onChangeTable($event)"/>
+
+    </div>
+
+
+    <ng2TableView [config]="tableBuilder"
+                  (tableChanged)="onChangeTable($event)"
+                  [rows]="tableBuilder.rows"
+                  [columns]="tableBuilder.columns">
+    </ng2TableView>
+
+    <div class="text-center">
+      <ngTableViewPaging [config]="tableBuilder"
+                         [dataLength]="tableBuilder.length"
+                         (pageChanged)="onChangeTable($event)">
+      </ngTableViewPaging>
+    </div>
+
+  </div>
+</div>
