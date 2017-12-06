@@ -1,11 +1,11 @@
 import {ColumnIfc, TableColumns, TableColumn} from 'NG2TableView';
 
 export const PageTableColumns: Array<ColumnIfc> = new TableColumns()
-  // .addCol(new TableColumn()
-  //   .setTitle('ID')
-  //   .setName('id')
-  //   .setSort(true)
-  // )
+  .addCol(new TableColumn()
+    .setTitle('ID')
+    .setName('id')
+    .setSort(true)
+  )
   .addCol(new TableColumn()
     .setTitle('Name')
     .setName('contactName')
@@ -35,5 +35,7 @@ export const PageTableColumns: Array<ColumnIfc> = new TableColumns()
     .setSort(true)
   )
   .getCols();
+
+console.log('Forbindelse til column-factory' + PageTableColumns);
 
 

@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {TableView} from 'NG2TableView';
 import {PageTableColumns} from './column-factory';
 import {Contract} from '../shared/contract.model';
+import {CompanyService} from '../shared/company.service';
+import {Company} from '../shared/company.model';
 
 @Component({
   selector: 'app-grid-overview',
@@ -10,8 +12,6 @@ import {Contract} from '../shared/contract.model';
   styleUrls: ['./grid-overview.component.css']
 })
 export class GridOverviewComponent extends TableView implements OnInit {
-
-  contracts: Contract[];
 
   constructor(private route: ActivatedRoute) {
     super(route.snapshot.data['users']);
