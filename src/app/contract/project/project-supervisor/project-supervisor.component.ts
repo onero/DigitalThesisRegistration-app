@@ -17,6 +17,10 @@ export class ProjectSupervisorComponent implements OnInit {
 
   @Input()
   isEditable: boolean;
+  @Input()
+  isGroup: boolean;
+  @Input()
+  isAdmin: boolean;
 
   @Input()
   assignedSupervisor: Supervisor;
