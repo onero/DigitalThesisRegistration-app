@@ -3,35 +3,48 @@
     <h5>
       Supervisor
     </h5>
-    <div *ngIf="isEditable">
-      <div class="row bottom-margin">
-        <div class="col-md-8">
-          <h6>Wanted Supervisor:</h6> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-outline-primary" (click)="open(wantedSupervisorContent)">
-            <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+    <div>
+      <div *ngIf="isGroup && isEditable">
+        <div class="row bottom-margin">
+          <div class="col-md-8">
+            <h6>Wanted Supervisor:</h6> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-primary" (click)="open(wantedSupervisorContent)">
+              <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-8">
-          <h6>Assigned Supervisor:</h6>
-          {{assignedSupervisor.firstName}} {{assignedSupervisor.lastName}}
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-outline-primary" (click)="open(assignedSuporvisorContent)">
-            <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+      <div *ngIf="isAdmin">
+        <div class="row">
+          <div class="col-md-8">
+            <div *ngIf="assignedSupervisor.firstName != ''">
+              <p><strong>Assigned Supervisor:</strong> {{assignedSupervisor.firstName}} {{assignedSupervisor.lastName}}</p>
+            </div>
+            <div *ngIf="assignedSupervisor.firstName == ''">
+              <p><strong>Assigned Supervisor:</strong> No supervisor assigned yet.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-primary" (click)="open(assignedSuporvisorContent)">
+              <i class="fa fa-user" aria-hidden="true"></i> Supervisor</button>
+          </div>
         </div>
       </div>
     </div>
+
     <div *ngIf="!isEditable">
-      <div>
-        <p><strong>Wanted Supervisor:</strong> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}</p>
-      </div>
-      <div>
+      <p><strong>Wanted Supervisor:</strong> {{wantedSupervisor.firstName}} {{wantedSupervisor.lastName}}</p>
+    </div>
+    <div *ngIf="!isEditable && !isAdmin">
+      <div *ngIf="assignedSupervisor.firstName != ''">
         <p><strong>Assigned Supervisor:</strong> {{assignedSupervisor.firstName}} {{assignedSupervisor.lastName}}</p>
       </div>
+      <div *ngIf="assignedSupervisor.firstName == ''">
+        <p><strong>Assigned Supervisor:</strong> No supervisor assigned yet.</p>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -46,7 +59,7 @@
     <ul class="list-group" *ngFor="let supervisor of supervisors">
       <li class="list-group-item list-group-item-action" (click)="selectWantedSupervisor(supervisor); c('Close click')">
         <perfect-scrollbar>
-        {{supervisor.firstName}} {{supervisor.lastName}}
+          {{supervisor.firstName}} {{supervisor.lastName}}
         </perfect-scrollbar>
       </li>
     </ul>
@@ -64,7 +77,7 @@
     <ul class="list-group" *ngFor="let supervisor of supervisors">
       <li class="list-group-item list-group-item-action" (click)="selectAssignedSupervisor(supervisor); c('Close click')">
         <perfect-scrollbar>
-        {{supervisor.firstName}} {{supervisor.lastName}}
+          {{supervisor.firstName}} {{supervisor.lastName}}
         </perfect-scrollbar>
       </li>
     </ul>

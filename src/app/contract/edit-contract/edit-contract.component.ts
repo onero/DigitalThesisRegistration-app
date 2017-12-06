@@ -23,6 +23,8 @@ import {ContractsComponent} from '../contracts/contracts.component';
 export class EditContractComponent implements OnInit {
 
   isEditable: boolean;
+  isGroup: boolean;
+  isAdmin: boolean;
 
   contract: Contract;
   group: Group;
@@ -38,6 +40,7 @@ export class EditContractComponent implements OnInit {
               private companyService: CompanyService,
               private projectService: ProjectService,
               private supervisorService: SupervisorService) {
+    this.setRole();
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -91,6 +94,7 @@ export class EditContractComponent implements OnInit {
         this.project = p;
         this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
           this.assignedSupervisor = s;
+          console.log(this.assignedSupervisor);
         });
         this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
           this.wantedSupervisor = s;
@@ -121,5 +125,21 @@ export class EditContractComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  setRole() {
+    const role = localStorage.getItem('Role');
+    switch (role) {
+      case 'Group' : {
+        this.isGroup = true;
+        this.isAdmin = false;
+        break;
+      }
+      case 'Administrator' : {
+        this.isGroup = false;
+        this.isAdmin = true;
+        break;
+      }
+    }
   }
 }
