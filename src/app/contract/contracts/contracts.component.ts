@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Contract} from '../shared/contract.model';
 import {ContractService} from '../shared/contract.service';
-import {Router} from "@angular/router";
-import {GroupService} from "../shared/group.service";
+import {Router} from '@angular/router';
 import {ProjectService} from '../shared/project.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class ContractsComponent implements OnInit {
   ngOnInit() {
     this.contractService.getAll().subscribe(contracts => {
       contracts.forEach(c => {
-        console.log(c.projectId);
+        // console.log(c.projectId);
         this.projectService.get(c.projectId).subscribe(p => c.project = p);
         this.contracts = contracts;
       });
