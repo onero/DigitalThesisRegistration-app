@@ -26,5 +26,3 @@ export const PageTableColumns: Array<ColumnIfc> = new TableColumns()
     .setSort(true)
   )
   .getCols();
-
-

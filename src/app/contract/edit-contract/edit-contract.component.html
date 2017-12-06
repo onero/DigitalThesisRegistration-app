@@ -26,7 +26,7 @@
       <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [students]="group.students"></app-students-list>
     </div>
   </div>
-  <div class="row">
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
     </div>
@@ -34,7 +34,24 @@
       <div class="bottom-margin">
         <app-company [isEditable]="false" [company]="company"></app-company>
       </div>
-      <app-project-suporvisor [isEditable]="isEditable" [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"></app-project-suporvisor>
+    </div>
+  </div>
+  <div class="row bottom-margin">
+    <div class="col-md-7">
+      <div *ngIf="executiveUser">
+        <div *ngIf="ExecutiveApproved(); else unapprove">
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
+        </div>
+        <ng-template #unapprove>
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <app-project-suporvisor [isEditable]="isEditable" [isGroup]="isGroup" [isAdmin]="isAdmin"
+                              [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"
+                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)">
+      </app-project-suporvisor>
     </div>
   </div>
   <hr>

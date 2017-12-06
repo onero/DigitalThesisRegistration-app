@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TableView} from 'NG2TableView';
 import {PageTableColumns} from './column-factory';
-import {DataService} from '../shared/data.service';
 import {ContractService} from '../shared/contract.service';
-import {ProjectService} from '../shared/project.service';
 import {Contract} from '../shared/contract.model';
 
 @Component({
@@ -24,26 +22,32 @@ export class GridOverviewComponent extends TableView implements OnInit {
   }
 
   ngOnInit() {
-    this.contractService.getGridData().subscribe(gd => {
-      gd.forEach(g => {
-        let wantedSupervisor = g.wantedSupervisor != null ?
-          g.wantedSupervisor.firstName + ' ' + g.wantedSupervisor.lastName :
+    // Get all ContractGridBOs from backend, called gridData.model
+    this.contractService.getGridData().subscribe(gridDatas => {
+      // For each ContractBO
+      gridDatas.forEach(gridData => {
+        // Check if wantedSupervisor is set, if not set to empty string
+        let wantedSupervisor = gridData.wantedSupervisor != null ?
+          gridData.wantedSupervisor.firstName + ' ' + gridData.wantedSupervisor.lastName :
           '';
-        let assignedSupervisor = g.assignedSupervisor != null ?
-          g.assignedSupervisor.firstName + ' ' + g.assignedSupervisor.lastName :
+        // Check if wantedSupervisor is set, if not set to informational string
+        let assignedSupervisor = gridData.assignedSupervisor != null ?
+          gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
           'Needs assigned supervisor!';
+        // Add new entry for gridview
         this.gridData.push({
-          projectTitle: g.project.title,
+          projectTitle: gridData.project.title,
           wantedSupervisor: wantedSupervisor,
           assignedSupervisor: assignedSupervisor,
-          company: g.company.name
+          company: gridData.company.name
         });
       });
+      // Build gridview
       this.getBuilder()
         .addCols(PageTableColumns)
         .setPaging(true)
         .setItemsPerPage(5)
-        .setSelectable(true)
+        .setSelectable(false)
         .data = this.gridData;
       this.buildTable();
     });

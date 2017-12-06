@@ -13,6 +13,4 @@ export class AdminGuard implements CanActivate {
     console.log('Guard says this isn\'t an admin');
     return false;
   }
-
-
 }

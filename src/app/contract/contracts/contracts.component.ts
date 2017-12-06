@@ -21,7 +21,7 @@ export class ContractsComponent implements OnInit {
   ngOnInit() {
     this.contractService.getAll().subscribe(contracts => {
       contracts.forEach(c => {
-        console.log(c.projectId);
+        // console.log(c.projectId);
         this.projectService.get(c.projectId).subscribe(p => c.project = p);
         this.contracts = contracts;
       });
