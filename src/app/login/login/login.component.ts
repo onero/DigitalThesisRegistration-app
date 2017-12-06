@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.contractService.getContractByGroupId(user.group.id).subscribe(c => {
             if (c.projectId !== 0 && c.companyId !== 0) {
               console.log('GroupId from login: ' + user.group.id);
-              console.log('ProjectId from login right before hashing: ' + c.projectId)
+              console.log('ProjectId from login right before hashing: ' + c.projectId);
               const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
               this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
             }else {

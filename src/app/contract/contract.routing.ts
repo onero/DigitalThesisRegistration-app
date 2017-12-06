@@ -5,13 +5,14 @@ import {EditContractComponent} from './edit-contract/edit-contract.component';
 import {AuthGuard} from '../shared/guards/guard.service';
 import {AdminGuard} from "../shared/guards/admin.guard";
 import {GroupGuard} from "../shared/guards/group.guard";
+import {ExecutiveGuard} from '../shared/guards/supervisor.guard';
 
 export const contractRoutes = RouterModule.forRoot(
   [
     {
       path: 'contracts',
       component: ContractsComponent,
-      canActivate: [AuthGuard, AdminGuard]
+      canActivate: [AuthGuard, ExecutiveGuard]
     },
     {
       path: 'contracts/newContract',
