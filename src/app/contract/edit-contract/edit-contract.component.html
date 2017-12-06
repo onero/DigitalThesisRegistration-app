@@ -7,12 +7,13 @@
     </div>
     <div class="col-md-4">
       <h1 class="text-center">Contract</h1>
-    </div>
+  </div>
   </div>
   <hr>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"></app-project-name>
+      <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"
+                        (projectTitleChange)="editOnProjectTitleChange($event)"></app-project-name>
     </div>
     <div class="col-md-5">
       <app-group-contact [email]="group.contactEmail"></app-group-contact>
@@ -28,7 +29,8 @@
   </div>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
+      <app-project-description [isEditable]="isEditable" [description]="project.description"
+                               (onDescriptionChanged)="editOnProjectDescriptionChange($event)"></app-project-description>
     </div>
     <div class="col-md-5">
       <div class="bottom-margin">
@@ -49,10 +51,10 @@
       <ng-template #GroupEditing>
         <div *ngIf="isEditable; else goToEdit">
           <button class="btn btn-outline-danger groupEditButton" (click)="setIsEditable()">Cancel</button>
-          <button class="btn btn-outline-warning groupEditButton">Save</button>
+          <button class="btn btn-outline-warning groupEditButton" (click)="saveChangesFromEdit(); setIsEditable()">Save</button>
         </div>
         <ng-template #goToEdit>
-          <button class="btn btn-outline-primary groupEditButton" (click)="setIsEditable()">Edit</button>
+          <button class="btn btn-outline-primary groupEditButton" (click)="setEditVariables(); setIsEditable()">Edit</button>
         </ng-template>
       </ng-template>
     </div>

@@ -34,6 +34,9 @@ export class EditContractComponent implements OnInit {
   wantedSupervisor: Supervisor;
   executiveUser = false;
 
+  // Variables for when editing. Storing in separete variables for easy discarding.
+  editProject: Project;
+
   groupContactEmail = 'this is temporary'; // TODO RKL: Remove.
 
   constructor(private route: ActivatedRoute,
@@ -42,6 +45,7 @@ export class EditContractComponent implements OnInit {
               private projectService: ProjectService,
               private supervisorService: SupervisorService,
               private contractService: ContractService) {
+    this.initializeEditVariables();
     this.setRole();
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
@@ -75,6 +79,10 @@ export class EditContractComponent implements OnInit {
   ngOnInit() {
     const role = localStorage.getItem('Role');
     this.executiveUser = role === 'Administrator' || role === 'Supervisor';
+  }
+
+  initializeEditVariables() {
+    this.editProject = {};
   }
 
   private populateGroup() {
@@ -187,5 +195,26 @@ export class EditContractComponent implements OnInit {
 
   setIsEditable() {
     this.isEditable = !this.isEditable;
+  }
+
+  setEditVariables() {
+    this.editProject.title = this.project.title;
+    this.editProject.description = this.project.description;
+  }
+
+  saveChangesFromEdit() {
+    this.project.title = this.editProject.title;
+    this.project.description = this.editProject.description;
+
+    console.log(this.project.description);
+    // this.projectService.update(this.project);
+  }
+
+  editOnProjectTitleChange(title: string) {
+    this.editProject.title = title;
+  }
+
+  editOnProjectDescriptionChange(description: string) {
+    this.editProject.description = description;
   }
 }
