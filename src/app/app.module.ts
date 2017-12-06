@@ -20,6 +20,7 @@ import {AuthService} from "./shared/auth.service";
 import {JwtInterceptor} from "./shared/jwt.interceptor";
 import {AdminGuard} from "./shared/guards/admin.guard";
 import {GroupGuard} from "./shared/guards/group.guard";
+import {ExecutiveGuard} from './shared/guards/supervisor.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {GroupGuard} from "./shared/guards/group.guard";
     NgbModule.forRoot(),
     LoginModule
   ],
-  providers: [AuthGuard, AdminGuard, GroupGuard, AuthService,
+  providers: [AuthGuard, AdminGuard, GroupGuard, AuthService, ExecutiveGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

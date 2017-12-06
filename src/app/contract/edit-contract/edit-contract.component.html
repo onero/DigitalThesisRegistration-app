@@ -26,7 +26,7 @@
       <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [students]="group.students"></app-students-list>
     </div>
   </div>
-  <div class="row">
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
     </div>
@@ -34,6 +34,15 @@
       <div class="bottom-margin">
         <app-company [isEditable]="false" [company]="company"></app-company>
       </div>
+    </div>
+  </div>
+  <div class="row bottom-margin">
+    <div class="col-md-7">
+      <div *ngIf="executiveUser">
+        <button type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+      </div>
+    </div>
+    <div class="col-md-5">
       <app-project-suporvisor [isEditable]="isEditable" [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"></app-project-suporvisor>
     </div>
   </div>
