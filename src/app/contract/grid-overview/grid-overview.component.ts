@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TableView} from 'NG2TableView';
 import {PageTableColumns} from './column-factory';
+import {Contract} from '../shared/contract.model';
 
 @Component({
   selector: 'app-grid-overview',
@@ -9,6 +10,8 @@ import {PageTableColumns} from './column-factory';
   styleUrls: ['./grid-overview.component.css']
 })
 export class GridOverviewComponent extends TableView implements OnInit {
+
+  contracts: Contract[];
 
   constructor(private route: ActivatedRoute) {
     super(route.snapshot.data['users']);

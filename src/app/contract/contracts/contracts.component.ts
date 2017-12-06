@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Contract} from '../shared/contract.model';
 import {ContractService} from '../shared/contract.service';
-import {Router} from "@angular/router";
-import {GroupService} from "../shared/group.service";
+import {Router} from '@angular/router';
 import {ProjectService} from '../shared/project.service';
 
 @Component({
