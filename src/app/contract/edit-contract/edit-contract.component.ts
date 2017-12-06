@@ -166,7 +166,11 @@ export class EditContractComponent implements OnInit {
       });
     } else {
       this.contract.adminApproved = !this.contract.adminApproved;
-      // TODO ALH: Implement
+      console.log('Contract adminApproved before ' + this.contract.adminApproved);
+      this.contractService.update(this.contract).subscribe(c => {
+        console.log('Contract adminApproved after: ' + c.adminApproved);
+        this.contract.adminApproved = c.adminApproved;
+      });
     }
   }
 
