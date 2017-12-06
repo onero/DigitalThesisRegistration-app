@@ -34,7 +34,10 @@
       <div class="bottom-margin">
         <app-company [isEditable]="false" [company]="company"></app-company>
       </div>
-      <app-project-suporvisor [isEditable]="isEditable" [isGroup]="isGroup" [isAdmin]="isAdmin" [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"></app-project-suporvisor>
+      <app-project-suporvisor [isEditable]="isEditable" [isGroup]="isGroup" [isAdmin]="isAdmin"
+                              [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"
+                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)">
+      </app-project-suporvisor>
     </div>
   </div>
   <hr>
