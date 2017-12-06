@@ -39,7 +39,12 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <div *ngIf="executiveUser">
-        <button type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+        <div *ngIf="ExecutiveApproved(); else unapprove">
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
+        </div>
+        <ng-template #unapprove>
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+        </ng-template>
       </div>
     </div>
     <div class="col-md-5">
