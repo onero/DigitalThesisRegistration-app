@@ -149,7 +149,10 @@ export class EditContractComponent implements OnInit {
 
   updateAssignedSupervisorOnProject(supervisorId: number) {
     this.project.assignedSupervisorId = supervisorId;
-    this.projectService.update(this.project).subscribe(() => console.log('Updated supervisor from admin'));
+    this.projectService.update(this.project).subscribe(p => {
+      this.project = p;
+      console.log('Updated supervisor from admin');
+    });
   }
 
   UpdateApproveStatus() {
