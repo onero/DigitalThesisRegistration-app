@@ -77,8 +77,8 @@ export class NewContractComponent implements OnInit {
       groupId: this.groupId,
       companyId: this.companyId,
       projectId: 0,
-      AdminApproved: false,
-      SupervisorApproved: false};
+      adminApproved: false,
+      supervisorApproved: false};
 
     if (this.isProjectInfoAdded) {
       this.projectService.create(this.project).subscribe(p => {
