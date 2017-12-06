@@ -3,10 +3,7 @@
     <h5>
       Group Contact Email
     </h5>
-    <div class="body-size" *ngIf="isEditable">
-      <input type="text" placeholder="Example@email.com" class="col-md-12" (keyup)="onClick(contactEmailInput.value)" #contactEmailInput>
-    </div>
-    <div *ngIf="!isEditable">
+    <div>
       {{email}}
     </div>
     <div class="body-size" *ngIf="email.length == 0 && !isEditable">
