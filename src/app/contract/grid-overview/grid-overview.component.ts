@@ -21,6 +21,10 @@ export class GridOverviewComponent extends TableView implements OnInit {
     super(route.snapshot.data['users']);
   }
 
+  DoStuff(data: any): any {
+    console.log(data);
+  }
+
   ngOnInit() {
     // Get all ContractGridBOs from backend, called gridData.model
     this.contractService.getGridData().subscribe(gridDatas => {
@@ -56,7 +60,7 @@ export class GridOverviewComponent extends TableView implements OnInit {
         .addCols(PageTableColumns)
         .setPaging(true)
         .setItemsPerPage(5)
-        .setSelectable(false)
+        .setSelectable(true)
         .data = this.gridData;
       this.buildTable();
     });
