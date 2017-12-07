@@ -165,14 +165,12 @@ export class EditContractComponent implements OnInit {
         this.contract.supervisorApproved = c.supervisorApproved;
       });
     } else {
-      if (this.SupervisorApproved()) {
         this.contract.adminApproved = !this.contract.adminApproved;
         console.log('Contract adminApproved before ' + this.contract.adminApproved);
         this.contractService.update(this.contract).subscribe(c => {
           console.log('Contract adminApproved after: ' + c.adminApproved);
           this.contract.adminApproved = c.adminApproved;
         });
-      }
     }
   }
 
