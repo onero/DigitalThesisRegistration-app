@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-4">
       <h1 class="text-center">Contract</h1>
-  </div>
+    </div>
   </div>
   <hr>
   <div class="row bottom-margin">
@@ -44,7 +44,7 @@
     <div class="col-md-7">
       <div *ngIf="executiveUser; else GroupEditing">
         <div *ngIf="ExecutiveApproved(); else unapprove">
-            <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
         </div>
         <ng-template #unapprove>
           <div *ngIf="SupervisorApproved(); else unavailable">
@@ -73,13 +73,14 @@
       </app-project-suporvisor>
     </div>
   </div>
+  <hr>
+  <hr>
   <div class="row bottom-margin">
-    <div class="col-md-7">
+    <div class="col-md-12">
       <app-appendix></app-appendix>
     </div>
-  </div>
-  <div class="col-md-5">
   </div>
   <hr>
   <hr>
 </div>
+
