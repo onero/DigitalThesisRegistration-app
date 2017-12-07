@@ -24,8 +24,8 @@ import { PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
 import { ProjectSupervisorComponent } from './project/project-supervisor/project-supervisor.component';
 import {SupervisorService} from './shared/supervisor.service';
 import { GridOverviewComponent } from './grid-overview/grid-overview.component';
-import {Ng2TableViewModule} from 'NG2TableView';
 import {DataService} from './shared/data.service';
+import {Ng2TableModule, NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective} from 'ng2-table';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -41,7 +41,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     NgbModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
-    Ng2TableViewModule
+    Ng2TableModule
   ],
   declarations: [ContractsComponent,
     NewContractComponent,
