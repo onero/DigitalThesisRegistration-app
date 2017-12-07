@@ -23,6 +23,8 @@ import {ContractsComponent} from '../contracts/contracts.component';
 export class EditContractComponent implements OnInit {
 
   isEditable: boolean;
+  isGroup: boolean;
+  isAdmin: boolean;
 
   contract: Contract;
   group: Group;
@@ -40,6 +42,7 @@ export class EditContractComponent implements OnInit {
               private projectService: ProjectService,
               private supervisorService: SupervisorService,
               private contractService: ContractService) {
+    this.setRole();
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -95,6 +98,7 @@ export class EditContractComponent implements OnInit {
         this.project = p;
         this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
           this.assignedSupervisor = s;
+          console.log(this.assignedSupervisor);
         });
         this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
           this.wantedSupervisor = s;
@@ -127,6 +131,30 @@ export class EditContractComponent implements OnInit {
     return false;
   }
 
+  setRole() {
+    const role = localStorage.getItem('Role');
+    switch (role) {
+      case 'Group' : {
+        this.isGroup = true;
+        this.isAdmin = false;
+        break;
+      }
+      case 'Administrator' : {
+        this.isGroup = false;
+        this.isAdmin = true;
+        break;
+      }
+    }
+  }
+
+  updateAssignedSupervisorOnProject(supervisorId: number) {
+    this.project.assignedSupervisorId = supervisorId;
+    this.projectService.update(this.project).subscribe(p => {
+      this.project = p;
+      console.log('Updated supervisor from admin');
+    });
+  }
+
   UpdateApproveStatus() {
     const role = localStorage.getItem('Role');
     if (role === 'Supervisor') {
@@ -137,8 +165,14 @@ export class EditContractComponent implements OnInit {
         this.contract.supervisorApproved = c.supervisorApproved;
       });
     } else {
-      this.contract.adminApproved = !this.contract.adminApproved;
-      // TODO ALH: Implement
+      if (this.contract.supervisorApproved) {
+        this.contract.adminApproved = !this.contract.adminApproved;
+        console.log('Contract adminApproved before ' + this.contract.adminApproved);
+        this.contractService.update(this.contract).subscribe(c => {
+          console.log('Contract adminApproved after: ' + c.adminApproved);
+          this.contract.adminApproved = c.adminApproved;
+        });
+      }
     }
   }
 
