@@ -24,8 +24,7 @@ import { PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
 import { ProjectSupervisorComponent } from './project/project-supervisor/project-supervisor.component';
 import {SupervisorService} from './shared/supervisor.service';
 import { GridOverviewComponent } from './grid-overview/grid-overview.component';
-import {DataService} from './shared/data.service';
-import {Ng2TableModule, NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective} from 'ng2-table';
+import {Ng2TableModule} from 'ng2-table';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,7 +60,6 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   GroupService,
   CompanyService,
   SupervisorService,
-  ProjectService,
-  DataService]
+  ProjectService]
 })
 export class ContractModule { }

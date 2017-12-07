@@ -22,7 +22,7 @@ export class GridOverviewComponent implements OnInit {
     {title: 'Project Title', name: 'projectTitle', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by title'}},
     {title: 'Wanted Supervisor', name: 'wantedSupervisor', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by name'}},
     {title: 'Assigned Supervisor', name: 'assignedSupervisor', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by name'}},
-    {title: 'Company.', name: 'company', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Company', name: 'company', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by name'}},
     {title: 'Status', name: 'status', sort: 'asc', filtering: {filterString: '', placeholder: 'Filter by status'}},
   ];
   public page = 1;
