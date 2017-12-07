@@ -28,7 +28,7 @@ export class ContractService {
   }
 
   getGridData(): Observable<GridData[]> {
-    return this.http.get<GridData[]>(url + '/' + 'grid');
+    return this.http.get<GridData[]>(url + '/' + 'grid,specifier');
   }
   update(contract: Contract): Observable<Contract> {
     return this.http.put<Contract>(url + '/' +

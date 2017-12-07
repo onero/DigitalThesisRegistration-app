@@ -10,8 +10,6 @@ import {getTemplateUrl} from 'codelyzer/util/ngQuery';
 export class GroupContactComponent implements OnInit {
 
   @Input()
-  isEditable: boolean;
-  @Input()
   email = '';
 
   @Output()
