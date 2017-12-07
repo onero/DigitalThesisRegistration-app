@@ -14,6 +14,7 @@ import {Project} from '../shared/project.model';
 import {Supervisor} from '../shared/supervisor.model';
 import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
+import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-edit-contract',
@@ -198,23 +199,35 @@ export class EditContractComponent implements OnInit {
   }
 
   setEditVariables() {
-    this.editProject.title = this.project.title;
-    this.editProject.description = this.project.description;
+    this.editProject = this.project;
   }
 
   saveChangesFromEdit() {
-    this.project.title = this.editProject.title;
-    this.project.description = this.editProject.description;
+    this.project = this.editProject;
 
-    console.log(this.project.description);
+    console.log('Title: ' + this.project.title + '\nDescription: ' + this.project.description
+      + '\nStart: ' + this.project.start + '\nEnd: ' + this.project.end + '\nWantedId: ' +
+      this.project.wantedSupervisorId);
     // this.projectService.update(this.project);
   }
 
-  editOnProjectTitleChange(title: string) {
+  onEditProjectTitleChange(title: string) {
     this.editProject.title = title;
   }
 
-  editOnProjectDescriptionChange(description: string) {
+  onEditProjectDescriptionChange(description: string) {
     this.editProject.description = description;
+  }
+
+  onEditProjectStartChange(start: NgbDateStruct) {
+    this.editProject.start = new Date(start.year, start.month, start.day);
+  }
+
+  onEditProjectEndChange(end: NgbDateStruct) {
+    this.editProject.end = new Date(end.year, end.month, end.day)
+  }
+
+  onEditProjectWantedSupervisor(id: number) {
+    this.editProject.wantedSupervisorId = id;
   }
 }

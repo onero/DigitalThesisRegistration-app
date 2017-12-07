@@ -13,7 +13,7 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"
-                        (projectTitleChange)="editOnProjectTitleChange($event)"></app-project-name>
+                        (projectTitleChange)="onEditProjectTitleChange($event)"></app-project-name>
     </div>
     <div class="col-md-5">
       <app-group-contact [email]="group.contactEmail"></app-group-contact>
@@ -21,7 +21,9 @@
   </div>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-period [isEditable]="isEditable" [project]="project"></app-project-period>
+      <app-project-period [isEditable]="isEditable" [project]="project" (startChange)="onEditProjectStartChange($event)"
+                          (endChange)="onEditProjectEndChange($event)"
+      ></app-project-period>
     </div>
     <div class="col-md-5">
       <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [students]="group.students"></app-students-list>
@@ -30,7 +32,7 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-description [isEditable]="isEditable" [description]="project.description"
-                               (onDescriptionChanged)="editOnProjectDescriptionChange($event)"></app-project-description>
+                               (onDescriptionChanged)="onEditProjectDescriptionChange($event)"></app-project-description>
     </div>
     <div class="col-md-5">
       <div class="bottom-margin">
@@ -61,7 +63,8 @@
     <div class="col-md-5">
       <app-project-suporvisor [isEditable]="isEditable" [isGroup]="isGroup" [isAdmin]="isAdmin"
                               [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"
-                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)">
+                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)"
+                              (onWantedSupervisorChange)="onEditProjectWantedSupervisor($event)">
       </app-project-suporvisor>
     </div>
   </div>

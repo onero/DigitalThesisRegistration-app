@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {Project} from "../../shared/project.model";
+import {Project} from '../../shared/project.model';
 
 @Component({
   selector: 'app-project-period',
