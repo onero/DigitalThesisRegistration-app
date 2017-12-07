@@ -66,14 +66,17 @@ export class GridOverviewComponent implements OnInit {
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
-        // Add new entry for gridview
-        this.data.push({
-          projectTitle: gridData.project.title,
-          wantedSupervisor: wantedSupervisor,
-          assignedSupervisor: assignedSupervisor,
-          company: gridData.company.name,
-          status: status
-        });
+        const role = localStorage.getItem('Role');
+        if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
+          // Add new entry for gridview
+          this.data.push({
+            projectTitle: gridData.project.title,
+            wantedSupervisor: wantedSupervisor,
+            assignedSupervisor: assignedSupervisor,
+            company: gridData.company.name,
+            status: status
+          });
+        }
         this.onChangeTable(this.config);
       });
     });
