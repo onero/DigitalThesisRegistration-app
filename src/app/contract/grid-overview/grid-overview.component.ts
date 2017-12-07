@@ -173,8 +173,8 @@ export class GridOverviewComponent implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    const index = this.rows.indexOf(data.row);
-    const tempContract = this.gridData[index].contract;
+    const selectedProjectTitle = data.row['projectTitle'];
+    const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
     const contract: Contract = {
       project: tempContract.project,
       supervisorApproved: tempContract.supervisorApproved,
