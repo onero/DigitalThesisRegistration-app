@@ -21,8 +21,8 @@ export class GridOverviewComponent extends TableView implements OnInit {
     super(route.snapshot.data['users']);
   }
 
-  DoStuff(data: any): any {
-    console.log(data);
+  DoStuff(data: any) {
+      console.log(data);
   }
 
   ngOnInit() {
@@ -31,15 +31,15 @@ export class GridOverviewComponent extends TableView implements OnInit {
       // For each ContractBO
       gridDatas.forEach(gridData => {
         // Check if wantedSupervisor is set, if not set to empty string
-        let wantedSupervisor = gridData.wantedSupervisor != null ?
+        const wantedSupervisor = gridData.wantedSupervisor != null ?
           gridData.wantedSupervisor.firstName + ' ' + gridData.wantedSupervisor.lastName :
           '';
         // Check if wantedSupervisor is set, if not set to informational string
-        let assignedSupervisor = gridData.assignedSupervisor != null ?
+        const assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
           'Needs assigned supervisor!';
-        let supervisorApproved = gridData.contract.supervisorApproved;
-        let adminApproved = gridData.contract.adminApproved;
+        const supervisorApproved = gridData.contract.supervisorApproved;
+        const adminApproved = gridData.contract.adminApproved;
         let status = 'Not approved';
         if  (supervisorApproved && adminApproved) {
           status = 'Fully approved';
@@ -60,7 +60,7 @@ export class GridOverviewComponent extends TableView implements OnInit {
         .addCols(PageTableColumns)
         .setPaging(true)
         .setItemsPerPage(5)
-        .setSelectable(true)
+        .setSelectable(false)
         .data = this.gridData;
       this.buildTable();
     });
