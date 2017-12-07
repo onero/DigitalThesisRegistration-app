@@ -7,8 +7,6 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { HomeComponent } from './home/home.component';
 import {appRoutes} from './app.routing';
 import {RouterModule} from '@angular/router';
-import {StudentModule} from './student/student.module';
-import {studentRoutes} from './student/student.routing';
 import {ContractModule} from './contract/contract.module';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +19,7 @@ import {JwtInterceptor} from "./shared/jwt.interceptor";
 import {AdminGuard} from "./shared/guards/admin.guard";
 import {GroupGuard} from "./shared/guards/group.guard";
 import {ExecutiveGuard} from './shared/guards/supervisor.guard';
+import {LoadingModule} from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,8 @@ import {ExecutiveGuard} from './shared/guards/supervisor.guard';
     ContractModule,
     FormsModule,
     NgbModule.forRoot(),
-    LoginModule
+    LoginModule,
+    LoadingModule
   ],
   providers: [AuthGuard, AdminGuard, GroupGuard, AuthService, ExecutiveGuard,
     {
