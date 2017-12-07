@@ -12,23 +12,27 @@
   <hr>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"></app-project-name>
+      <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"
+                        (projectTitleChange)="onEditProjectTitleChange($event)"></app-project-name>
     </div>
     <div class="col-md-5">
-      <app-group-contact [email]="group.contactEmail" [isEditable]="isEditable"></app-group-contact>
+      <app-group-contact [email]="group.contactEmail"></app-group-contact>
     </div>
   </div>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-period [isEditable]="isEditable" [project]="project"></app-project-period>
+      <app-project-period [isEditable]="isEditable" [project]="project" (startChange)="onEditProjectStartChange($event)"
+                          (endChange)="onEditProjectEndChange($event)"
+      ></app-project-period>
     </div>
     <div class="col-md-5">
-      <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [students]="group.students"></app-students-list>
+      <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [groupId]="group.id" [students]="group.students"></app-students-list>
     </div>
   </div>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
+      <app-project-description [isEditable]="isEditable" [description]="project.description"
+                               (onDescriptionChanged)="onEditProjectDescriptionChange($event)"></app-project-description>
     </div>
     <div class="col-md-5">
       <div class="bottom-margin">
@@ -38,9 +42,9 @@
   </div>
   <div class="row bottom-margin">
     <div class="col-md-7">
-      <div *ngIf="executiveUser">
+      <div *ngIf="executiveUser; else GroupEditing">
         <div *ngIf="ExecutiveApproved(); else unapprove">
-            <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
+          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
         </div>
         <ng-template #unapprove>
           <div *ngIf="SupervisorApproved(); else unavailable">
@@ -51,21 +55,32 @@
           <button type="button" class="ApproveButton btn btn-secondary btn-lg btn-block">Not approved by Supervisor</button>
         </ng-template>
       </div>
+      <ng-template #GroupEditing>
+        <div *ngIf="isEditable; else goToEdit">
+          <button class="btn btn-outline-danger groupEditButton" (click)="setIsEditable(); cancelChanges()">Cancel</button>
+          <button class="btn btn-outline-warning groupEditButton" (click)="saveChangesFromEdit(); setIsEditable()">Save</button>
+        </div>
+        <ng-template #goToEdit>
+          <button class="btn btn-outline-primary groupEditButton" (click)="setEditVariables(); setIsEditable()">Edit</button>
+        </ng-template>
+      </ng-template>
     </div>
     <div class="col-md-5">
       <app-project-suporvisor [isEditable]="isEditable" [isGroup]="isGroup" [isAdmin]="isAdmin"
                               [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"
-                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)">
+                              (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)"
+                              (onWantedSupervisorChange)="onEditProjectWantedSupervisor($event)">
       </app-project-suporvisor>
     </div>
   </div>
+  <hr>
+  <hr>
   <div class="row bottom-margin">
-    <div class="col-md-7">
+    <div class="col-md-12">
       <app-appendix></app-appendix>
     </div>
-  </div>
-  <div class="col-md-5">
   </div>
   <hr>
   <hr>
 </div>
+

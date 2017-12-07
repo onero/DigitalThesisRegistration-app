@@ -14,6 +14,7 @@ import {Project} from '../shared/project.model';
 import {Supervisor} from '../shared/supervisor.model';
 import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-contract',
@@ -34,6 +35,9 @@ export class EditContractComponent implements OnInit {
   wantedSupervisor: Supervisor;
   executiveUser = false;
 
+  // Variables for when editing. Storing in separete variables for easy discarding.
+  editProject: Project;
+
   groupContactEmail = 'this is temporary'; // TODO RKL: Remove.
 
   constructor(private route: ActivatedRoute,
@@ -42,6 +46,7 @@ export class EditContractComponent implements OnInit {
               private projectService: ProjectService,
               private supervisorService: SupervisorService,
               private contractService: ContractService) {
+    this.initializeEditVariables();
     this.setRole();
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
@@ -75,6 +80,10 @@ export class EditContractComponent implements OnInit {
   ngOnInit() {
     const role = localStorage.getItem('Role');
     this.executiveUser = role === 'Administrator' || role === 'Supervisor';
+  }
+
+  initializeEditVariables() {
+    this.editProject = {};
   }
 
   private populateGroup() {
@@ -189,5 +198,48 @@ export class EditContractComponent implements OnInit {
     } else {
       return this.contract.adminApproved;
     }
+  }
+
+  setIsEditable() {
+    this.isEditable = !this.isEditable;
+  }
+
+  setEditVariables() {
+    this.editProject = this.project;
+  }
+
+  cancelChanges() {
+    // TODO: Find a better way to cancel changes than reloading the page.
+    location.reload();
+  }
+
+  saveChangesFromEdit() {
+    this.project = this.editProject;
+
+    console.log('Title: ' + this.project.title + '\nDescription: ' + this.project.description
+      + '\nStart: ' + this.project.start + '\nEnd: ' + this.project.end + '\nWantedId: ' +
+      this.project.wantedSupervisorId);
+
+    this.projectService.update(this.project).subscribe(() => console.log('Project Updated'));
+  }
+
+  onEditProjectTitleChange(title: string) {
+    this.editProject.title = title;
+  }
+
+  onEditProjectDescriptionChange(description: string) {
+    this.editProject.description = description;
+  }
+
+  onEditProjectStartChange(start: NgbDateStruct) {
+    this.editProject.start = new Date(start.year, start.month, start.day);
+  }
+
+  onEditProjectEndChange(end: NgbDateStruct) {
+    this.editProject.end = new Date(end.year, end.month, end.day);
+  }
+
+  onEditProjectWantedSupervisor(id: number) {
+    this.editProject.wantedSupervisorId = id;
   }
 }

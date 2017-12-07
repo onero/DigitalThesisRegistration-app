@@ -15,7 +15,7 @@
       <app-project-name (projectTitleChange)="onProjectTitleChange($event)" [isEditable]=true></app-project-name>
     </div>
     <div class="col-md-5">
-      <app-group-contact [isEditable]="false" [email]="contactEmail" (notify)="onNotify($event)"></app-group-contact>
+      <app-group-contact [email]="contactEmail" (notify)="onNotify($event)"></app-group-contact>
     </div>
   </div>
   <div class="row bottom-margin">
