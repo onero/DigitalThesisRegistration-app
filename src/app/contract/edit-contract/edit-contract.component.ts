@@ -208,7 +208,8 @@ export class EditContractComponent implements OnInit {
     console.log('Title: ' + this.project.title + '\nDescription: ' + this.project.description
       + '\nStart: ' + this.project.start + '\nEnd: ' + this.project.end + '\nWantedId: ' +
       this.project.wantedSupervisorId);
-    // this.projectService.update(this.project);
+
+    this.projectService.update(this.project).subscribe(() => console.log('Project Updated'));
   }
 
   onEditProjectTitleChange(title: string) {
@@ -224,7 +225,7 @@ export class EditContractComponent implements OnInit {
   }
 
   onEditProjectEndChange(end: NgbDateStruct) {
-    this.editProject.end = new Date(end.year, end.month, end.day)
+    this.editProject.end = new Date(end.year, end.month, end.day);
   }
 
   onEditProjectWantedSupervisor(id: number) {
