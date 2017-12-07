@@ -165,7 +165,7 @@ export class EditContractComponent implements OnInit {
         this.contract.supervisorApproved = c.supervisorApproved;
       });
     } else {
-      if (this.contract.supervisorApproved) {
+      if (this.SupervisorApproved()) {
         this.contract.adminApproved = !this.contract.adminApproved;
         console.log('Contract adminApproved before ' + this.contract.adminApproved);
         this.contractService.update(this.contract).subscribe(c => {
@@ -173,6 +173,14 @@ export class EditContractComponent implements OnInit {
           this.contract.adminApproved = c.adminApproved;
         });
       }
+    }
+  }
+
+  SupervisorApproved() {
+    if (localStorage.getItem('Role') === 'Administrator') {
+      return this.contract.supervisorApproved;
+    } else {
+      return true;
     }
   }
 
