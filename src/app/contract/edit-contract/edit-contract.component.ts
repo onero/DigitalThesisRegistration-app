@@ -208,6 +208,11 @@ export class EditContractComponent implements OnInit {
     this.editProject = this.project;
   }
 
+  cancelChanges() {
+    // TODO: Find a better way to cancel changes than reloading the page.
+    location.reload();
+  }
+
   saveChangesFromEdit() {
     this.project = this.editProject;
 

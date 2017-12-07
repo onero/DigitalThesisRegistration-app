@@ -57,7 +57,7 @@
       </div>
       <ng-template #GroupEditing>
         <div *ngIf="isEditable; else goToEdit">
-          <button class="btn btn-outline-danger groupEditButton" (click)="setIsEditable()">Cancel</button>
+          <button class="btn btn-outline-danger groupEditButton" (click)="setIsEditable(); cancelChanges()">Cancel</button>
           <button class="btn btn-outline-warning groupEditButton" (click)="saveChangesFromEdit(); setIsEditable()">Save</button>
         </div>
         <ng-template #goToEdit>
