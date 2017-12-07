@@ -25,6 +25,8 @@ import { ProjectSupervisorComponent } from './project/project-supervisor/project
 import {SupervisorService} from './shared/supervisor.service';
 import { GridOverviewComponent } from './grid-overview/grid-overview.component';
 import {Ng2TableModule} from 'ng2-table';
+import { AppendixComponent } from './appendix/appendix.component';
+import {AppendixService} from '../shared/appendix.service';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -52,7 +54,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectPeriodComponent,
     ProjectDescriptionComponent,
     ProjectSupervisorComponent,
-  GridOverviewComponent],
+  GridOverviewComponent,
+  AppendixComponent],
   providers: [ContractService,
   StudentService,
   NgbModal,
@@ -60,6 +63,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   GroupService,
   CompanyService,
   SupervisorService,
-  ProjectService]
+  ProjectService,
+  AppendixService]
 })
 export class ContractModule { }

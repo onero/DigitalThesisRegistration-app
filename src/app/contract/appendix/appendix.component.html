@@ -1,0 +1,41 @@
+<button *ngIf="conditionCollapsed; else conditionButton" type="button" class="btn btn-outline-primary" (click)="conditionCollapsed = !conditionCollapsed"
+        [attr.aria-expanded]="!conditionCollapsed" aria-controls="condition">
+  Conditions
+</button>
+<button *ngIf="resourcesCollapsed; else resourcesButton" type="button" class="btn btn-outline-primary" (click)="resourcesCollapsed = !resourcesCollapsed"
+        [attr.aria-expanded]="!resourcesCollapsed" aria-controls="resources">
+  Resources
+</button>
+
+<ng-template #conditionButton>
+  <button type="button" class="btn btn-primary" (click)="conditionCollapsed = !conditionCollapsed"
+          [attr.aria-expanded]="!conditionCollapsed" aria-controls="condition">
+    Conditions
+  </button>
+</ng-template>
+
+<ng-template #resourcesButton>
+  <button type="button" class="btn btn-primary" (click)="resourcesCollapsed = !resourcesCollapsed"
+          [attr.aria-expanded]="!resourcesCollapsed" aria-controls="resources">
+    Resources
+  </button>
+</ng-template>
+
+<div id="condition" [ngbCollapse]="conditionCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <b>Conditions</b>
+      <br>
+      {{appendix.condition}}
+    </div>
+  </div>
+</div>
+<div id="resources" [ngbCollapse]="resourcesCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <b>Resources</b>
+      <br>
+      {{appendix.resources}}
+    </div>
+  </div>
+</div>
