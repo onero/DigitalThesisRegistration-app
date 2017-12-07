@@ -1,4 +1,40 @@
-<p>
-  <input type="text" placeholder="Contact Email" #contactEmail>
-  <button (click)="create(contactEmail.value)">Create Group</button>
-</p>
+
+<!-- All the files that are required -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- REGISTRATION FORM -->
+<div class="text-center" style="padding:50px 0">
+<div class="logo">Register group</div>
+<!-- Main Form -->
+<div class="login-form-1">
+<form id="register-form" class="text-left">
+<div class="login-form-main-message"></div>
+<div class="main-login-form">
+<div class="login-group">
+
+  <!--&lt;!&ndash;Password for later use&ndash;&gt;-->
+<!--<div class="form-group">-->
+<!--<label for="reg_password_confirm" class="sr-only">Password Confirm</label>-->
+<!--<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">-->
+<!--</div>-->
+
+<div class="form-group">
+<label for="reg_email" class="sr-only">Email</label>
+<input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email" #contactEmail>
+</div>
+<div class="form-group "></div>
+
+</div>
+<button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>
+</div>
+<div class="etc-login-form form-group">
+<p>already have an account? <a href="#">login here</a></p>
+</div>
+</form>
+</div>
+<!-- end:Main Form -->
+</div>
+

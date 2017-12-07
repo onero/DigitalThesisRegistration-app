@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GroupService} from '../shared/group.service';
 import {Router} from '@angular/router';
-import {Group} from '../shared/group.model';
 
 @Component({
   selector: 'app-new-group',
