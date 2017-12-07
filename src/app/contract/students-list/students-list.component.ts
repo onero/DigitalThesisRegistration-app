@@ -68,6 +68,7 @@ export class StudentsListComponent implements OnInit {
 
   // This is the call to the RestAPI where the student is created in the database.
   private updateStudent(student: Student) {
+    console.log('Group Id from studensList: ' + this.groupId);
     student.groupId = this.groupId;
     this.studentService.update(student)
       .subscribe(s => {

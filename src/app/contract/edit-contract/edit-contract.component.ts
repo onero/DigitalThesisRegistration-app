@@ -14,7 +14,7 @@ import {Project} from '../shared/project.model';
 import {Supervisor} from '../shared/supervisor.model';
 import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
-import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-contract',
