@@ -40,10 +40,15 @@
     <div class="col-md-7">
       <div *ngIf="executiveUser">
         <div *ngIf="ExecutiveApproved(); else unapprove">
-          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
+            <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
         </div>
         <ng-template #unapprove>
-          <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+          <div *ngIf="SupervisorApproved(); else unavailable">
+            <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
+          </div>
+        </ng-template>
+        <ng-template #unavailable>
+          <button type="button" class="ApproveButton btn btn-secondary btn-lg btn-block">Not approved by Supervisor</button>
         </ng-template>
       </div>
     </div>
@@ -53,6 +58,13 @@
                               (onAssignedSupervisorChange)="updateAssignedSupervisorOnProject($event)">
       </app-project-suporvisor>
     </div>
+  </div>
+  <div class="row bottom-margin">
+    <div class="col-md-7">
+      <app-appendix></app-appendix>
+    </div>
+  </div>
+  <div class="col-md-5">
   </div>
   <hr>
   <hr>
