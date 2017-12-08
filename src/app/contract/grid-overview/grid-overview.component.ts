@@ -57,10 +57,12 @@ export class GridOverviewComponent implements OnInit {
         // Check if wantedSupervisor is set, if not set to informational string
         const assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
-          'Needs assigned supervisor!';
+          '';
         const supervisorApproved = gridData.contract.supervisorApproved;
         const adminApproved = gridData.contract.adminApproved;
-        let status = 'Not approved';
+        let status = gridData.assignedSupervisor != null ?
+          'Awaiting supervisor approval' :
+          'Needs assigned supervisor';
         if (supervisorApproved && adminApproved) {
           status = 'Fully approved';
         } else if (supervisorApproved) {
