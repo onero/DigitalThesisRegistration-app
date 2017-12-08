@@ -17,6 +17,10 @@ export class ProjectSupervisorComponent implements OnInit {
 
   @Input()
   isEditable: boolean;
+  @Input()
+  isGroup: boolean;
+  @Input()
+  isAdmin: boolean;
 
   @Input()
   assignedSupervisor: Supervisor;
@@ -45,5 +49,10 @@ export class ProjectSupervisorComponent implements OnInit {
     this.assignedSupervisor = supervisor;
     // Emit that we'venow selected a supervisor
     this.onAssignedSupervisorChange.emit(supervisor.id);
+  }
+
+  unassignSupervisor() {
+    this.assignedSupervisor = {firstName: '', lastName: ''};
+    this.onAssignedSupervisorChange.emit(null);
   }
 }

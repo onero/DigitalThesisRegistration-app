@@ -33,6 +33,9 @@ export class NewContractComponent implements OnInit {
               private router: Router,
               private projectService: ProjectService) {
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
+    this.contactEmail = localStorage.getItem('GroupMail');
+    this.groupId = +localStorage.getItem('GroupId');
+    console.log(this.contactEmail);
   }
 
   ngOnInit() {
@@ -74,20 +77,19 @@ export class NewContractComponent implements OnInit {
       groupId: this.groupId,
       companyId: this.companyId,
       projectId: 0,
-      isApproved: false};
+      adminApproved: false,
+      supervisorApproved: false};
 
     if (this.isProjectInfoAdded) {
       this.projectService.create(this.project).subscribe(p => {
         contract.projectId = p.id;
-        this.contractService.createContract(contract).subscribe(() =>
-          {
-            this.router.navigateByUrl('contracts');
+        this.contractService.createContract(contract).subscribe(() => {
+            this.router.navigateByUrl('home');
           });
       });
     } else {
-      this.contractService.createContract(contract).subscribe(() =>
-      {
-        this.router.navigateByUrl('contracts');
+      this.contractService.createContract(contract).subscribe(() => {
+        this.router.navigateByUrl('home');
       });
     }
   }
@@ -105,7 +107,15 @@ export class NewContractComponent implements OnInit {
   }
 
   ableToCreateContract(): boolean {
-    if (this.companyId > 0 && this.groupId > 0) {
+    if (this.companyId > 0 /*&& this.groupId > 0*/) {
+      return true;
+    }
+    return false;
+  }
+
+  isGroupLoggedIn(): boolean {
+    const role = localStorage.getItem('Role');
+    if (role === 'Group') {
       return true;
     }
     return false;

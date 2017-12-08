@@ -53,21 +53,13 @@ export class StudentsListComponent implements OnInit {
 
   handleUpdateStudentButton(student: Student) {
     const values = this.studentGroup.value;
-    // Checking if the new contract don't have a group. If true, creates a new group for the contract.
-    if (this.groupId == null || this.groupId === 0) {
-      this.groupService.create(this.email).subscribe(group => {
-        this.groupId = group.id;
-        this.updateStudent(student);
-        this.notify.emit(this.groupId);
-      });
-    }else {
-      this.updateStudent(student);
-    }
+    this.updateStudent(student);
     this.studentGroup.reset();
   }
 
   // This is the call to the RestAPI where the student is created in the database.
   private updateStudent(student: Student) {
+    console.log('Group Id from studensList: ' + this.groupId);
     student.groupId = this.groupId;
     this.studentService.update(student)
       .subscribe(s => {
@@ -86,5 +78,15 @@ export class StudentsListComponent implements OnInit {
   isValid(controlName: string) {
     const control = this.studentGroup.controls[controlName];
     return !control.invalid && (control.touched || control.dirty);
+  }
+
+  removeStudent(student: Student) {
+    student.groupId = null;
+    this.studentService.update(student).subscribe(() => {
+      console.log('Removing student: ' + student.firstName + ' ' + student.lastName);
+      const index = this.students.indexOf(student);
+      this.students.splice(index, 1);
+    });
+
   }
 }

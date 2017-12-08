@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  RestAPI: 'http://localhost:5000/api'
+  RestAPI: 'http://dtrbackend.azurewebsites.net/api',
+  RestLogin: 'http://dtrbackend.azurewebsites.net/'
 };
