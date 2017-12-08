@@ -52,11 +52,11 @@ export class NewContractComponent implements OnInit {
   }
 
   onWantedSuporvisorChange(id: number) {
-    this.project.wantedSuporvisorId = id;
+    this.project.wantedSupervisorId = id;
     this.isProjectInfoAdded = true;
   }
   onAssignedSuporvisorChange(id: number) {
-    this.project.assignedSuporvisorId = id;
+    this.project.assignedSupervisorId = id;
     this.isProjectInfoAdded = true;
   }
 
@@ -104,5 +104,10 @@ export class NewContractComponent implements OnInit {
     this.companyId = companyId;
   }
 
-
+  ableToCreateContract(): boolean {
+    if (this.companyId > 0 && this.groupId > 0) {
+      return true;
+    }
+    return false;
+  }
 }

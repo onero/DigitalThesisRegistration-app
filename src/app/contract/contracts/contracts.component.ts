@@ -17,7 +17,6 @@ export class ContractsComponent implements OnInit {
 
   constructor(private contractService: ContractService,
               private router: Router,
-              private groupService: GroupService,
               private projectService: ProjectService) { }
 
   ngOnInit() {

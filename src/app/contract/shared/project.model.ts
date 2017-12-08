@@ -4,6 +4,6 @@ export class Project {
   description?: string;
   start?: Date;
   end?: Date;
-  wantedSuporvisorId?: number;
-  assignedSuporvisorId?: number;
+  wantedSupervisorId?: number;
+  assignedSupervisorId?: number;
 }

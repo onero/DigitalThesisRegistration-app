@@ -1,9 +1,15 @@
 <div class="container">
-  <div class="row">
-    <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
-    <h1>Edit contract</h1>
+  <hr>
+  <div class="row top-margin">
+    <div class="col-md-4">
+      <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">Contract</h1>
+    </div>
   </div>
-  <div class="row">
+  <hr>
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-name [isEditable]="isEditable" [projectTitle]="project.title"></app-project-name>
     </div>
@@ -11,12 +17,12 @@
       <app-group-contact [email]="group.contactEmail" [isEditable]="isEditable"></app-group-contact>
     </div>
   </div>
-  <div class="row">
+  <div class="row bottom-margin">
     <div class="col-md-7">
       <app-project-period [isEditable]="isEditable" [project]="project"></app-project-period>
     </div>
     <div class="col-md-5">
-      <app-students-list [email]="groupContactEmail" [students]="group.students"></app-students-list>
+      <app-students-list [isEditable]="isEditable" [email]="groupContactEmail" [students]="group.students"></app-students-list>
     </div>
   </div>
   <div class="row">
@@ -24,8 +30,12 @@
       <app-project-description [isEditable]="isEditable" [description]="project.description"></app-project-description>
     </div>
     <div class="col-md-5">
-      <app-company [isEditable]="false" [company]="company"></app-company>
-      <app-project-suporvisor [isEditable]="isEditable" [wantedSuporvisor]="wantedSuporvisor" [assignedSuporvisor]="assignedSuporvisor"></app-project-suporvisor>
+      <div class="bottom-margin">
+        <app-company [isEditable]="false" [company]="company"></app-company>
+      </div>
+      <app-project-suporvisor [isEditable]="isEditable" [wantedSupervisor]="wantedSupervisor" [assignedSupervisor]="assignedSupervisor"></app-project-suporvisor>
     </div>
   </div>
+  <hr>
+  <hr>
 </div>

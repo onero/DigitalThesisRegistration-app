@@ -11,8 +11,8 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
-import {Suporvisor} from "../shared/suporvisor.model";
-import {SuporvisorService} from "../shared/suporvisor.service";
+import {Supervisor} from "../shared/supervisor.model";
+import {SupervisorService} from "../shared/supervisor.service";
 import {ContractsComponent} from '../contracts/contracts.component';
 
 @Component({
@@ -28,26 +28,24 @@ export class EditContractComponent implements OnInit {
   group: Group;
   company: Company;
   project: Project;
-  assignedSuporvisor: Suporvisor;
-  wantedSuporvisor: Suporvisor;
+  assignedSupervisor: Supervisor;
+  wantedSupervisor: Supervisor;
 
   groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
 
-  constructor(private contractSerivce: ContractService,
-              private route: ActivatedRoute,
-              private studentService: StudentService,
+  constructor(private route: ActivatedRoute,
               private groupService: GroupService,
               private companyService: CompanyService,
               private projectService: ProjectService,
-              private suporvisorService: SuporvisorService) {
+              private supervisorService: SupervisorService) {
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
     this.company = {name: '', contactName: '', contactPhone: '', contactEmail: ''};
     // Instantiating the project so we don't get undefined properties. Might be this is doable for company too?
     this.project = {};
-    this.assignedSuporvisor = {firstName: '', lastName: ''};
-    this.wantedSuporvisor = {firstName: '', lastName: ''};
+    this.assignedSupervisor = {firstName: '', lastName: ''};
+    this.wantedSupervisor = {firstName: '', lastName: ''};
     // Grabbing the url.
     route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
@@ -64,6 +62,7 @@ export class EditContractComponent implements OnInit {
       this.populateCompany();
       // this.populateProject();
       this.project = contract.project;
+      this.populateSupervisors();
     });
   }
 
@@ -89,11 +88,11 @@ export class EditContractComponent implements OnInit {
     if (this.contract.projectId != null) {
       this.projectService.get(this.contract.projectId).subscribe(p => {
         this.project = p;
-        this.suporvisorService.get(this.project.assignedSuporvisorId).subscribe(s => {
-          this.assignedSuporvisor = s;
+        this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
+          this.assignedSupervisor = s;
         });
-        this.suporvisorService.get(this.project.wantedSuporvisorId).subscribe(s => {
-          this.wantedSuporvisor = s;
+        this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
+          this.wantedSupervisor = s;
         });
         console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
       });
@@ -101,6 +100,17 @@ export class EditContractComponent implements OnInit {
     }else {
       // TODO: Remove when implementation is done.
       console.log('No project id');
+    }
+  }
+
+  populateSupervisors() {
+    if (this.contract.projectId != null) {
+      this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
+        this.assignedSupervisor = s;
+      });
+      this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
+        this.wantedSupervisor = s;
+      });
     }
   }
 }

@@ -3,10 +3,10 @@
     <h5>
       Project Title:
     </h5>
-    <div *ngIf="isEditable">
-      <input type="text" placeholder="Project title" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
+    <div class="body-size" *ngIf="isEditable">
+      <input class="text-body-size" type="text" placeholder="Project title" [(ngModel)]="projectTitle" (keyup)="updateProjectTitle()">
     </div>
-    <div *ngIf="!isEditable">
+    <div class="body-size " *ngIf="!isEditable">
       {{projectTitle}}
     </div>
   </div>

@@ -36,7 +36,7 @@
       </div>
     </div>
     <button *ngIf="isEditable" class="btn btn-outline-primary pull-left" (click)="open(content)">
-      Select Company</button>
+      <i class="fa fa-building" aria-hidden="true"></i> Company</button>
     <button *ngIf="isEditable" class="btn btn-outline-primary pull-right" (click)="open(newCompany)">
       Create</button>
   </div>
@@ -49,10 +49,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-size" [perfect-scrollbar]>
     <ul class="list-group" *ngFor="let company of companies">
       <li class="list-group-item list-group-item-action" (click)="selectCompany(company); c('Close click')">
+        <perfect-scrollbar>
         {{company.name}}
+        </perfect-scrollbar>
       </li>
     </ul>
   </div>
