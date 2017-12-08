@@ -19,4 +19,8 @@ export class NavigationBarComponent implements OnInit {
     localStorage.setItem('Token', '');
     this.router.navigateByUrl('login');
   }
+
+  isLoggedIn() {
+    return localStorage.getItem('Token') !== '' ? true : false;
+  }
 }
