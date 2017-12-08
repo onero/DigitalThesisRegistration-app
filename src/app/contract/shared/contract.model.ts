@@ -5,7 +5,8 @@ export class Contract {
   groupId?: number;
   companyId?: number;
   projectId?: number;
-  isApproved: boolean;
+  adminApproved: boolean;
+  supervisorApproved: boolean;
   project?: Project;
   students?: Student[];
 }

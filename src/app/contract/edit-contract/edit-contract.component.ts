@@ -11,9 +11,10 @@ import {CompanyService} from '../shared/company.service';
 import {Company} from '../shared/company.model';
 import {ProjectService} from '../shared/project.service';
 import {Project} from '../shared/project.model';
-import {Supervisor} from "../shared/supervisor.model";
-import {SupervisorService} from "../shared/supervisor.service";
+import {Supervisor} from '../shared/supervisor.model';
+import {SupervisorService} from '../shared/supervisor.service';
 import {ContractsComponent} from '../contracts/contracts.component';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-contract',
@@ -23,6 +24,8 @@ import {ContractsComponent} from '../contracts/contracts.component';
 export class EditContractComponent implements OnInit {
 
   isEditable: boolean;
+  isGroup: boolean;
+  isAdmin: boolean;
 
   contract: Contract;
   group: Group;
@@ -30,14 +33,21 @@ export class EditContractComponent implements OnInit {
   project: Project;
   assignedSupervisor: Supervisor;
   wantedSupervisor: Supervisor;
+  executiveUser = false;
 
-  groupContactEmail = 'this is temperary'; // TODO RKL: Remove.
+  // Variables for when editing. Storing in separete variables for easy discarding.
+  editProject: Project;
+
+  groupContactEmail = 'this is temporary'; // TODO RKL: Remove.
 
   constructor(private route: ActivatedRoute,
               private groupService: GroupService,
               private companyService: CompanyService,
               private projectService: ProjectService,
-              private supervisorService: SupervisorService) {
+              private supervisorService: SupervisorService,
+              private contractService: ContractService) {
+    this.initializeEditVariables();
+    this.setRole();
     this.isEditable = false;
     // Defining the properties of the group to avoid undefined property exception.
     this.group = {contactEmail: '', students: []};
@@ -60,13 +70,20 @@ export class EditContractComponent implements OnInit {
       this.contract = contract;
       this.populateGroup();
       this.populateCompany();
-      // this.populateProject();
-      this.project = contract.project;
-      this.populateSupervisors();
+      this.populateProject();
+      // this.project = contract.project;
+      console.log('ProjectId: ' + this.project.id);
+      // this.populateSupervisors();
     });
   }
 
   ngOnInit() {
+    const role = localStorage.getItem('Role');
+    this.executiveUser = role === 'Administrator' || role === 'Supervisor';
+  }
+
+  initializeEditVariables() {
+    this.editProject = {};
   }
 
   private populateGroup() {
@@ -90,6 +107,7 @@ export class EditContractComponent implements OnInit {
         this.project = p;
         this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
           this.assignedSupervisor = s;
+          console.log(this.assignedSupervisor);
         });
         this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
           this.wantedSupervisor = s;
@@ -112,5 +130,117 @@ export class EditContractComponent implements OnInit {
         this.wantedSupervisor = s;
       });
     }
+  }
+
+  isGroupLoggedIn(): boolean {
+    const role = localStorage.getItem('Role');
+    if (role === 'Group') {
+      return true;
+    }
+    return false;
+  }
+
+  setRole() {
+    const role = localStorage.getItem('Role');
+    switch (role) {
+      case 'Group' : {
+        this.isGroup = true;
+        this.isAdmin = false;
+        break;
+      }
+      case 'Administrator' : {
+        this.isGroup = false;
+        this.isAdmin = true;
+        break;
+      }
+    }
+  }
+
+  updateAssignedSupervisorOnProject(supervisorId: number) {
+    this.project.assignedSupervisorId = supervisorId;
+    this.projectService.update(this.project).subscribe(p => {
+      this.project = p;
+      console.log('Updated supervisor from admin');
+    });
+  }
+
+  UpdateApproveStatus() {
+    const role = localStorage.getItem('Role');
+    if (role === 'Supervisor') {
+      this.contract.supervisorApproved = !this.contract.supervisorApproved;
+      console.log('Contract supervisorApproved before ' + this.contract.supervisorApproved);
+      this.contractService.update(this.contract).subscribe(c => {
+        console.log('Contract supervisorApproved after: ' + c.supervisorApproved);
+        this.contract.supervisorApproved = c.supervisorApproved;
+      });
+    } else {
+        this.contract.adminApproved = !this.contract.adminApproved;
+        console.log('Contract adminApproved before ' + this.contract.adminApproved);
+        this.contractService.update(this.contract).subscribe(c => {
+          console.log('Contract adminApproved after: ' + c.adminApproved);
+          this.contract.adminApproved = c.adminApproved;
+        });
+    }
+  }
+
+  SupervisorApproved() {
+    if (localStorage.getItem('Role') === 'Administrator') {
+      console.log('hello hello ' + this.contract.supervisorApproved)
+      return this.contract.supervisorApproved;
+    } else {
+      return true;
+    }
+  }
+
+  ExecutiveApproved() {
+    const role = localStorage.getItem('Role');
+    if (role === 'Supervisor') {
+      return this.contract.supervisorApproved;
+    } else {
+      return this.contract.adminApproved;
+    }
+  }
+
+  setIsEditable() {
+    this.isEditable = !this.isEditable;
+  }
+
+  setEditVariables() {
+    this.editProject = this.project;
+  }
+
+  cancelChanges() {
+    // TODO: Find a better way to cancel changes than reloading the page.
+    location.reload();
+  }
+
+  saveChangesFromEdit() {
+    this.project = this.editProject;
+
+    console.log('Title: ' + this.project.title + '\nDescription: ' + this.project.description
+      + '\nStart: ' + this.project.start + '\nEnd: ' + this.project.end + '\nWantedId: ' +
+      this.project.wantedSupervisorId);
+
+    this.projectService.update(this.project).subscribe(() => console.log('Project Updated'));
+  }
+
+  onEditProjectTitleChange(title: string) {
+    this.editProject.title = title;
+  }
+
+  onEditProjectDescriptionChange(description: string) {
+    this.editProject.description = description;
+  }
+
+  onEditProjectStartChange(start: NgbDateStruct) {
+    this.editProject.start = new Date(start.year, start.month, start.day);
+  }
+
+  onEditProjectEndChange(end: NgbDateStruct) {
+    this.editProject.end = new Date(end.year, end.month, end.day);
+  }
+
+  onEditProjectWantedSupervisor(id: number) {
+    this.editProject.wantedSupervisorId = id;
   }
 }
