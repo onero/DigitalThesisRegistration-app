@@ -54,7 +54,7 @@ export class GridOverviewComponent implements OnInit {
         const wantedSupervisor = gridData.wantedSupervisor != null ?
           gridData.wantedSupervisor.firstName + ' ' + gridData.wantedSupervisor.lastName :
           '';
-        // Check if wantedSupervisor is set, if not set to informational string
+        // Check if assignedSupervisor is set, if not set to informational string
         const assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
           '';
@@ -177,6 +177,7 @@ export class GridOverviewComponent implements OnInit {
   public onCellClick(data: any): any {
     const selectedProjectTitle = data.row['projectTitle'];
     const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
+    // TODO ALH: Update to reflect new primary id implementation
     const contract: Contract = {
       project: tempContract.project,
       supervisorApproved: tempContract.supervisorApproved,
