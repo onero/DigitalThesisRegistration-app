@@ -29,6 +29,8 @@ import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
 import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import { NewGroupComponent } from './new-group/new-group.component';
+import {EqualValidator} from "./new-group/password.match.directive";
+import {HttpModule} from "@angular/http";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -52,7 +54,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       primaryColour: '#ffffff',
       secondaryColour: '#ffffff',
       tertiaryColour: '#ffffff'
-    })
+    }),
+    HttpModule
   ],
   declarations: [ContractsComponent,
     NewContractComponent,
@@ -64,17 +67,19 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectPeriodComponent,
     ProjectDescriptionComponent,
     ProjectSupervisorComponent,
-  GridOverviewComponent,
-  AppendixComponent,
-  NewGroupComponent],
+    GridOverviewComponent,
+    AppendixComponent,
+    NewGroupComponent,
+    EqualValidator
+  ],
   providers: [ContractService,
-  StudentService,
-  NgbModal,
-  NgbModalStack,
-  GroupService,
-  CompanyService,
-  SupervisorService,
-  ProjectService,
-  AppendixService]
+    StudentService,
+    NgbModal,
+    NgbModalStack,
+    GroupService,
+    CompanyService,
+    SupervisorService,
+    ProjectService,
+    AppendixService]
 })
 export class ContractModule { }

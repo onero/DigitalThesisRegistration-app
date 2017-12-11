@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GroupService} from '../shared/group.service';
 import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from "./user";
 
 @Component({
   selector: 'app-new-group',
@@ -14,6 +15,11 @@ export class NewGroupComponent implements OnInit {
   confirmPassword: string;
   passwordGroup: FormGroup;
   // showPasswordMisMatch = false;
+
+  model = new User('', '', '');
+  submitted = false;
+
+  onSubmit() {this.submitted = true; }
 
   constructor(private router: Router, private groupService: GroupService, private fb: FormBuilder) {
     this.validator();

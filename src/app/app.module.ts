@@ -19,6 +19,7 @@ import {JwtInterceptor} from "./shared/jwt.interceptor";
 import {AdminGuard} from "./shared/guards/admin.guard";
 import {GroupGuard} from "./shared/guards/group.guard";
 import {ExecutiveGuard} from './shared/guards/supervisor.guard';
+import {EqualValidator} from "./contract/new-group/password.match.directive";
 
 @NgModule({
   declarations: [
