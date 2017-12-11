@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class GridOverviewComponent implements OnInit {
 
-
+  loading = false;
   gridData: GridData[];
   data = [];
 
@@ -45,6 +45,7 @@ export class GridOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     // Get all ContractGridBOs from backend, called gridData.model
     this.contractService.getGridData().subscribe(gridDatas => {
       this.gridData = gridDatas;
@@ -80,6 +81,7 @@ export class GridOverviewComponent implements OnInit {
           });
         }
         this.onChangeTable(this.config);
+        this.loading = false;
       });
     });
   }

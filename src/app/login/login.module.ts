@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import {loginRoutes} from './login.routing';
 import {LoginService} from './shared/login.service';
-
 @NgModule({
   imports: [
     CommonModule,
