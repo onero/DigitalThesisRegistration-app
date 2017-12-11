@@ -1,98 +1,107 @@
 
-<!-- All the files that are required -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!--&lt;!&ndash; All the files that are required &ndash;&gt;-->
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
+<!--<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
 
-<!-- REGISTRATION FORM -->
-<div class="text-center" style="padding:50px 0">
+<!--&lt;!&ndash; REGISTRATION FORM &ndash;&gt;-->
+<!--<div class="text-center" style="padding:50px 0">-->
+  <!--<div class="logo">Register group</div>-->
+  <!--&lt;!&ndash; Main Form &ndash;&gt;-->
+  <!--<div class="login-form-1">-->
+    <!--<form class="text-left" [formGroup]="passwordGroup">-->
+      <!--<div class="main-login-form">-->
+        <!--<div class="login-group">-->
+
+          <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" placeholder="Group email" #contactEmail>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;Password&ndash;&gt;-->
+          <!--<div class="form-group">-->
+            <!--<div class="bottom-border">-->
+              <!--<label for="reg_password" class="sr-only">Password</label>-->
+              <!--<input type="password" class="form-control"-->
+                     <!--id="reg_password" name="reg_password" placeholder="password"-->
+                     <!--formControlName="password" #password>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;Confirm password&ndash;&gt;-->
+            <!--<label for="reg_password_confirm" class="sr-only">Password Confirm</label>-->
+            <!--<input type="password" class="form-control"-->
+                   <!--id="reg_password_confirm" name="reg_password_confirm"-->
+                   <!--placeholder="confirm password"-->
+                   <!--formControlName="confirmPassword" validateEqual="req_password" #req_password_confirm>-->
+          <!--</div>-->
+          <!--<div class="form-group"></div>-->
+          <!--<div *ngIf="" class="alert alert-danger">Password don't match</div>-->
+        <!--</div>-->
+
+        <!--<button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>-->
+      <!--</div>-->
+      <!--<div class="etc-login-form form-group">-->
+        <!--<p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>-->
+      <!--</div>-->
+    <!--</form>-->
+
+  <!--</div>-->
+  <!--&lt;!&ndash; end:Main Form &ndash;&gt;-->
+<!--</div>-->
+
+
+
+
+
+<div class="text-center col-md-4 center-div" style="padding:50px 0">
   <div class="logo">Register group</div>
-  <!-- Main Form -->
-  <div class="login-form-1">
-    <form class="text-left" [formGroup]="passwordGroup">
-      <div class="main-login-form">
-        <div class="login-group">
-
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Group email" #contactEmail>
-            </div>
-            <div class="form-group">
-              <div class="bottom-border">
-                <label for="reg_password" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password"
-                formControlName="password" #password>
-              </div>
-              <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-              <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password"
-              formControlName="confirmPassword" validateEqual="req_password" #req_password_confirm>
-
-            </div>
-            <div class="form-group"></div>
-          <div *ngIf="" class="alert alert-danger">Password don't match</div>
-        </div>
-
-        <div></div>
-
-        <button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>
-      </div>
-      <div class="etc-login-form form-group">
-        <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
-      </div>
-    </form>
-
-  </div>
-  <!-- end:Main Form -->
-</div>
-
-
-
-
-
-
-<div class="col-md-6">
-  <h3>Angular 2 Form Validations Demo</h3>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <!--Email Address-->
-    <div class="form-group">
-      <label id="name">Email Address</label>
-      <input type="text" class="form-control" id="emailaddress"
-             required
-             [(ngModel)]="model.email" name="email"
-             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-             #email="ngModel">
-      <div [hidden]="email.valid || email.pristine"
-           class="alert alert-danger">
-        <div [hidden]="!email.hasError('required')">Email is required</div>
-        <div [hidden]="!email.hasError('pattern')">Email format should be <small><b>joe@abc.com</b></small></div>
+    <div class="login-form-1">
+
+      <!--Email Address-->
+      <div class="form-group">
+        <input type="text" class="form-control" id="emailaddress" placeholder="Email Address"
+               required
+               [(ngModel)]="model.email" name="email"
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          <div [hidden]="!email.hasError('required')">Email is required</div>
+          <div [hidden]="!email.hasError('pattern')">Require:  <small><b>@example.com</b></small></div>
+        </div>
+      </div>
+
+      <!--Password-->
+      <div class="form-group">
+        <input type="password" class="form-control"
+               id="password" placeholder="Password"
+               required
+               [(ngModel)]="model.password" name="password"
+               #password="ngModel">
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+
+      <!--Comfirm Password-->
+      <div class="form-group">
+        <input type="password" class="form-control"
+               id="confirmPassword" placeholder="Confirm Password"
+               required
+               validateEqual="password"
+               [(ngModel)]="model.confirmPassword" name="confirmPassword"
+               #confirmPassword="ngModel">
+        <div [hidden]="confirmPassword.valid || confirmPassword.pristine"
+             class="alert alert-danger">
+          Passwords did not match
+        </div>
+        <button type="submit" class="login-button" (click)="create(email.value)"
+                [disabled]="!loginForm.form.valid">OK</button>
       </div>
     </div>
-    <!--Password-->
-    <div class="form-group">
-      <label for="name">Password</label>
-      <input type="password" class="form-control" id="password"
-             required
-             [(ngModel)]="model.password" name="password"
-             #password="ngModel">
-      <div [hidden]="password.valid || password.pristine"
-           class="alert alert-danger">
-        Password is required
-      </div>
+    <div class="etc-login-form form-group">
+      <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
     </div>
-    <!--Comfirm Password-->
-    <div class="form-group">
-      <label for="name">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword"
-             required
-             validateEqual="password"
-             [(ngModel)]="model.confirmPassword" name="confirmPassword"
-             #confirmPassword="ngModel">
-      <div [hidden]="confirmPassword.valid || confirmPassword.pristine"
-           class="alert alert-danger">
-        Passwords did not match
-      </div>
-    </div>
-    <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.form.valid">Submit</button>
   </form>
 </div>
 <div class="col-md-6">

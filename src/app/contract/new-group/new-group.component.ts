@@ -36,8 +36,8 @@ export class NewGroupComponent implements OnInit {
   ngOnInit() {
   }
 
-  create(contactEmail: string) {
-    this.groupService.create(contactEmail).subscribe();
+  create(email: string) {
+    this.groupService.create(email).subscribe();
     this.router.navigateByUrl('login');
   }
 
