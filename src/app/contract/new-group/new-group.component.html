@@ -10,20 +10,26 @@
   <div class="logo">Register group</div>
   <!-- Main Form -->
   <div class="login-form-1">
-    <form class="text-left">
+    <form class="text-left" [formGroup]="passwordGroup">
       <div class="main-login-form">
         <div class="login-group">
 
-          <!--&lt;!&ndash;Password for later use&ndash;&gt;-->
-          <!--<div class="form-group">-->
-          <!--<label for="reg_password_confirm" class="sr-only">Password Confirm</label>-->
-          <!--<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">-->
-          <!--</div>-->
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Group email" #contactEmail>
+            </div>
+            <div class="form-group">
+              <div class="bottom-border">
+                <label for="reg_password" class="sr-only">Password</label>
+                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password"
+                formControlName="password" #password>
+              </div>
+              <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+              <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password"
+              formControlName="confirmPassword" validateEqual="req_password" #req_password_confirm>
 
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Group email" #contactEmail>
-          </div>
-          <div class="form-group"></div>
+            </div>
+            <div class="form-group"></div>
+          <div *ngIf="" class="alert alert-danger">Password don't match</div>
         </div>
         <button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>
       </div>
@@ -31,6 +37,7 @@
         <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
       </div>
     </form>
+
   </div>
   <!-- end:Main Form -->
 </div>

@@ -75,6 +75,9 @@ a:hover {
   padding-right: 20px;
   position: relative;
 }
+.bottom-border {
+  border-bottom: 2px solid #efefef;
+}
 .login-form-1 .form-group:last-child {
   border-bottom: 0;
 }
