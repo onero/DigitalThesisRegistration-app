@@ -7,21 +7,14 @@
 <!--</div>-->
 <!--</div>-->
 <!--<br>-->
-<div *ngIf="!loading; else loadingScreen">
+<ngx-loading [show]="loading"></ngx-loading>
   <ng-table [config]="config"
             (tableChanged)="onChangeTable(config)"
             (cellClicked)="onCellClick($event)"
             [rows]="rows" [columns]="columns">
   </ng-table>
-</div>
 
 
-<ng-template #loadingScreen>
-  <div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-    //...
-  </div>
-</ng-template>
 <!--<pagination *ngIf="config.paging"-->
 <!--class="pagination-sm"-->
 <!--[(ngModel)]="page"-->

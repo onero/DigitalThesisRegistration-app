@@ -27,7 +27,7 @@ import { GridOverviewComponent } from './grid-overview/grid-overview.component';
 import {Ng2TableModule} from 'ng2-table';
 import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
-import {LoadingModule} from 'ngx-loading';
+import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import { NewGroupComponent } from './new-group/new-group.component';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -45,7 +45,14 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     Ng2TableModule,
-    LoadingModule
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.rotatingPlane,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
+    })
   ],
   declarations: [ContractsComponent,
     NewContractComponent,

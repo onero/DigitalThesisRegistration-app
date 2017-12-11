@@ -19,7 +19,6 @@ import {JwtInterceptor} from "./shared/jwt.interceptor";
 import {AdminGuard} from "./shared/guards/admin.guard";
 import {GroupGuard} from "./shared/guards/group.guard";
 import {ExecutiveGuard} from './shared/guards/supervisor.guard';
-import {LoadingModule} from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import {LoadingModule} from 'ngx-loading';
     ContractModule,
     FormsModule,
     NgbModule.forRoot(),
-    LoginModule,
-    LoadingModule
+    LoginModule
   ],
   providers: [AuthGuard, AdminGuard, GroupGuard, AuthService, ExecutiveGuard,
     {

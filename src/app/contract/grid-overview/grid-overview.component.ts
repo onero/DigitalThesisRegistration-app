@@ -45,7 +45,7 @@ export class GridOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = false;
+    this.loading = true;
     // Get all ContractGridBOs from backend, called gridData.model
     this.contractService.getGridData().subscribe(gridDatas => {
       this.gridData = gridDatas;

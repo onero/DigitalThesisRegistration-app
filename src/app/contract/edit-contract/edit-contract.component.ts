@@ -23,6 +23,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditContractComponent implements OnInit {
 
+  loading = false;
   isEditable: boolean;
   isGroup: boolean;
   isAdmin: boolean;
@@ -46,6 +47,13 @@ export class EditContractComponent implements OnInit {
               private projectService: ProjectService,
               private supervisorService: SupervisorService,
               private contractService: ContractService) {
+  }
+
+  ngOnInit() {
+    const role = localStorage.getItem('Role');
+    this.executiveUser = role === 'Administrator' || role === 'Supervisor';
+
+    this.loading = true;
     this.initializeEditVariables();
     this.setRole();
     this.isEditable = false;
@@ -57,7 +65,7 @@ export class EditContractComponent implements OnInit {
     this.assignedSupervisor = {firstName: '', lastName: ''};
     this.wantedSupervisor = {firstName: '', lastName: ''};
     // Grabbing the url.
-    route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       // Getting the hashValue from the url. 'contractId' is defined in contract.routing.
       const contractId = params['contractId'];
       // Converting the hashValue to a Contract object.
@@ -75,11 +83,6 @@ export class EditContractComponent implements OnInit {
       console.log('ProjectId: ' + this.project.id);
       // this.populateSupervisors();
     });
-  }
-
-  ngOnInit() {
-    const role = localStorage.getItem('Role');
-    this.executiveUser = role === 'Administrator' || role === 'Supervisor';
   }
 
   initializeEditVariables() {
@@ -113,6 +116,8 @@ export class EditContractComponent implements OnInit {
           this.wantedSupervisor = s;
         });
         console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
+
+        this.loading = false;
       });
 
     }else {
