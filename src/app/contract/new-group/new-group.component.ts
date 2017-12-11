@@ -16,10 +16,14 @@ export class NewGroupComponent implements OnInit {
   // showPasswordMisMatch = false;
 
   constructor(private router: Router, private groupService: GroupService, private fb: FormBuilder) {
+    this.validator();
+  }
+
+  private validator() {
     this.passwordGroup = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(4)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(4)]]
-    // });
+      // });
     }, {validator: this.confirmPasswordMatchPassword});
   }
 
