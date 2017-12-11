@@ -28,6 +28,7 @@ import {Ng2TableModule} from 'ng2-table';
 import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
 import {LoadingModule} from 'ngx-loading';
+import { NewGroupComponent } from './new-group/new-group.component';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -57,7 +58,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectDescriptionComponent,
     ProjectSupervisorComponent,
   GridOverviewComponent,
-  AppendixComponent],
+  AppendixComponent,
+  NewGroupComponent],
   providers: [ContractService,
   StudentService,
   NgbModal,

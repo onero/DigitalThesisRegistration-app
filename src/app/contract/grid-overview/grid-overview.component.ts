@@ -55,26 +55,31 @@ export class GridOverviewComponent implements OnInit {
         const wantedSupervisor = gridData.wantedSupervisor != null ?
           gridData.wantedSupervisor.firstName + ' ' + gridData.wantedSupervisor.lastName :
           '';
-        // Check if wantedSupervisor is set, if not set to informational string
+        // Check if assignedSupervisor is set, if not set to informational string
         const assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
-          'Needs assigned supervisor!';
+          '';
         const supervisorApproved = gridData.contract.supervisorApproved;
         const adminApproved = gridData.contract.adminApproved;
-        let status = 'Not approved';
+        let status = gridData.assignedSupervisor != null ?
+          'Awaiting supervisor approval' :
+          'Needs assigned supervisor';
         if (supervisorApproved && adminApproved) {
           status = 'Fully approved';
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
-        // Add new entry for gridview
-        this.data.push({
-          projectTitle: gridData.project.title,
-          wantedSupervisor: wantedSupervisor,
-          assignedSupervisor: assignedSupervisor,
-          company: gridData.company.name,
-          status: status
-        });
+        const role = localStorage.getItem('Role');
+        if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
+          // Add new entry for gridview
+          this.data.push({
+            projectTitle: gridData.project.title,
+            wantedSupervisor: wantedSupervisor,
+            assignedSupervisor: assignedSupervisor,
+            company: gridData.company.name,
+            status: status
+          });
+        }
         this.onChangeTable(this.config);
         this.loading = false;
       });
@@ -174,6 +179,7 @@ export class GridOverviewComponent implements OnInit {
   public onCellClick(data: any): any {
     const selectedProjectTitle = data.row['projectTitle'];
     const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
+    // TODO ALH: Update to reflect new primary id implementation
     const contract: Contract = {
       project: tempContract.project,
       supervisorApproved: tempContract.supervisorApproved,
