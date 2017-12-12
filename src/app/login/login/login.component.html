@@ -7,7 +7,7 @@
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <div class="text-center" style="padding:50px 0">
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div class="logo">Login</div>
 
     <!-- Main Form -->
@@ -17,15 +17,30 @@
         <!--Username-->
         <div class="form-group">
           <input (keyup)="loginOnEnter($event, username.value, password.value)"
-                 type="text" class="form-control" placeholder="Username" #username>
+            type="text" class="form-control" id="username" placeholder="Username"
+                 required
+                 [(ngModel)]="user.username" name="username"
+                 #username="ngModel">
+          <div [hidden]="username.valid || username.pristine"
+               class="alert alert-warning">
+          <div [hidden]="!username.hasError('required')">Please enter <strong>username</strong></div>
+        </div>
         </div>
 
         <!--Password-->
         <div class="form-group">
           <input (keyup)="loginOnEnter($event, username.value, password.value)"
-                 type="password" class="form-control" placeholder="Password" #password>
+                 type="password" class="form-control" id="password" placeholder="Password"
+                 required
+                 [(ngModel)]="user.password" name="password"
+                 #password="ngModel">
+          <div [hidden]="password.valid || password.pristine"
+               class="alert alert-warning">
+            <div [hidden]="!password.hasError('required')">Please enter a <strong>password</strong></div>
+          </div>
         </div>
-        <button type="submit" class="login-button" (click)="login(username.value, password.value)">OK</button>
+        <button type="submit" class="login-button" (click)="login(username.value, password.value)"
+        [disabled]="!loginForm.form.valid">OK</button>
       </div>
 
       <div class="etc-login-form">

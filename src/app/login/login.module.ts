@@ -3,12 +3,22 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import {loginRoutes} from './login.routing';
 import {LoginService} from './shared/login.service';
+import {ValidateDirective} from './login/validate.directive';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    loginRoutes
+    loginRoutes,
+    FormsModule,
+    HttpModule
   ],
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+    ValidateDirective
+  ],
   providers: [LoginService]
 })
 export class LoginModule { }
