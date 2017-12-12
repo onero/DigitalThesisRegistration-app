@@ -2,12 +2,15 @@ import { Directive, forwardRef, Attribute } from '@angular/core';
 import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Directive({
-  selector: '[validateEqual][formControlName],[formControl],[ngModel]',
+  selector: '[validateEqual]' +
+  '[formControlName],' +
+  '[formControl],' +
+  '[ngModel]',
   providers: [
-    { provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualValidator), multi: true }
+    { provide: NG_VALIDATORS, useExisting: forwardRef(() => ValidateDirective), multi: true }
   ]
 })
-export class EqualValidator implements Validator {
+export class ValidateDirective implements Validator {
   constructor( @Attribute('validateEqual') public validateEqual: string) {}
 
   validate(AC: AbstractControl): { [key: string]: any } {

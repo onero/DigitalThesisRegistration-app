@@ -1,55 +1,4 @@
 
-<!--&lt;!&ndash; All the files that are required &ndash;&gt;-->
-<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
-<!--<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>-->
-<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />-->
-
-<!--&lt;!&ndash; REGISTRATION FORM &ndash;&gt;-->
-<!--<div class="text-center" style="padding:50px 0">-->
-  <!--<div class="logo">Register group</div>-->
-  <!--&lt;!&ndash; Main Form &ndash;&gt;-->
-  <!--<div class="login-form-1">-->
-    <!--<form class="text-left" [formGroup]="passwordGroup">-->
-      <!--<div class="main-login-form">-->
-        <!--<div class="login-group">-->
-
-          <!--<div class="form-group">-->
-            <!--<input type="text" class="form-control" placeholder="Group email" #contactEmail>-->
-          <!--</div>-->
-          <!--&lt;!&ndash;Password&ndash;&gt;-->
-          <!--<div class="form-group">-->
-            <!--<div class="bottom-border">-->
-              <!--<label for="reg_password" class="sr-only">Password</label>-->
-              <!--<input type="password" class="form-control"-->
-                     <!--id="reg_password" name="reg_password" placeholder="password"-->
-                     <!--formControlName="password" #password>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;Confirm password&ndash;&gt;-->
-            <!--<label for="reg_password_confirm" class="sr-only">Password Confirm</label>-->
-            <!--<input type="password" class="form-control"-->
-                   <!--id="reg_password_confirm" name="reg_password_confirm"-->
-                   <!--placeholder="confirm password"-->
-                   <!--formControlName="confirmPassword" validateEqual="req_password" #req_password_confirm>-->
-          <!--</div>-->
-          <!--<div class="form-group"></div>-->
-          <!--<div *ngIf="" class="alert alert-danger">Password don't match</div>-->
-        <!--</div>-->
-
-        <!--<button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>-->
-      <!--</div>-->
-      <!--<div class="etc-login-form form-group">-->
-        <!--<p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>-->
-      <!--</div>-->
-    <!--</form>-->
-
-  <!--</div>-->
-  <!--&lt;!&ndash; end:Main Form &ndash;&gt;-->
-<!--</div>-->
-
-
-
-
 
 <div class="text-center col-md-4 center-div" style="padding:50px 0">
   <div class="logo">Register group</div>
@@ -96,10 +45,14 @@
              class="alert alert-danger">
           Passwords did not match
         </div>
+
+        <!--Create button-->
         <button type="submit" class="login-button" (click)="create(email.value)"
                 [disabled]="!loginForm.form.valid">OK</button>
       </div>
     </div>
+
+    <!--Already got a login-->
     <div class="etc-login-form form-group">
       <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
     </div>

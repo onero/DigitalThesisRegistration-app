@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Directive, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContractsComponent } from './contracts/contracts.component';
 import {contractRoutes} from './contract.routing';
@@ -29,8 +29,8 @@ import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
 import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import { NewGroupComponent } from './new-group/new-group.component';
-import {EqualValidator} from "./new-group/password.match.directive";
-import {HttpModule} from "@angular/http";
+import {ValidateDirective} from './new-group/validate.directive';
+import {HttpModule} from '@angular/http';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -70,7 +70,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     GridOverviewComponent,
     AppendixComponent,
     NewGroupComponent,
-    EqualValidator
+    ValidateDirective,
   ],
   providers: [ContractService,
     StudentService,
