@@ -16,8 +16,7 @@
 
         <!--Username-->
         <div class="form-group">
-          <input (keyup)="loginOnEnter($event, username.value, password.value)"
-            type="text" class="form-control" id="username" placeholder="Username"
+          <input type="text" class="form-control" id="username" placeholder="Username"
                  required
                  [(ngModel)]="user.username" name="username"
                  #username="ngModel">
@@ -29,8 +28,7 @@
 
         <!--Password-->
         <div class="form-group">
-          <input (keyup)="loginOnEnter($event, username.value, password.value)"
-                 type="password" class="form-control" id="password" placeholder="Password"
+          <input type="password" class="form-control" id="password" placeholder="Password"
                  required
                  [(ngModel)]="user.password" name="password"
                  #password="ngModel">

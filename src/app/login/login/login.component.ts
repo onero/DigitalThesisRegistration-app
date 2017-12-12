@@ -22,12 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginOnEnter($event, userName: string, password: string) {
-    if ($event.code === 'Enter') {
-      this.login(userName, password);
-    }
-  }
-
   login(userName: string, password: string) {
     const user: User = {username: userName, password: password, group: {id: 0, contactEmail: '', students: []}};
     this.loginService.validateUser(user).subscribe(u => {
