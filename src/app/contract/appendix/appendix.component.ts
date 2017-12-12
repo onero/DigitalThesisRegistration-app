@@ -8,9 +8,8 @@ import {AppendixService} from '../../shared/appendix.service';
   styleUrls: ['./appendix.component.css']
 })
 export class AppendixComponent implements OnInit {
-  public conditionCollapsed = true;
-  public resourcesCollapsed = true;
   appendix: Appendix;
+
   constructor(private appendixService: AppendixService) { }
 
   ngOnInit() {
