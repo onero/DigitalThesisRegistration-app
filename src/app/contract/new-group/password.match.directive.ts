@@ -10,15 +10,15 @@ import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } fr
 export class EqualValidator implements Validator {
   constructor( @Attribute('validateEqual') public validateEqual: string) {}
 
-  validate(c: AbstractControl): { [key: string]: any } {
+  validate(AC: AbstractControl): { [key: string]: any } {
     // self value (e.g. retype password)
-    const v = c.value;
+    const value = AC.value;
 
     // control value (e.g. password)
-    const e = c.root.get(this.validateEqual);
+    const equal = AC.root.get(this.validateEqual);
 
     // value not equal
-    if (e && v !== e.value) {
+    if (equal && value !== equal.value) {
       return {
         validateEqual: false
       };
