@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GroupService} from '../shared/group.service';
 import {Router} from '@angular/router';
-import {UserModel} from './user.model';
+import {UserModel} from '../shared/user.model';
 
 @Component({
   selector: 'app-new-group',
@@ -10,7 +10,7 @@ import {UserModel} from './user.model';
 })
 export class NewGroupComponent implements OnInit {
 
-  model = new UserModel('', '', '');
+  user = new UserModel('', '', '');
   submitted = false;
 
   onSubmit() {this.submitted = true; }

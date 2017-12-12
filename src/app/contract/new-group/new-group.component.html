@@ -9,7 +9,7 @@
       <div class="form-group">
         <input type="text" class="form-control" id="emailaddress" placeholder="Email Address"
                required
-               [(ngModel)]="model.email" name="email"
+               [(ngModel)]="user.email" name="email"
                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                #email="ngModel">
         <div [hidden]="email.valid || email.pristine"
@@ -25,7 +25,7 @@
                id="password" placeholder="Password"
                required
                minlength="4"
-               [(ngModel)]="model.password" name="password"
+               [(ngModel)]="user.password" name="password"
                #password="ngModel">
         <div [hidden]="password.valid || password.pristine"
              class="alert alert-danger">
@@ -39,7 +39,7 @@
                id="confirmPassword" placeholder="Confirm Password"
                required
                validateEqual="password"
-               [(ngModel)]="model.confirmPassword" name="confirmPassword"
+               [(ngModel)]="user.confirmPassword" name="confirmPassword"
                #confirmPassword="ngModel">
         <div [hidden]="confirmPassword.valid || confirmPassword.pristine"
              class="alert alert-danger">
@@ -66,11 +66,11 @@
   <!--<table class="table" [hidden]="!submitted">-->
     <!--<tr>-->
       <!--<td><label>Email</label></td>-->
-      <!--<td>{{model.email}}</td>-->
+      <!--<td>{{user.email}}</td>-->
     <!--</tr>-->
     <!--<tr>-->
       <!--<td><label>Password</label></td>-->
-      <!--<td>{{model.password}}</td>-->
+      <!--<td>{{user.password}}</td>-->
     <!--</tr>-->
   <!--</table>-->
 <!--</div>-->
