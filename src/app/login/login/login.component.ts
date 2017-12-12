@@ -3,6 +3,7 @@ import {User} from '../shared/user.model';
 import {LoginService} from '../shared/login.service';
 import {Router} from '@angular/router';
 import {ContractService} from '../../contract/shared/contract.service';
+import {LoginModel} from '../shared/login.model';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,11 @@ import {ContractService} from '../../contract/shared/contract.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  user = new LoginModel('', '');
+  submitted = false;
+
+  onSubmit() { this.submitted = true; }
 
   constructor(private loginService: LoginService, private router: Router, private contractService: ContractService) { }
 
