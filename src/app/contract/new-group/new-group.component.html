@@ -75,11 +75,12 @@
         <input type="password" class="form-control"
                id="password" placeholder="Password"
                required
+               minlength="4"
                [(ngModel)]="model.password" name="password"
                #password="ngModel">
         <div [hidden]="password.valid || password.pristine"
              class="alert alert-danger">
-          Password is required
+          At least 4 characters
         </div>
       </div>
 
@@ -104,15 +105,19 @@
     </div>
   </form>
 </div>
-<div class="col-md-6">
-  <table class="table" [hidden]="!submitted">
-    <tr>
-      <td><label>Email</label></td>
-      <td>{{model.email}}</td>
-    </tr>
-    <tr>
-      <td><label>Password</label></td>
-      <td>{{model.password}}</td>
-    </tr>
-  </table>
-</div>
+
+<!--Shows the email and password-->
+<!--Shall be DELETED!-->
+
+<!--<div class="col-md-6">-->
+  <!--<table class="table" [hidden]="!submitted">-->
+    <!--<tr>-->
+      <!--<td><label>Email</label></td>-->
+      <!--<td>{{model.email}}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><label>Password</label></td>-->
+      <!--<td>{{model.password}}</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->
