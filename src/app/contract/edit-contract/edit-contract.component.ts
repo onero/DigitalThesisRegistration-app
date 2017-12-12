@@ -137,9 +137,9 @@ export class EditContractComponent implements OnInit {
     }
   }
 
-  isGroupLoggedIn(): boolean {
+  isLoggedIn(roleToCheck: string): boolean {
     const role = localStorage.getItem('Role');
-    if (role === 'Group') {
+    if (role === roleToCheck) {
       return true;
     }
     return false;
