@@ -2,8 +2,8 @@
 <div class="container">
   <hr>
   <div class="row top-margin">
-    <div class="col-md-4" *ngIf="isGroupLoggedIn()"></div>
-    <div class="col-md-4" *ngIf="!isGroupLoggedIn()">
+    <div class="col-md-4" *ngIf="isLoggedIn('Group')"></div>
+    <div class="col-md-4" *ngIf="!isLoggedIn('Group')">
       <i class="fa fa-arrow-circle-left" style="font-size: 50px" aria-hidden="true" routerLink="/contracts"></i>
     </div>
     <div class="col-md-4">
@@ -44,6 +44,12 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <div *ngIf="executiveUser; else GroupEditing">
+        <div *ngIf="project.assignedSupervisorId == null && isLoggedIn('Supervisor'); else ApproveUnapprove">
+          <br>
+          <p style="font-size: 30px" align="center"><b>Can't approve<br>No supervisor assigned yet</b></p>
+        </div>
+      </div>
+      <ng-template #ApproveUnapprove>
         <div *ngIf="ExecutiveApproved(); else unapprove">
           <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
         </div>
@@ -55,7 +61,7 @@
         <ng-template #unavailable>
           <button type="button" class="ApproveButton btn btn-secondary btn-lg btn-block">Not approved by Supervisor</button>
         </ng-template>
-      </div>
+      </ng-template>
       <ng-template #GroupEditing>
         <div *ngIf="isEditable; else goToEdit">
           <button class="btn btn-outline-danger groupEditButton" (click)="setIsEditable(); cancelChanges()">Cancel</button>

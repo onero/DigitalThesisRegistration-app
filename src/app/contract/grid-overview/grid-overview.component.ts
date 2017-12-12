@@ -65,12 +65,12 @@ export class GridOverviewComponent implements OnInit {
           'Awaiting supervisor approval' :
           'Needs assigned supervisor';
         if (supervisorApproved && adminApproved) {
-          status = 'Fully approved';
+          status = 'Final approved';
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
         const role = localStorage.getItem('Role');
-        if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
+        // if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
           // Add new entry for gridview
           this.data.push({
             projectTitle: gridData.project.title,
@@ -79,7 +79,7 @@ export class GridOverviewComponent implements OnInit {
             company: gridData.company.name,
             status: status
           });
-        }
+        // }
         this.onChangeTable(this.config);
         this.loading = false;
       });
