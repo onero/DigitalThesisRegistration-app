@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class GridOverviewComponent implements OnInit {
 
-  loading = false;
+
   gridData: GridData[];
   data = [];
 
@@ -45,8 +45,7 @@ export class GridOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true;
-    // Get all ContractGridBOs from backend, called gridData.user
+    // Get all ContractGridBOs from backend, called gridData.model
     this.contractService.getGridData().subscribe(gridDatas => {
       this.gridData = gridDatas;
       // For each ContractBO
@@ -65,12 +64,12 @@ export class GridOverviewComponent implements OnInit {
           'Awaiting supervisor approval' :
           'Needs assigned supervisor';
         if (supervisorApproved && adminApproved) {
-          status = 'Final approved';
+          status = 'Fully approved';
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
         const role = localStorage.getItem('Role');
-        // if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
+        if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
           // Add new entry for gridview
           this.data.push({
             projectTitle: gridData.project.title,
@@ -79,9 +78,8 @@ export class GridOverviewComponent implements OnInit {
             company: gridData.company.name,
             status: status
           });
-        // }
+        }
         this.onChangeTable(this.config);
-        this.loading = false;
       });
     });
   }
