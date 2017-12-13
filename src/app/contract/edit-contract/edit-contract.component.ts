@@ -173,9 +173,10 @@ export class EditContractComponent implements OnInit {
     const role = localStorage.getItem('Role');
     if (role === 'Supervisor') {
       this.contract.supervisorApproved = !this.contract.supervisorApproved;
-      console.log('Contract supervisorApproved before ' + this.contract.supervisorApproved);
+      if (this.contract.supervisorApproved === false) {
+        this.contract.adminApproved = false;
+      }
       this.contractService.update(this.contract).subscribe(c => {
-        console.log('Contract supervisorApproved after: ' + c.supervisorApproved);
         this.contract.supervisorApproved = c.supervisorApproved;
       });
     } else {
