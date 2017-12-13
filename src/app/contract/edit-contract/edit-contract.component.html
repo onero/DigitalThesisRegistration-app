@@ -44,7 +44,7 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <div *ngIf="executiveUser; else GroupEditing">
-        <div *ngIf="project.assignedSupervisorId == null && isLoggedIn('Supervisor'); else showApproveOrUnapproveButton">
+        <div *ngIf="project.assignedSupervisorId == null; else showApproveOrUnapproveButton">
           <br>
           <p style="font-size: 30px" align="center"><b>Can't approve<br>No supervisor assigned yet</b></p>
         </div>
@@ -59,7 +59,7 @@
           <!--If the user is an admin, then it depends on the supervisor approval of the contract.
               If the contract is not approved by a supervisor, the approve button should not be available.
               if the user is a supervisor, it should always show approve.-->
-          <div *ngIf="isSupervisorApproved() && isRoleAdmin(); else displayNeedSupervisorApprovalButton">
+          <div *ngIf="IsSupervisor() || isSupervisorApproved(); else displayNeedSupervisorApprovalButton">
             <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
           </div>
         </ng-template>
