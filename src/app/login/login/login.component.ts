@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../shared/user.model';
 import {LoginService} from '../shared/login.service';
 import {Router} from '@angular/router';
-import {Contract} from '../../contract/shared/contract.model';
 import {ContractService} from '../../contract/shared/contract.service';
 
 @Component({
@@ -17,6 +16,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  loginOnEnter($event, userName: string, password: string) {
+    if ($event.code === 'Enter') {
+      this.login(userName, password);
+    }
+  }
 
   login(userName: string, password: string) {
     const user: User = {username: userName, password: password, group: {id: 0, contactEmail: '', students: []}};
@@ -49,12 +53,6 @@ export class LoginComponent implements OnInit {
               console.log('ProjectId from login right before hashing: ' + c.projectId);
               const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
               this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
-            }else {
-              // console.log('Username: ' + user.username);
-              // localStorage.setItem('GroupMail', user.username);
-              // localStorage.setItem('GroupId', user.group.id + '');
-              // console.log('Redirect to new Contract');
-              // this.router.navigateByUrl('contracts/newContract');
             }
           });
           break;

@@ -83,13 +83,19 @@ export class NewContractComponent implements OnInit {
     if (this.isProjectInfoAdded) {
       this.projectService.create(this.project).subscribe(p => {
         contract.projectId = p.id;
-        this.contractService.createContract(contract).subscribe(() => {
-            this.router.navigateByUrl('home');
+        this.contractService.createContract(contract).subscribe( c => {
+          const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
+          // This is where we change the url. We append the hashedValue to the end of the url.
+          this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
           });
       });
     } else {
       this.contractService.createContract(contract).subscribe(() => {
-        this.router.navigateByUrl('home');
+        this.contractService.createContract(contract).subscribe( c => {
+          const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
+          // This is where we change the url. We append the hashedValue to the end of the url.
+          this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
+        });
       });
     }
   }
