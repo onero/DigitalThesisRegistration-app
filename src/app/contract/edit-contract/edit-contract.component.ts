@@ -52,7 +52,7 @@ export class EditContractComponent implements OnInit {
   ngOnInit() {
     const role = localStorage.getItem('Role');
     this.executiveUser = role === 'Administrator' || role === 'Supervisor';
-
+    console.log('We have executive user ' + this.executiveUser);
     this.loading = true;
     this.initializeEditVariables();
     this.setRole();
@@ -77,9 +77,6 @@ export class EditContractComponent implements OnInit {
       this.populateGroup();
       this.populateCompany();
       this.populateProject();
-      // this.project = contract.project;
-      console.log('ProjectId: ' + this.project.id);
-      // this.populateSupervisors();
     });
   }
 
@@ -173,12 +170,14 @@ export class EditContractComponent implements OnInit {
     }
   }
 
-  SupervisorApproved() {
-    if (localStorage.getItem('Role') === 'Administrator') {
+  isSupervisorApproved() {
+    console.log('Is supervisor approved ' + this.contract.supervisorApproved);
       return this.contract.supervisorApproved;
-    } else {
-      return true;
-    }
+  }
+
+  IsSupervisor() {
+    console .log('Is supervisor ' + localStorage.getItem('Role') === 'Supervisor');
+    return (localStorage.getItem('Role') === 'Supervisor');
   }
 
   ExecutiveApproved() {
@@ -186,7 +185,8 @@ export class EditContractComponent implements OnInit {
     if (role === 'Supervisor') {
       return this.contract.supervisorApproved;
     } else {
-      return this.contract.adminApproved;
+      console.log('Contract is both Super- & adminapproved ' + this.contract.supervisorApproved && this.contract.adminApproved);
+      return this.contract.supervisorApproved && this.contract.adminApproved;
     }
   }
 

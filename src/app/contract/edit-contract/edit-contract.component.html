@@ -44,21 +44,26 @@
   <div class="row bottom-margin">
     <div class="col-md-7">
       <div *ngIf="executiveUser; else GroupEditing">
-        <div *ngIf="project.assignedSupervisorId == null && isLoggedIn('Supervisor'); else ApproveUnapprove">
+        <div *ngIf="project.assignedSupervisorId == null; else showApproveOrUnapproveButton">
           <br>
           <p style="font-size: 30px" align="center"><b>Can't approve<br>No supervisor assigned yet</b></p>
         </div>
       </div>
-      <ng-template #ApproveUnapprove>
-        <div *ngIf="ExecutiveApproved(); else unapprove">
+      <ng-template #showApproveOrUnapproveButton>
+        <!--First checks which role the executive is, then checks if the contract is approved by that role. The button
+            is set to Unapprove if it's already approved, and vice versa, so that one can undo the approval-->
+        <div *ngIf="ExecutiveApproved(); else displayApproveButton">
           <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-danger btn-lg btn-block">Unapprove</button>
         </div>
-        <ng-template #unapprove>
-          <div *ngIf="SupervisorApproved(); else unavailable">
+        <ng-template #displayApproveButton>
+          <!--If the user is an admin, then it depends on the supervisor approval of the contract.
+              If the contract is not approved by a supervisor, the approve button should not be available.
+              if the user is a supervisor, it should always show approve.-->
+          <div *ngIf="IsSupervisor() || isSupervisorApproved(); else displayNeedSupervisorApprovalButton">
             <button (click)="UpdateApproveStatus()" type="button" class="ApproveButton btn btn-success btn-lg btn-block">Approve</button>
           </div>
         </ng-template>
-        <ng-template #unavailable>
+        <ng-template #displayNeedSupervisorApprovalButton>
           <button type="button" class="ApproveButton btn btn-secondary btn-lg btn-block">Not approved by Supervisor</button>
         </ng-template>
       </ng-template>

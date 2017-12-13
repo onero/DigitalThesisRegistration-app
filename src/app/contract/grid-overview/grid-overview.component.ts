@@ -180,6 +180,8 @@ export class GridOverviewComponent implements OnInit {
     const selectedProjectTitle = data.row['projectTitle'];
     const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
     const contract: Contract = {
+      supervisorApproved: tempContract.supervisorApproved,
+      adminApproved: tempContract.adminApproved,
       projectId: tempContract.projectId,
       groupId: tempContract.groupId,
       companyId: tempContract.companyId
