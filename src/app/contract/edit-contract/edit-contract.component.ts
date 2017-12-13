@@ -188,13 +188,16 @@ export class EditContractComponent implements OnInit {
     }
   }
 
-  SupervisorApproved() {
+  isSupervisorApproved() {
     if (localStorage.getItem('Role') === 'Administrator') {
-      console.log('hello hello ' + this.contract.supervisorApproved)
       return this.contract.supervisorApproved;
     } else {
       return true;
     }
+  }
+
+  isRoleAdmin() {
+    return (localStorage.getItem('Role') === 'Administrator');
   }
 
   ExecutiveApproved() {
