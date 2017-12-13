@@ -69,7 +69,7 @@ export class GridOverviewComponent implements OnInit {
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
-        const role = localStorage.getItem('Role');
+        // const role = localStorage.getItem('Role');
         // if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
           // Add new entry for gridview
           this.data.push({
@@ -179,11 +179,7 @@ export class GridOverviewComponent implements OnInit {
   public onCellClick(data: any): any {
     const selectedProjectTitle = data.row['projectTitle'];
     const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
-    // TODO ALH: Update to reflect new primary id implementation
     const contract: Contract = {
-      project: tempContract.project,
-      supervisorApproved: tempContract.supervisorApproved,
-      adminApproved: tempContract.adminApproved,
       projectId: tempContract.projectId,
       groupId: tempContract.groupId,
       companyId: tempContract.companyId
