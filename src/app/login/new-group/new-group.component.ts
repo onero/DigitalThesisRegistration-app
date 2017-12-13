@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {GroupService} from '../shared/group.service';
+// import {GroupService} from '../shared/group.service';
 import {Router} from '@angular/router';
-import {UserModel} from '../shared/user.model';
+import {UserModel} from '../../contract/shared/user.model';
+import {LoginService} from '../shared/login.service';
 
 @Component({
   selector: 'app-new-group',
@@ -15,15 +16,16 @@ export class NewGroupComponent implements OnInit {
 
   onSubmit() {this.submitted = true; }
 
-  constructor(private router: Router, private groupService: GroupService) {
+  constructor(private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit() {
   }
 
-  create(email: string) {
-    this.groupService.create(email).subscribe();
-    this.router.navigateByUrl('login');
+  create() {
+    this.loginService.createGroup(this.user).subscribe(user => {
+      this.router.navigateByUrl('login');
+    });
   }
 
 }

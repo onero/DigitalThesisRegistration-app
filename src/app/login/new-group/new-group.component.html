@@ -9,7 +9,7 @@
       <div class="form-group">
         <input type="text" class="form-control" id="emailaddress" placeholder="Email Address"
                required
-               [(ngModel)]="user.email" name="email"
+               [(ngModel)]="user.username" name="email"
                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                #email="ngModel">
         <div [hidden]="email.valid || email.pristine"
@@ -47,7 +47,7 @@
         </div>
 
         <!--Create button-->
-        <button type="submit" class="login-button" (click)="create(email.value)"
+        <button type="submit" class="login-button" (click)="create()"
                 [disabled]="!loginForm.form.valid">OK</button>
       </div>
     </div>
@@ -59,14 +59,14 @@
   </form>
 </div>
 
-<!--Shows the email and password-->
+<!--Shows the username and password-->
 <!--Shall be DELETED!-->
 
 <!--<div class="col-md-6">-->
   <!--<table class="table" [hidden]="!submitted">-->
     <!--<tr>-->
       <!--<td><label>Email</label></td>-->
-      <!--<td>{{user.email}}</td>-->
+      <!--<td>{{user.username}}</td>-->
     <!--</tr>-->
     <!--<tr>-->
       <!--<td><label>Password</label></td>-->

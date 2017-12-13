@@ -28,8 +28,8 @@ import {Ng2TableModule} from 'ng2-table';
 import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
 import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
-import { NewGroupComponent } from './new-group/new-group.component';
-import {ValidateDirective} from './new-group/validate.directive';
+import { NewGroupComponent } from '../login/new-group/new-group.component';
+import {ValidateDirective} from '../login/new-group/validate.directive';
 import {HttpModule} from '@angular/http';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -68,9 +68,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectDescriptionComponent,
     ProjectSupervisorComponent,
     GridOverviewComponent,
-    AppendixComponent,
-    NewGroupComponent,
-    ValidateDirective,
+    AppendixComponent
   ],
   providers: [ContractService,
     StudentService,
