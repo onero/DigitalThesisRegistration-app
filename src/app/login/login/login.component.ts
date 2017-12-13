@@ -30,29 +30,40 @@ export class LoginComponent implements OnInit {
       if (u.role === 'Group') {
         user.group.id = u.group.id;
       }
-      localStorage.setItem('Token', u.token);
-      localStorage.setItem('LoggedIn', 'true');
-      localStorage.setItem('Role', u.role);
+      this.setUserInLocalStorage(u);
 
       switch (user.role) {
         case 'Administrator':
-          this.router.navigateByUrl('contracts');
+          this.goToContracts();
           break;
         case 'Supervisor':
-          this.router.navigateByUrl('contracts');
+          this.goToContracts();
           break;
         case 'Group':
-          localStorage.setItem('GroupMail', user.username);
-          localStorage.setItem('GroupId', user.group.id + '');
-          this.contractService.getContractByGroupId(user.group.id).subscribe(c => {
-            if (c.projectId !== 0 && c.companyId !== 0) {
-              const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
-              this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
-            }
-          });
+          this.groupLogin(user);
           break;
       }
     });
   }
 
+  setUserInLocalStorage(u) {
+    localStorage.setItem('Token', u.token);
+    localStorage.setItem('LoggedIn', 'true');
+    localStorage.setItem('Role', u.role);
+  }
+
+  goToContracts() {
+    this.router.navigateByUrl('contracts');
+  }
+
+  groupLogin(user: User) {
+    localStorage.setItem('GroupMail', user.username);
+    localStorage.setItem('GroupId', user.group.id + '');
+    this.contractService.getContractByGroupId(user.group.id).subscribe(c => {
+      if (c.projectId !== 0 && c.companyId !== 0) {
+        const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
+        this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
+      }
+    });
+  }
 }
