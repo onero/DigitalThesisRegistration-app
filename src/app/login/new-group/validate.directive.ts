@@ -15,14 +15,6 @@ export class ValidateDirective implements Validator {
   }
 
   validate(AC: AbstractControl): { [key: string]: any } {
-    // self value (e.g. retype password)
-    const value = AC.value;
-
-    // control value (e.g. password)
-    const equal = AC.root.get(this.validateEqual);
-
-    // value not equal
-    if (equal && value !== equal.value) {
       // self value (e.g. retype password) - Gets the currentPassword from input.
       const confirmPassword = AC.value;
       // control value (e.g. password) - Gets the password from validateEqual in confirmPassword input.
@@ -38,5 +30,4 @@ export class ValidateDirective implements Validator {
       // The password and conformPassword is the same.
       return null;
     }
-  }
 }
