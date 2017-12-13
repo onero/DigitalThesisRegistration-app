@@ -75,6 +75,9 @@ a:hover {
   padding-right: 20px;
   position: relative;
 }
+.top-border {
+  border-top: 2.5px solid #efefef;
+}
 .bottom-border {
   border-bottom: 2px solid #efefef;
 }
