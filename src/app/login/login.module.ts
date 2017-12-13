@@ -5,6 +5,8 @@ import {loginRoutes} from './login.routing';
 import {LoginService} from './shared/login.service';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {ValidateDirective} from './new-group/validate.directive';
+import {NewGroupComponent} from './new-group/new-group.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import {HttpModule} from '@angular/http';
   ],
   declarations: [
     LoginComponent,
+    NewGroupComponent,
+    ValidateDirective,
   ],
   providers: [LoginService]
 })
