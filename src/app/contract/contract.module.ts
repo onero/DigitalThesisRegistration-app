@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Directive, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContractsComponent } from './contracts/contracts.component';
 import {contractRoutes} from './contract.routing';
@@ -27,7 +27,10 @@ import { GridOverviewComponent } from './grid-overview/grid-overview.component';
 import {Ng2TableModule} from 'ng2-table';
 import { AppendixComponent } from './appendix/appendix.component';
 import {AppendixService} from '../shared/appendix.service';
+import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import { NewGroupComponent } from './new-group/new-group.component';
+import {ValidateDirective} from './new-group/validate.directive';
+import {HttpModule} from '@angular/http';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -43,7 +46,16 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     NgbModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
-    Ng2TableModule
+    Ng2TableModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.rotatingPlane,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
+    }),
+    HttpModule
   ],
   declarations: [ContractsComponent,
     NewContractComponent,
@@ -55,17 +67,19 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectPeriodComponent,
     ProjectDescriptionComponent,
     ProjectSupervisorComponent,
-  GridOverviewComponent,
-  AppendixComponent,
-  NewGroupComponent],
+    GridOverviewComponent,
+    AppendixComponent,
+    NewGroupComponent,
+    ValidateDirective,
+  ],
   providers: [ContractService,
-  StudentService,
-  NgbModal,
-  NgbModalStack,
-  GroupService,
-  CompanyService,
-  SupervisorService,
-  ProjectService,
-  AppendixService]
+    StudentService,
+    NgbModal,
+    NgbModalStack,
+    GroupService,
+    CompanyService,
+    SupervisorService,
+    ProjectService,
+    AppendixService]
 })
 export class ContractModule { }
