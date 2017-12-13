@@ -23,11 +23,7 @@ export class NewGroupComponent implements OnInit {
   }
 
   create() {
-    // this.groupService.create(username).subscribe();
-
-    console.log('username: ' + this.user.username + ' password: ' + this.user.password);
     this.loginService.createGroup(this.user).subscribe(user => {
-      console.log('Group created');
       this.router.navigateByUrl('login');
     });
   }

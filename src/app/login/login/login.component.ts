@@ -36,28 +36,21 @@ export class LoginComponent implements OnInit {
 
       switch (user.role) {
         case 'Administrator':
-          console.log('Admin login');
           this.router.navigateByUrl('contracts');
           break;
         case 'Supervisor':
-          console.log('Supervisor login');
           this.router.navigateByUrl('contracts');
           break;
         case 'Group':
-          console.log('Group login. Id: ' + user.group.id);
           localStorage.setItem('GroupMail', user.username);
           localStorage.setItem('GroupId', user.group.id + '');
           this.contractService.getContractByGroupId(user.group.id).subscribe(c => {
             if (c.projectId !== 0 && c.companyId !== 0) {
-              console.log('GroupId from login: ' + user.group.id);
-              console.log('ProjectId from login right before hashing: ' + c.projectId);
               const hashedValueOfTheContractObject = btoa(JSON.stringify(c));
               this.router.navigate(['contracts/editContract', hashedValueOfTheContractObject]);
             }
           });
           break;
-        default:
-          console.log('Cant find the login');
       }
     });
   }
