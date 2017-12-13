@@ -1,37 +1,76 @@
 
-<!-- All the files that are required -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<!-- REGISTRATION FORM -->
-<div class="text-center" style="padding:50px 0">
+<div class="text-center col-md-4 center-div" style="padding:50px 0">
   <div class="logo">Register group</div>
-  <!-- Main Form -->
-  <div class="login-form-1">
-    <form class="text-left">
-      <div class="main-login-form">
-        <div class="login-group">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="login-form-1">
 
-          <!--&lt;!&ndash;Password for later use&ndash;&gt;-->
-          <!--<div class="form-group">-->
-          <!--<label for="reg_password_confirm" class="sr-only">Password Confirm</label>-->
-          <!--<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">-->
-          <!--</div>-->
-
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Group email" #contactEmail>
-          </div>
-          <div class="form-group"></div>
+      <!--Email Address-->
+      <div class="form-group">
+        <input type="text" class="form-control" id="emailaddress" placeholder="Email Address"
+               required
+               [(ngModel)]="user.email" name="email"
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-warning">
+          <div [hidden]="!email.hasError('required')">Email is required</div>
+          <div [hidden]="!email.hasError('pattern')">Require:  <small><b>@example.com</b></small></div>
         </div>
-        <button type="submit" class="login-button" (click)="create(contactEmail.value)"><i class="fa fa-chevron-right"></i></button>
       </div>
-      <div class="etc-login-form form-group">
-        <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
+
+      <!--Password-->
+      <div class="form-group">
+        <input type="password" class="form-control"
+               id="password" placeholder="Password"
+               required
+               minlength="4"
+               [(ngModel)]="user.password" name="password"
+               #password="ngModel">
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          At least 4 characters
+        </div>
       </div>
-    </form>
-  </div>
-  <!-- end:Main Form -->
+
+      <!--Comfirm Password-->
+      <div class="form-group">
+        <input type="password" class="form-control"
+               id="confirmPassword" placeholder="Confirm Password"
+               required
+               validateEqual="password"
+               [(ngModel)]="user.confirmPassword" name="confirmPassword"
+               #confirmPassword="ngModel">
+        <div [hidden]="confirmPassword.valid || confirmPassword.pristine"
+             class="alert alert-danger">
+          Passwords did not match
+        </div>
+
+        <!--Create button-->
+        <button type="submit" class="login-button" (click)="create(email.value)"
+                [disabled]="!loginForm.form.valid">OK</button>
+      </div>
+    </div>
+
+    <!--Already got a login-->
+    <div class="etc-login-form form-group">
+      <p>Already have a group? <a href="#" routerLink="/login">Login here</a></p>
+    </div>
+  </form>
 </div>
 
+<!--Shows the email and password-->
+<!--Shall be DELETED!-->
+
+<!--<div class="col-md-6">-->
+  <!--<table class="table" [hidden]="!submitted">-->
+    <!--<tr>-->
+      <!--<td><label>Email</label></td>-->
+      <!--<td>{{user.email}}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td><label>Password</label></td>-->
+      <!--<td>{{user.password}}</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->

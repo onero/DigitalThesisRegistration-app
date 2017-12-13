@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class GridOverviewComponent implements OnInit {
 
-
+  loading = false;
   gridData: GridData[];
   data = [];
 
@@ -45,7 +45,8 @@ export class GridOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get all ContractGridBOs from backend, called gridData.model
+    this.loading = true;
+    // Get all ContractGridBOs from backend, called gridData.user
     this.contractService.getGridData().subscribe(gridDatas => {
       this.gridData = gridDatas;
       // For each ContractBO
@@ -54,7 +55,7 @@ export class GridOverviewComponent implements OnInit {
         const wantedSupervisor = gridData.wantedSupervisor != null ?
           gridData.wantedSupervisor.firstName + ' ' + gridData.wantedSupervisor.lastName :
           '';
-        // Check if wantedSupervisor is set, if not set to informational string
+        // Check if assignedSupervisor is set, if not set to informational string
         const assignedSupervisor = gridData.assignedSupervisor != null ?
           gridData.assignedSupervisor.firstName + ' ' + gridData.assignedSupervisor.lastName :
           '';
@@ -64,12 +65,12 @@ export class GridOverviewComponent implements OnInit {
           'Awaiting supervisor approval' :
           'Needs assigned supervisor';
         if (supervisorApproved && adminApproved) {
-          status = 'Fully approved';
+          status = 'Final approved';
         } else if (supervisorApproved) {
           status = 'Approved by supervisor';
         }
         const role = localStorage.getItem('Role');
-        if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
+        // if (role === 'Administrator' || gridData.project.assignedSupervisorId != null) {
           // Add new entry for gridview
           this.data.push({
             projectTitle: gridData.project.title,
@@ -78,8 +79,9 @@ export class GridOverviewComponent implements OnInit {
             company: gridData.company.name,
             status: status
           });
-        }
+        // }
         this.onChangeTable(this.config);
+        this.loading = false;
       });
     });
   }
@@ -177,6 +179,7 @@ export class GridOverviewComponent implements OnInit {
   public onCellClick(data: any): any {
     const selectedProjectTitle = data.row['projectTitle'];
     const tempContract = this.gridData.find(gd => gd.project.title === selectedProjectTitle).contract;
+    // TODO ALH: Update to reflect new primary id implementation
     const contract: Contract = {
       project: tempContract.project,
       supervisorApproved: tempContract.supervisorApproved,
