@@ -1,6 +1,4 @@
-
-
-<div class="text-center col-md-4 center-div" style="padding:50px 0">
+<div class="text-center col-md-4 center-div" style="padding:100px 0">
   <div class="logo">Register group</div>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div class="login-form-1">
@@ -9,7 +7,7 @@
       <div class="form-group">
         <input type="text" class="form-control" id="emailaddress" placeholder="Email Address"
                required
-               [(ngModel)]="user.email" name="email"
+               [(ngModel)]="user.username" name="email"
                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                #email="ngModel">
         <div [hidden]="email.valid || email.pristine"
@@ -37,7 +35,6 @@
       <div class="form-group">
         <input type="password" class="form-control"
                id="confirmPassword" placeholder="Confirm Password"
-               required
                validateEqual="password"
                [(ngModel)]="user.confirmPassword" name="confirmPassword"
                #confirmPassword="ngModel">
@@ -46,8 +43,10 @@
           Passwords did not match
         </div>
 
+        <div class="top-border"></div>
+
         <!--Create button-->
-        <button type="submit" class="login-button" (click)="create(email.value)"
+        <button type="submit" class="login-button" (click)="create()"
                 [disabled]="!loginForm.form.valid">OK</button>
       </div>
     </div>
@@ -59,18 +58,18 @@
   </form>
 </div>
 
-<!--Shows the email and password-->
+<!--Shows the username and password-->
 <!--Shall be DELETED!-->
 
 <!--<div class="col-md-6">-->
-  <!--<table class="table" [hidden]="!submitted">-->
-    <!--<tr>-->
-      <!--<td><label>Email</label></td>-->
-      <!--<td>{{user.email}}</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-      <!--<td><label>Password</label></td>-->
-      <!--<td>{{user.password}}</td>-->
-    <!--</tr>-->
-  <!--</table>-->
+<!--<table class="table" [hidden]="!submitted">-->
+<!--<tr>-->
+<!--<td><label>Email</label></td>-->
+<!--<td>{{user.username}}</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><label>Password</label></td>-->
+<!--<td>{{user.password}}</td>-->
+<!--</tr>-->
+<!--</table>-->
 <!--</div>-->

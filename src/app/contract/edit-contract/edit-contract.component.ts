@@ -52,7 +52,7 @@ export class EditContractComponent implements OnInit {
   ngOnInit() {
     const role = localStorage.getItem('Role');
     this.executiveUser = role === 'Administrator' || role === 'Supervisor';
-
+    console.log('We have executive user ' + this.executiveUser);
     this.loading = true;
     this.initializeEditVariables();
     this.setRole();
@@ -71,17 +71,12 @@ export class EditContractComponent implements OnInit {
       // Converting the hashValue to a Contract object.
       // atob is base 64 encoding, that we are using for the hashValue. atop is for decrypting.
       const contract: Contract = JSON.parse(atob(contractId));
-      // Logging the hashValue.
-      console.log(params);
       // Calling the contract.service.getById() and logging the response. (The response is the contract from the database).
       // this.contract = contractSerivce.getById(contract.groupId, contract.projectId, contract.companyId);
       this.contract = contract;
       this.populateGroup();
       this.populateCompany();
       this.populateProject();
-      // this.project = contract.project;
-      console.log('ProjectId: ' + this.project.id);
-      // this.populateSupervisors();
     });
   }
 
@@ -99,8 +94,6 @@ export class EditContractComponent implements OnInit {
   private populateCompany() {
     if (this.contract.companyId != null) {
       this.companyService.get(this.contract.companyId).subscribe(c => this.company = c);
-    }else {
-      console.log('No company id');
     }
   }
 
@@ -110,19 +103,13 @@ export class EditContractComponent implements OnInit {
         this.project = p;
         this.supervisorService.get(this.project.assignedSupervisorId).subscribe(s => {
           this.assignedSupervisor = s;
-          console.log(this.assignedSupervisor);
         });
         this.supervisorService.get(this.project.wantedSupervisorId).subscribe(s => {
           this.wantedSupervisor = s;
         });
-        console.log('Project Id: ' + this.project.id + ' Project Title: ' + this.project.title);
-
         this.loading = false;
       });
 
-    }else {
-      // TODO: Remove when implementation is done.
-      console.log('No project id');
     }
   }
 
@@ -139,10 +126,7 @@ export class EditContractComponent implements OnInit {
 
   isLoggedIn(roleToCheck: string): boolean {
     const role = localStorage.getItem('Role');
-    if (role === roleToCheck) {
-      return true;
-    }
-    return false;
+    return role === roleToCheck;
   }
 
   setRole() {
@@ -165,7 +149,6 @@ export class EditContractComponent implements OnInit {
     this.project.assignedSupervisorId = supervisorId;
     this.projectService.update(this.project).subscribe(p => {
       this.project = p;
-      console.log('Updated supervisor from admin');
     });
   }
 
@@ -173,28 +156,28 @@ export class EditContractComponent implements OnInit {
     const role = localStorage.getItem('Role');
     if (role === 'Supervisor') {
       this.contract.supervisorApproved = !this.contract.supervisorApproved;
-      console.log('Contract supervisorApproved before ' + this.contract.supervisorApproved);
+      if (this.contract.supervisorApproved === false) {
+        this.contract.adminApproved = false;
+      }
       this.contractService.update(this.contract).subscribe(c => {
-        console.log('Contract supervisorApproved after: ' + c.supervisorApproved);
         this.contract.supervisorApproved = c.supervisorApproved;
       });
     } else {
         this.contract.adminApproved = !this.contract.adminApproved;
-        console.log('Contract adminApproved before ' + this.contract.adminApproved);
         this.contractService.update(this.contract).subscribe(c => {
-          console.log('Contract adminApproved after: ' + c.adminApproved);
           this.contract.adminApproved = c.adminApproved;
         });
     }
   }
 
-  SupervisorApproved() {
-    if (localStorage.getItem('Role') === 'Administrator') {
-      console.log('hello hello ' + this.contract.supervisorApproved)
+  isSupervisorApproved() {
+    console.log('Is supervisor approved ' + this.contract.supervisorApproved);
       return this.contract.supervisorApproved;
-    } else {
-      return true;
-    }
+  }
+
+  IsSupervisor() {
+    console .log('Is supervisor ' + localStorage.getItem('Role') === 'Supervisor');
+    return (localStorage.getItem('Role') === 'Supervisor');
   }
 
   ExecutiveApproved() {
@@ -202,7 +185,8 @@ export class EditContractComponent implements OnInit {
     if (role === 'Supervisor') {
       return this.contract.supervisorApproved;
     } else {
-      return this.contract.adminApproved;
+      console.log('Contract is both Super- & adminapproved ' + this.contract.supervisorApproved && this.contract.adminApproved);
+      return this.contract.supervisorApproved && this.contract.adminApproved;
     }
   }
 
@@ -221,10 +205,6 @@ export class EditContractComponent implements OnInit {
 
   saveChangesFromEdit() {
     this.project = this.editProject;
-
-    console.log('Title: ' + this.project.title + '\nDescription: ' + this.project.description
-      + '\nStart: ' + this.project.start + '\nEnd: ' + this.project.end + '\nWantedId: ' +
-      this.project.wantedSupervisorId);
 
     this.projectService.update(this.project).subscribe(() => console.log('Project Updated'));
   }
